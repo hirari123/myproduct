@@ -1,0 +1,48 @@
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #eee;
+  background-image: url("/images/italy-1587287_1280.jpg");
+  background-size: cover;
+  color: #222;
+}
+
+.navbar-laravel {
+  background-color: #264;
+  color: #252;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.1);
+}
+
+.navbar-brand {
+  color: #111;
+}
+
+.nav-link {
+  color: #158;
+}
+
+.table-dark {
+  background-color: #cbcbcb;
+  color: #232;
+}
+
+.list-group-item {
+  border-top-color: #142;
+  background-color: #fafafa;
+}
+
+.login-box {
+  background-color: rgba(10, 50, 10, 0.5);
+  color: #fafafa;
+}
+
+.login-header {
+  background-color: rgba(10, 50, 10, 0.5);
+}
+
+.login-body {
+  background-color: rgba(200, 200, 200, 0.8);
+}
+

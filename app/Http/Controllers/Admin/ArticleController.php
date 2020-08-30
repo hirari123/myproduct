@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Article; // Article Modelを扱う
+use Illuminate\Http\Request; // 通常のリクエスト
+use App\Article; // Article Modelを使う
+use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 
 class ArticleController extends Controller
 {
@@ -14,10 +15,11 @@ class ArticleController extends Controller
     return view('admin.article.create');
   }
 
-  public function create(Request $request)
+  // createアクション(引数のRequestはArticleRequestに変更)
+  public function create(ArticleRequest $request)
   {
-    // モデルの$rulesを引数にVaridateメソッドを呼び出す
-    $this->validate($request, Article::$rules);
+    // モデルの$rulesを引数にVaridateメソッドを呼び出す→削除
+    // $this->validate($request, Article::$rules);
 
     $articles = new Article;
     $form = $request->all();
@@ -38,7 +40,7 @@ class ArticleController extends Controller
     $articles->fill($form);
     $articles->save();
 
-    return redirect('admin/article/create');
+    return redirect('admin/articles');
   }
 
   // indexアクションを定義
@@ -71,10 +73,10 @@ class ArticleController extends Controller
   }
   
   // updateアクションを定義
-  public function update(Request $request)
+  public function update(ArticleRequest $request)
   {
-    // Validationをかける
-    $this->validate($request, Article::$rules);
+    // Modelの$rulesを使用したValidation
+    // $this->validate($request, Article::$rules);
 
     // Modelからデータを取得する
     $articles = Article::find($request->id);

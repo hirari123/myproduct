@@ -47,7 +47,9 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- ナビゲーションバー(左側) -->
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mx-auto">
+              <li><a class="=nav-link" href="{{ url('/admin/articles') }}">投稿記事一覧</a></li>
+              <li><a class="=nav-link" href="{{ url('/admin/users') }}">ユーザー一覧</a></li>
             </ul>
 
             <!-- ナビゲーションバー(右側) -->
@@ -63,7 +65,9 @@
                     {{ Auth::user()->name }} <span class="caret"></span>
                   </a>
 
+                  <!-- プロフィール編集は未実装(作成画面にリンクしている) -->
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ url('/admin/profile/create') }}">プロフィール編集</a>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit()">
                       {{ __('messages.Logout') }}
                     </a>

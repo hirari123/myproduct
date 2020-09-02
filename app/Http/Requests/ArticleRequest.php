@@ -14,7 +14,8 @@ class ArticleRequest extends FormRequest
     public function authorize()
     {
         // 適用するパスをチェック
-        if ($this->path() == 'admin/article/create' || $this->path() == 'admin/article/edit')
+        // if ($this->path() == 'admin/article/create' || $this->path() == 'admin/article/edit')
+        if ($this->path() == ('admin/article/create' || 'admin/article/edit'))
         {
             return true;
         } else {

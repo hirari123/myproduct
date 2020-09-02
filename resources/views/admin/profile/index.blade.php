@@ -20,15 +20,21 @@
               <tr>
                 <th width="10%">ID</th>
                 <th width="30%">名前</th>
-                <th width="50%">プロフィール</th>
+                <th width="40%">ひとこと</th>
+                <th width="10%">操作</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($users as $user)
                 <tr>
                   <th>{{ $user->id }}</th>
-                  <th>{{ $user->name }}</th>
-                  <td>{{ $user->body }}</td>
+                  <td>{{ $user->name }}</td>
+                  <td>{{ Str::limit($user->body, 30) }}</td>
+                  <td>
+                    <div>
+                      <a href="{{ action('Admin\ProfileController@edit', ['id' => $user->id]) }}">編集</a>
+                    </div>
+                  </td>
                 </tr>
               @endforeach
             </tbody>

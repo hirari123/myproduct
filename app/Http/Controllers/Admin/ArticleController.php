@@ -43,30 +43,13 @@ class ArticleController extends Controller
     return redirect('admin/articles');
   }
 
-  // indexアクションを定義
-  // 部分一致のあいまい検索とした
-  // URLからtokenを削除する記述は不要？
-  // ページネーションは不要？
-  public function index(Request $request)
-  {
-    $cond_title = $request->cond_title;
-    if ($cond_title != '') {
-      // 検索されたら検索結果を取得する
-      $articles = Article::where('body', 'like', '%'.$cond_title.'%')->get();
-    } else {
-      // それ以外はすべての投稿を取得する
-      $articles = Article::all();
-    }
-
-    return view('admin.article.index', ['articles' => $articles, 'cond_title' => $cond_title]);
-  }
-
   // editアクションを定義
   public function edit(Request $request)
   {
     // Modelからデータを取得する
     $articles = Article::find($request->id);
-    if (empty($articles)) {
+    if (empty($articles))
+    {
       abort(404);
     }
     return view('admin.article.edit', ['article_form' => $articles]);
@@ -77,11 +60,11 @@ class ArticleController extends Controller
   {
     // Modelの$rulesを使用したValidation
     // $this->validate($request, Article::$rules);
-
+    
     // Modelからデータを取得する
     $articles = Article::find($request->id);
-
-    // 送信されてきたフォームデータを削除する
+    
+    // 送信されてきたフォームデータを格納する
     $articles_form = $request->all();
     if (isset($articles_form['image'])) { //imageがあるかを判定
       $path = $request->file('image')->store('public/image');
@@ -92,13 +75,13 @@ class ArticleController extends Controller
     }
     unset($articles_form['_token']);
     unset($articles_form['remove']);
-
+    
     // データを上書きして保存する
     $articles->fill($articles_form)->save();
-
+    
     return redirect('admin/articles');
   }
-
+  
   // deleteアクションを定義
   public function delete(Request $request)
   {
@@ -106,5 +89,22 @@ class ArticleController extends Controller
     $articles->delete();
     return redirect('admin/articles');
   }
-
+  
+  // indexアクション
+  // 部分一致のあいまい検索とした
+  // URLからtokenを削除する記述は不要？
+  // ページネーションは不要？無限スクロールにする？
+  public function index(Request $request)
+  {
+    $cond_title = $request->cond_title;
+    if ($cond_title != '') {
+      // 検索されたら検索結果を取得する
+      $articles = Article::where('body', 'like', '%'.$cond_title.'%')->get();
+    } else {
+      // それ以外はすべての投稿を取得する
+      $articles = Article::all();
+    }
+  
+    return view('admin.article.index', ['articles' => $articles, 'cond_title' => $cond_title]);
+  }
 }

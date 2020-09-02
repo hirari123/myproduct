@@ -1,11 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.top')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="login-box card">
-                <div class="login-header card-header float-left">メンバー登録済みの方はこちらから{{ __('messages.Login') }}！</div>
+                <div class="login-header card-header float-left">登録済みの方はこちらから{{ __('messages.Login') }}</div>
 
                 <div class="login-body card-body">
                     <form method="POST" action="{{ route('top') }}">

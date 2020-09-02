@@ -1,4 +1,6 @@
 body {
+  background-image: url("/images/italy-1587287_1280.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-color: #eee;
@@ -21,13 +23,16 @@ body {
   color: #fff;
 }
 
-.table-dark {
-  background-color: #cbcbcb;
-  color: #232;
+.login-box {
+  background-color: rgba(10, 50, 10, 0.5);
+  color: #fafafa;
 }
 
-.list-group-item {
-  border-top-color: #142;
-  background-color: #fafafa;
+.login-header {
+  background-color: rgba(10, 50, 10, 0.5);
+}
+
+.login-body {
+  background-color: rgba(200, 200, 200, 0.8);
 }
 

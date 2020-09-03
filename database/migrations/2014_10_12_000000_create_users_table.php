@@ -11,7 +11,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    // Authファサードで生成したMigrationにbodyとimage_pathを追記→別で定義する？
+    // Authファサードで生成したMigrationにbodyとimage_pathを追記した
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {

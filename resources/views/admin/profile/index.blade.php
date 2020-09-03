@@ -29,7 +29,7 @@
                 <tr>
                   <th>{{ $user->id }}</th>
                   <td>{{ $user->name }}</td>
-                  <td>{{ Str::limit($user->body, 30) }}</td>
+                  <td>{{ Str::limit($user->introduction, 30) }}</td>
                   <td>
                     <div>
                       <a href="{{ action('Admin\ProfileController@edit', ['id' => $user->id]) }}">編集</a>

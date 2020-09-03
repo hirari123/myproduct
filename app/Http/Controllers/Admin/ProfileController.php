@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\User; // AuthのUserモデル
 use Illuminate\Http\Request; // 通常のリクエスト
+// use Illuminate\Foundation\Auth\User; // AuthのUserモデル(以前の記述)
+use Illuminate\Foundation\Auth\RegistersUsers; // 追加(使用していない)
+use App\User; // Userモデル(こっちを使う)
 
 class ProfileController extends Controller
 {
@@ -25,12 +27,12 @@ class ProfileController extends Controller
   public function edit(Request $request)
   {
     // ModelからUserデータを取得する
-    $users = User::find($request->id); // Userモデルでidが一致するものをインスタンス化
-    if (empty($users))
+    $user_data = User::find($request->id); // Userモデルでidが一致するものをインスタンス化
+    if (empty($user_data))
     {
       abort(404);
     }
-    return view('admin.profile.edit', ['user_form' => $users]);
+    return view('admin.profile.edit', ['user_data' => $user_data]);
   }
 
   // updateアクション
@@ -38,13 +40,16 @@ class ProfileController extends Controller
   {
 
     // Modelからデータを取得する
-    $users = User::find($request->id); // Userモデルでidが一致するものをインスタンス化
-    
-    // 送信されてきたフォームデータを格納する
+    $user_data = User::find($request->id); // Userモデルでidが一致するものをインスタンス化
+
+    // 送信されてきたフォームデータを取得し、トークンを削除
     $users_form = $request->all();
+    unset($users_form['_token']);
     
     // データを上書きして保存する
-    $users->fill($users_form)->save(); // ←ここでエラーとなっている
+    // dd($user_data);
+    $user_data->fill($users_form); // ←ここでエラーとなっている
+    $user_data->save();
 
     return redirect('admin/users');
   }

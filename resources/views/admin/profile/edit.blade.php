@@ -11,27 +11,30 @@
       <div class="col-md-8 mx-auto">
         <h2>ユーザー情報の編集</h2>
         <form action="{{ action('Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
-          @if (count($errors) > 0)
-            <ul>
-              @foreach ($errors->all() as $e)
-                <li>{{ $e }}</li>
-              @endforeach
-            </ul>
-          @endif
+          <!-- バリデーションで返すメッセージを表示 -->
+          @error('introduction')
+            <tr><td>{{$message}}</td></tr>
+          @enderror
+
           <div class="form-group row">
             <label class="col-md-2" for="name">ユーザー名</label>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="name" value="{{ $user_form->name }}">
+              <input type="text" class="form-control" name="name" value="{{ $user_data->name }}">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-2" for="introduction">ひとこと</label>
             <div class="col-md-10">
-              <textarea class="form-control" name="introduction" cols="30" rows="3">{{ $user_form->introduction }}</textarea>
+              <textarea class="form-control" name="introduction" cols="30" rows="3">{{ $user_data->introduction }}</textarea>
             </div>
           </div>
-          {{ csrf_field() }}
-          <input type="submit" class="btn btn-primary" value="更新">
+          <div class="form-group row">
+            <div class="col-md-10">
+              <input type="hidden" name="id" value="{{ $user_data->id }}">
+              {{ csrf_field() }}
+              <input type="submit" class="btn btn-primary" value="更新">
+            </div>
+          </div>
         </form>
       </div>
     </div>

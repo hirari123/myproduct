@@ -55,8 +55,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            // 'introduction' => ['string', 'max:200'], // 追加したがひとまず無効にする
-            // 'user_image_path' => ['string'], // 追加したがひとまず無効にする
+            'introduction' => ['string', 'max:200'], // 追加
+            // 'user_image_path' => ['string'], // 追加(ひとまず無効)
         ]);
     }
 
@@ -73,8 +73,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            // 'introduction' => $data['introduction'], // 追加したがひとまず無効にする
-            // 'user_image_path' => $data['user_image_path'], // 追加したがひとまず無効にする
+            'introduction' => null, // 追加
+            'user_image_path' => null, // 追加
         ]);
     }
 }

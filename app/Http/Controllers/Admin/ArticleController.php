@@ -77,7 +77,8 @@ class ArticleController extends Controller
     unset($articles_form['remove']);
     
     // データを上書きして保存する
-    $articles->fill($articles_form)->save();
+    $articles->fill($articles_form);
+    $articles->save();
     
     return redirect('admin/articles');
   }

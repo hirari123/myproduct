@@ -12,18 +12,17 @@
     <title>@yield('title')</title>
 
     <!-- Scripts -->
-    {{-- Laravel標準で用意されるJavaScriptを読み込む(publicディレクトリ) --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/modal.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" type="text/css">
 
     <!-- Styles -->
-    {{-- Laravel標準で用意されるCSSを読み込む --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{-- adminに作成するCSSを読み込む --}}
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('images/cat_icon.jpeg') }}" type="image/x-icon">

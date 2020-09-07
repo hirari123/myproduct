@@ -106,6 +106,18 @@ $('.js-modal-open').each(function () {
 $('.js-modal-close').on('click', function () {
   $('.js-modal').fadeOut(300);
   return false;
+}); // フォームのバリデーション
+
+$("#post-form").submit(function () {
+  if ($("textarea[name='body']").val() == '') {
+    alert('投稿文を入力してください');
+    return false;
+  } else if ($("textarea[name='body']").val().length > 10) {
+    alert('投稿文は10文字以内で入力してください');
+    return false;
+  } else {
+    $("#post-form").submit();
+  }
 });
 
 /***/ }),

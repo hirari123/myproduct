@@ -27,7 +27,7 @@
         <div class="c-modal_content">
           <div class="c-modal_content_inner">
             <h2>投稿の新規作成画面</h2>
-            <form action="{{ action('Admin\ArticleController@create') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ action('Admin\ArticleController@create') }}" method="post" enctype="multipart/form-data" id="post-form">
               <!-- バリデーションメッセージを表示 -->
               @error('body')
                 <tr><td>{{$message}}</td></tr>
@@ -36,7 +36,8 @@
               <div class="form-group row">
                 <label class="col-md-2" for="body">投稿内容</label>
                 <div class="col-md-10">
-                  <textarea class="form-control" name="body" cols="30" rows="6">{{ old('body') }}</textarea>
+                  {{-- <textarea class="form-control" name="body" cols="30" rows="6">{{ old('body') }}</textarea> --}}
+                  <textarea name="body" cols="30" rows="6">{{ old('body') }}</textarea>
                 </div>
               </div>
               <!-- 画像の投稿 -->
@@ -46,6 +47,7 @@
                   <input type="file" class="form-control-file" name="image">
                 </div>
               </div>
+
               {{ csrf_field() }}
               <input type="submit" class="btn btn-primary" value="投稿する">
             </form>

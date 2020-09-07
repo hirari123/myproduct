@@ -19,8 +19,8 @@ $("#post-form").submit(function(){
   if ($("textarea[name='body']").val() == '') {
     alert('投稿文を入力してください');
     return false;
-  } else if ($("textarea[name='body']").val().length > 10) {
-    alert('投稿文は10文字以内で入力してください');
+  } else if ($("textarea[name='body']").val().length > 120) {
+    alert('投稿文は120文字以内で入力してください');
     return false;
   } else {
     $("#post-form").submit();

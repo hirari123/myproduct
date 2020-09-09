@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * リレーションの設定
+     * articlesテーブルと1対多
+     * Usersテーブルが主テーブル
+     */
+    public function articles()
+    {
+        return $this->hasMany('App\articles');
+    }
 }

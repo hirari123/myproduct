@@ -37,22 +37,24 @@
           <table class="table table-dark">
             <thead>
               <tr>
-                <th width="10%">ID</th>
+                <th width="10%">投稿ID</th>
+                <th width="10%">投稿者</th>
                 <th width="40%">本文</th>
                 <th width="20%">操作</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($articles as $article)
+              @foreach ($articles as $post)
                 <tr>
-                  <th>{{ $article->id }}</th>
-                  <td>{{ $article->body }}</td>
+                  <th>{{ $post->id }}</th>
+                  <th>{{ $post->user_name }}</th>
+                  <td>{{ $post->body }}</td>
                   <td>
                     <div>
-                    <a href="{{ action('Admin\ArticleController@edit', ['id' => $article->id]) }}">編集する</a>
+                    <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
                     </div>
                     <div>
-                    <a href="{{ action('Admin\ArticleController@delete', ['id' => $article->id]) }}">削除する</a>
+                    <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
                     </div>
                   </td>
                 </tr>

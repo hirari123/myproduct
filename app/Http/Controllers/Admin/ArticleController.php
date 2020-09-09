@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; // 通常のリクエスト
 use App\Article; // Article Modelを使う
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 
 class ArticleController extends Controller
@@ -31,6 +32,10 @@ class ArticleController extends Controller
     } else {
         $articles->image_path = null;
     }
+
+    // ログインユーザー情報を取得する
+    $articles->user_name = Auth::user()->name;
+    // $articles->user_name = 'ユーザー1';
 
     // フォームから送信されてきた_tokenとimageを削除
     unset($form['_token']);

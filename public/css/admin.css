@@ -26,8 +26,13 @@ body {
   color: #232;
 }
 
-.list-group-item {
+.card {
   border-top-color: #142;
-  background-color: #fafafa;
+  background-color: #eee;
+  margin-bottom: 25px;
+}
+
+.card-footer {
+  margin-bottom: 0px;
 }
 

@@ -37,18 +37,22 @@
     {{-- 投稿一覧 --}}
     {{-- 検索で取得した結果をforeachでカード表示する --}}
     <div class="row">
-      <div class="list-news col-md-10 mx-auto">
+      <div class="col-md-10 mx-auto">
         @foreach ($articles as $post)
-        <div class="card" style="max-width: 50em">
+        <div class="post-list card" style="max-width: 50em">
           <div class="card-header bg-dark text-white">
-            投稿者：{{ $post->user_name }}
+            書いたひと：{{ $post->user_name }}
           </div>
           <div class="card-body">
-            {{ $post->body }}
+            <div class="card-text">
+              {{ $post->body }}
+            </div>
           </div>
-          <div class="card-footer">
-            <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
-            <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
+          <div class="card-footer bg-white">
+            <div card-link>
+              <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
+              <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
+            </div>
           </div>
         </div>
         @endforeach

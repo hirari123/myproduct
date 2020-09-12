@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; // 通常のリクエスト
 // use Illuminate\Foundation\Auth\User; // AuthのUserモデル(以前の記述)
-use Illuminate\Foundation\Auth\RegistersUsers; // 追加(使用していない)
+// use Illuminate\Foundation\Auth\RegistersUsers; // 追加(使用していないので無効にする)
 use App\User; // Userモデル(こっちを使う)
+use Illuminate\Support\Facades\Auth; // Authファサードを使う
+
 
 class ProfileController extends Controller
 {
@@ -27,11 +29,12 @@ class ProfileController extends Controller
   public function edit(Request $request)
   {
     // ModelからUserデータを取得する
-    $user_data = User::find($request->id); // Userモデルでidが一致するものをインスタンス化
-    if (empty($user_data))
-    {
-      abort(404);
-    }
+    // $user_data = User::find($request->id); // Userモデルでidが一致するものをインスタンス化
+    // if (empty($user_data))
+    // {
+    //   abort(404);
+    // }
+    $user_data = Auth::user();
     return view('admin.profile.edit', ['user_data' => $user_data]);
   }
 
@@ -59,9 +62,9 @@ class ProfileController extends Controller
   // indexアクションを定義(検索機能は実装しない)
   public function index(Request $request)
   {
-    $cond_title = $request->cond_title;
+    // $cond_title = $request->cond_title;
     $users = User::all();
-    return view('admin.profile.index', ['users' => $users, 'cond_title' => $cond_title]);
+    return view('admin.profile.index', ['users' => $users]);
   }
 
 }

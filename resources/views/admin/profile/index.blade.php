@@ -2,7 +2,7 @@
 @extends('layouts.admin')
 
 {{-- タイトルを埋め込む --}}
-@section('title', 'ユーザーの一覧')
+@section('title', '登録ユーザーの一覧')
 
 {{-- コンテンツを埋め込む --}}
 @section('content')
@@ -10,37 +10,32 @@
     <div class="row">
       <h2>登録ユーザーの一覧</h2>
     </div>
+    <br>
 
-    {{-- 検索で取得した結果をforeachで表示する --}}
+    {{-- ユーザーをforeachでカード表示する --}}
     <div class="row">
-      <div class="list-news col-md-12 mx-auto">
-        <div class="row">
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th width="10%">ID</th>
-                <th width="30%">名前</th>
-                <th width="40%">ひとこと</th>
-                <th width="10%">操作</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($users as $user)
-                <tr>
-                  <th>{{ $user->id }}</th>
-                  <td>{{ $user->name }}</td>
-                  <td>{{ Str::limit($user->introduction, 30) }}</td>
-                  <td>
-                    <div>
-                      <a href="{{ action('Admin\ProfileController@edit', ['id' => $user->id]) }}">編集</a>
-                    </div>
-                  </td>
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
+      {{-- <div class="list-news col-md-10 mx-auto"> --}}
+        @foreach ($users as $user)
+        <div class="card-deck">
+          <div class="card" style="width: 24em">
+            <div class="card-header bg-dark text-white">
+              名前：{{ $user->name }}
+            </div>
+            <div class="card-body">
+              {{ $user->introduction }}
+            </div>
+
+            {{-- ログインユーザーは編集できるようにする --}}
+            @if ($user->id == auth::user()->id)
+            <div class="card-footer">
+              <a href="{{ action('Admin\ProfileController@edit', ['id' => $user->id]) }}">プロフィールを編集する</a>
+            </div>
+            @endif
+
+          </div>
         </div>
-      </div>
+        @endforeach
+      {{-- </div> --}}
     </div>
   </div>
 @endsection

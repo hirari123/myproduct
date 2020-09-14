@@ -1,10 +1,9 @@
-body {
+.top-wapper {
   background-image: url("/images/italy-1587287_1280.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #eee;
-  color: #222;
+  color: #fafafa;
 }
 
 .navbar-laravel {
@@ -24,15 +23,27 @@ body {
 }
 
 .login-box {
-  background-color: rgba(10, 50, 10, 0.5);
+  background-color: rgba(10, 50, 10, 0.6);
   color: #fafafa;
 }
 
 .login-header {
-  background-color: rgba(10, 50, 10, 0.5);
+  background-color: rgba(10, 50, 10, 0.6);
 }
 
 .login-body {
   background-color: rgba(200, 200, 200, 0.8);
+}
+
+.btn-success {
+  background-color: #075;
+  color: #fff !important;
+  margin: 15px;
+}
+
+.btn-info {
+  background-color: #047;
+  color: #fff !important;
+  margin: 15px;
 }
 

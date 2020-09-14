@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- app.blade.phpがあるので不要？ -->
 <html lang="{{ app()->getLocale() }}">
   <head>
     <meta charset="UTF-8">

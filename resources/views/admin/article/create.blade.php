@@ -1,5 +1,6 @@
+{{-- モーダルを実装したのでそもそもこのファイルは不要では？？ --}}
 {{-- レイアウトを読み込む --}}
-@extends('layouts.admin')
+@extends('layouts.app')
 
 {{-- タイトルを埋め込む --}}
 @section('title', '新規投稿')

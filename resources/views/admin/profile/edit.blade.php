@@ -1,5 +1,4 @@
-{{-- layouts/admin.blade.phpを読み込む --}}
-@extends('layouts.admin')
+@extends('layouts.app')
 
 {{-- タイトルを埋め込む --}}
 @section('title', 'ユーザー情報の編集')

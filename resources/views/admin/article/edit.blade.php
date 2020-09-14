@@ -1,5 +1,5 @@
 {{-- レイアウトを読み込む --}}
-@extends('layouts.admin')
+@extends('layouts.app')
 
 {{-- タイトルを埋め込む --}}
 @section('title', '投稿の編集')

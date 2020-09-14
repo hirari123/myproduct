@@ -1,8 +1,11 @@
-{{-- layouts/admin.blade.phpを読み込む --}}
-@extends('layouts.admin')
+{{-- layouts/app.blade.phpを読み込む --}}
+@extends('layouts.app')
 
 {{-- タイトルを埋め込む --}}
 @section('title', '投稿記事一覧')
+
+<!-- 背景画像は変えたい,navbarを埋め込みたい -->
+<!-- 背景画像はbodyタグにクラスを付ければ良い？ -->
 
 {{-- コンテンツを埋め込む --}}
 @section('content')
@@ -60,6 +63,7 @@
     </div>
   </div>
 
+  <link rel=""
   {{-- 投稿のモーダルウィンドウ --}}
   <div id="modal01" class="c-modal js-modal">
     <!-- 背景 -->

@@ -63,7 +63,7 @@
     </div>
   </div>
 
-  <link rel=""
+
   {{-- 投稿のモーダルウィンドウ --}}
   <div id="modal01" class="c-modal js-modal">
     <!-- 背景 -->

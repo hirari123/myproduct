@@ -48,6 +48,7 @@
 
 // ナビゲーションバーの装飾
 .navbar-laravel {
+  padding: 0px;
   background-color: #153;
   color: #000;
   font-weight: bold;
@@ -83,9 +84,9 @@ body {
   margin-bottom: 15px;
 }
 
-.footer {
-  margin-top: 20px;
-  height: 50px;
-  background-color: #999;
+footer {
+  padding: 0px;
+  height: 3rem;
+  background-color: #dadaaa;
   color: #000;
 }

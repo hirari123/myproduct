@@ -89,7 +89,7 @@
         </main>
 
         <footer>
-            <div class="text-center">
+            <div class="text-center height">
                 <p>powerd by paleo_engineer</p>
             </div>
         </footer>

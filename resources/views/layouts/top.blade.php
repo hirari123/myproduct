@@ -35,14 +35,27 @@
         @yield('login_form')
       </div>
     </div>
-    <div class="top-contens ml-5">
-      <h4>Paleo Boostでできること</h4>
-      <ul>
-        <li>投稿作成機能(画像付き可)</li>
-        <li>投稿の編集,削除機能</li>
-        <li>コメント機能</li>
-        <li>いいね機能</li>
-      </ul>
+    <div class="top-contens pt-3">
+      <div class="row">
+        <div class="col-md-4 ml-auto">
+          <h4>Paleo Boostでできること</h4>
+          <ul>
+            <li>ユーザー登録</li>
+            <li>投稿作成機能</li>
+            <li>画像の投稿機能</li>
+            <li>投稿と登録ユーザの閲覧</li>
+            <li>投稿の編集,削除機能</li>
+          </ul>
+        </div>
+        <div class="col-md-5 mr-auto">
+          <h4>今後追加される機能(予定)</h4>
+          <ul>
+            <li>コメント機能</li>
+            <li>いいね機能</li>
+            <li>食品データベースを用いた栄養素計算機能</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 @endsection

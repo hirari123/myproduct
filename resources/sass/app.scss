@@ -9,13 +9,17 @@
 
 // トップページラッパーの装飾
 .top-wrapper {
+  height: 625px;
   margin-top: 0px;
-  padding-top: 20px;
+  padding-top: 25px;
   background-image: url('/images/italy-1587287_1280.jpg');
+  // background-image: url('/images/sunrise-1014712_1280.jpg');
+  // background-image: url('/images/buildings-4222462_1280.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: #fafafa;
+  text-shadow: 2px 3px 4px #333;
 }
 
 // ログインフォームの装飾
@@ -29,7 +33,7 @@
 }
 
 .login-body {
-  background-color: rgba( 200, 200, 200, 0.8);
+  background-color: rgba( 160, 160, 150, 0.85);
 }
 
 // ログインボタンの装飾

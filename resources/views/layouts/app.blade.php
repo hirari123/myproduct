@@ -84,13 +84,13 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-0">
             @yield('content')
         </main>
 
         <footer>
-            <div class="text-center height">
-                <p>powerd by paleo_engineer</p>
+            <div class="text-center pt-2">
+                <p>Powerd by Hiroyuki Nakajima</p>
             </div>
         </footer>
     </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; // 通常のリクエスト
 use App\Article; // Article Modelを使う
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 
 class ArticleController extends Controller

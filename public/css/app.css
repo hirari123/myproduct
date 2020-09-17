@@ -10904,3 +10904,82 @@ a.text-dark:focus {
   }
 }
 
+.top-wrapper {
+  height: 625px;
+  margin-top: 0px;
+  padding-top: 25px;
+  background-image: url("/images/italy-1587287_1280.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fafafa;
+  text-shadow: 2px 3px 4px #333;
+}
+
+.login-box {
+  background-color: rgba(10, 50, 10, 0.6);
+  color: #fafafa;
+}
+
+.login-header {
+  background-color: rgba(10, 50, 10, 0.6);
+}
+
+.login-body {
+  background-color: rgba(160, 160, 150, 0.85);
+}
+
+.btn-success {
+  background-color: #075;
+  color: #fff !important;
+  margin: 15px;
+}
+
+.btn-info {
+  background-color: #047;
+  color: #fff !important;
+  margin: 15px;
+}
+
+.navbar-laravel {
+  padding: 0px;
+  background-color: #153;
+  color: #000;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(50, 50, 50, 0.1);
+}
+
+.navbar-brand {
+  color: #111;
+}
+
+.navbar-nav {
+  color: #fff;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+body {
+  background-color: #fffffade;
+  color: #222;
+}
+
+.post-list {
+  margin-bottom: 20px;
+}
+
+.card-deck {
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+footer {
+  padding: 0px;
+  height: 3rem;
+  background-color: #dadaaa;
+  color: #000;
+}
+

@@ -2,14 +2,14 @@
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #eee; 
+  background-color: #fffffade; 
   color: #222;
 }
 
 // ナビゲーションバーの装飾
 .navbar-laravel {
-  background-color: #264;
-  color: #252;
+  background-color: #153;
+  color: #000;
   font-weight: bold;
   font-size: 20px;
   box-shadow: 0 2px 4px rgba( 50, 50, 50, 0.1);
@@ -19,23 +19,26 @@ body {
   color: #111;
 }
 
+.navbar-nav {
+  color: #fff;
+}
+
 .nav-link {
   color: #fff;
 }
 
 // 一覧テーブルの装飾
-.table-dark {
-  background-color: #cbcbcb;
-  color: #232;
-}
+// .table-dark {
+//   background-color: #000;
+//   color: #232;
+// }
 
 // 投稿のカードの装飾
-.card {
-  border-top-color: #142;
-  background-color: #eee;
-  margin-bottom: 25px;
+.post-list {
+  margin-bottom: 20px;
 }
 
-.card-footer {
-  margin-bottom: 0px;
+.card-deck {
+  margin-right: 10px;
+  margin-bottom: 15px;
 }

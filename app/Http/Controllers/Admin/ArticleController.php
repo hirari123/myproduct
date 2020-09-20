@@ -105,7 +105,7 @@ class ArticleController extends Controller
     $cond_title = $request->cond_title;
     if ($cond_title != '') {
       // 検索されたら検索結果を取得する
-      $articles = Article::where('body', 'like', '%'.$cond_title.'%')->get();
+      $articles = Article::where('body', 'like', '%'.$cond_title.'%')->orderBy('created_at', 'desc')->get();
     } else {
       // それ以外はすべての投稿を取得する
       $articles = Article::all();

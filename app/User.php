@@ -39,11 +39,17 @@ class User extends Authenticatable
 
     /**
      * リレーションの設定
-     * articlesテーブルと1対多
-     * Usersテーブルが主テーブル
      */
+    
+    // Articlesモデルと紐づける(1対多)
     public function articles()
     {
         return $this->hasMany('App\articles');
+    }
+
+    // Commentモデルと紐づける(1対多)
+    public function comments()
+    {
+        return $this->hasMany('App\comments');
     }
 }

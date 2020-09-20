@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// "/"にアクセスしたときのルーティング(あとで変更すること)
+/* "/"にアクセスしたときのルーティング→無効にする
 Route::get('/', function () {
   return view('welcome');
 });
+*/
 
 // 記事投稿関連のルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
@@ -41,5 +42,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 // Authファサードで生成されるルーティング
 Auth::routes();
 
-// home画面へのルーティング(初期)→あとで無効する
-Route::get('/home', 'HomeController@index')->name('home');
+// home画面へのルーティング(初期)→無効する
+// Route::get('/home', 'HomeController@index')->name('home');

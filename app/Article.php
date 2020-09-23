@@ -9,6 +9,11 @@ class Article extends Model
     protected $guarded = array('id'); // idは書き換えられない
     protected $table = 'Articles';
 
+    // 更新日時の記述を追加
+    protected $dates = [
+        'edited_at',
+    ];
+
     // バリデーションルールはフォームリクエストでの定義に変更
     /*
     public static $rules = array(
@@ -25,6 +30,6 @@ class Article extends Model
     // Commentモデルと紐づける(1対多)
     public function comments()
     {
-        return $this->hasMany(App\Comment);
+        return $this->hasMany('App\Comment');
     }
 }

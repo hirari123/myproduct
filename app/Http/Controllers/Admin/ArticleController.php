@@ -7,6 +7,7 @@ use Illuminate\Http\Request; // 通常のリクエスト
 use App\Article; // Article Modelを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
+use Carbon\Carbon; // 日付操作ライブラリを使う
 
 class ArticleController extends Controller
 {
@@ -79,11 +80,14 @@ class ArticleController extends Controller
       $articles->image_path = null; // 画像を削除する場合はimage_pathにnullをセット
     }
     unset($articles_form['_token']);
+    unset($articles_form['image']);
     unset($articles_form['remove']);
     
+    // 編集日時を追加する
+    $articles->edited_at = Carbon::now();
+
     // データを上書きして保存する
-    $articles->fill($articles_form);
-    $articles->save();
+    $articles->fill($articles_form)->save();
     
     return redirect('admin/articles');
   }
@@ -108,7 +112,7 @@ class ArticleController extends Controller
       $articles = Article::where('body', 'like', '%'.$cond_title.'%')->orderBy('created_at', 'desc')->get();
     } else {
       // それ以外はすべての投稿を取得する
-      $articles = Article::all();
+      $articles = Article::orderBy('created_at', 'desc')->get();
     }
   
     return view('admin.article.index', ['articles' => $articles, 'cond_title' => $cond_title]);

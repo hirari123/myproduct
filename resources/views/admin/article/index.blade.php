@@ -45,14 +45,26 @@
         <div class="post-list card" style="max-width: 50em">
           <div class="card-header bg-dark text-white">
             書いたひと：{{ $post->user_name }}
+            <span class="float-right">
+              投稿日時 {{ $post->created_at->format('Y年m月d日 H:i') }}
+            </span>
           </div>
           <div class="card-body">
             <div class="card-text">
               {{ $post->body }}
+              @if( $post->edited_at != null)
+                <div class="float-right">
+                  <br>
+                  [{{ $post->edited_at->format('Y年m月d日 H:i') }}編集]
+                </div>
+              @endif
             </div>
           </div>
           <div class="card-footer bg-white">
-            <div card-link>
+            <span class="badge badge-primary">
+              コメント {{ $post->comments->count() }}件
+            </span>
+            <div class="card-link float-right">
               <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
               <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
             </div>

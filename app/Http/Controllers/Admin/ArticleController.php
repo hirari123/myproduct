@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; // 通常のリクエスト
 use App\Article; // Article Modelを使う
+use App\Comment; // Comment Modelを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 use Carbon\Carbon; // 日付操作ライブラリを使う
@@ -116,5 +117,19 @@ class ArticleController extends Controller
     }
   
     return view('admin.article.index', ['articles' => $articles, 'cond_title' => $cond_title]);
+  }
+
+  // showアクション
+  public function show(Request $request)
+  {
+    // idが一致する投稿データを取得
+    $articles = Article::find($request->id);
+    $comments = Comment::all();
+    if (empty($articles))
+    {
+      abort(404);
+    }
+    // return view('admin.article.show', ['article_form' => $articles]);
+    return view('admin.article.show', ['comments' => $comments]);
   }
 }

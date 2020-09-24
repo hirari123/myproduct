@@ -61,9 +61,12 @@
             </div>
           </div>
           <div class="card-footer bg-white">
-            <span class="badge badge-primary">
-              コメント {{ $post->comments->count() }}件
-            </span>
+            <a class="badge badge-secondary" href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}">
+                コメント {{ $post->comments->count() }}件
+            </a>
+            <a class="badge badge-primary" href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}">
+                コメントを追加する
+            </a>
             <div class="card-link float-right">
               <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
               <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>

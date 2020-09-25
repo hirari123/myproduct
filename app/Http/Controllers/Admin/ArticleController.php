@@ -123,13 +123,11 @@ class ArticleController extends Controller
   public function show(Request $request)
   {
     // idが一致する投稿データを取得
-    $articles = Article::find($request->id);
-    $comments = Comment::all();
-    if (empty($articles))
+    $post = Article::find($request->id);
+    if (empty($post))
     {
       abort(404);
     }
-    // return view('admin.article.show', ['article_form' => $articles]);
-    return view('admin.article.show', ['comments' => $comments]);
+    return view('admin.article.show', ['post' => $post]);
   }
 }

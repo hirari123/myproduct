@@ -5,47 +5,54 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <h2>投稿記事一覧</h2>
+    <h2 class="h4">投稿記事の詳細</h2>
   </div>
 
   <div class="row">
-  {{-- ここに投稿本体が入る？ --}}
-
-  {{-- コメントをforeachでカード表示する --}}
-  {{-- $commentがうまく格納できていない？ --}}
-  <div class="row">
+  {{-- 投稿本体 --}}
     <div class="col-md-10 mx-auto">
-      @foreach ($comments as $comment)
       <div class="post-list card" style="max-width: 50em">
+
         <div class="card-header bg-dark text-white">
-          コメントした人：{{ $comment->user_name }}
+          投稿した人：{{ $post->user_name }}
           <span class="float-right">
-            コメント日時 {{ $comment->created_at->format('Y年m月d日 H:i') }}
+            投稿日時 {{ $post->created_at->format('Y年m月d日 H:i') }}
           </span>
         </div>
+
         <div class="card-body">
           <div class="card-text">
-            {{ $comment->body }}
-            @if( $comment->edited_at != null)
-              <div class="float-right">
-                <br>
-                [{{ $comment->edited_at->format('Y年m月d日 H:i') }}編集]
-              </div>
+            {!! nl2br(e($post->body)) !!}
+            @if( $post->edited_at != null)
+            <div class="float-right">
+              <br>
+              [{{ $post->edited_at->format('Y年m月d日 H:i') }}編集]
+            </div>
             @endif
           </div>
         </div>
+
         <div class="card-footer bg-white">
           <div class="card-link float-right">
-            {{-- <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集する</a> --}}
-            {{-- <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除する</a> --}}
+            <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
+            <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
           </div>
         </div>
       </div>
-      @endforeach
+
+      {{-- 投稿に対するコメント --}}
+      <h2 class="h5 mb-4">コメント</h2>
+      @forelse ($post->comments as $comment)
+        <div class="border-top p-4">
+          {!! nl2br(e($comment->body)) !!}
+        </div>
+      @empty
+        <p>コメントはまだありません。</p>
+      @endforelse
+
     </div>
   </div>
 </div>
-
 
 {{-- 投稿のモーダルウィンドウ
 <div id="modal01" class="c-modal js-modal">

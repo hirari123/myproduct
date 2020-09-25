@@ -51,7 +51,7 @@
           </div>
           <div class="card-body">
             <div class="card-text">
-              {{ $post->body }}
+              {!! nl2br(e($post->body)) !!}
               @if( $post->edited_at != null)
                 <div class="float-right">
                   <br>

@@ -20,18 +20,25 @@ Route::get('/', function () {
 });
 */
 
-// 記事投稿関連のルーティング
+// adminのルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
   Route::get('article/create', 'Admin\ArticleController@add');
   Route::post('article/create', 'Admin\ArticleController@create');
   Route::get('article/edit', 'Admin\ArticleController@edit');
   Route::post('article/edit', 'Admin\ArticleController@update');
   Route::get('article/delete', 'Admin\ArticleController@delete');
+
   Route::get('article/show', 'Admin\ArticleController@show');
   Route::get('articles', 'Admin\ArticleController@index');
+
+  Route::post('article/show', 'Admin\CommentController@create');
+  Route::get('comment/edit', 'Admin\CommentController@edit');
+  Route::post('comment/edit', 'Admin\CommentController@update');
+  Route::get('comment/delete', 'Admin\CommentController@delete');
 });
 
-// profile関連のルーティング
+
+// profileのルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
   Route::get('profile/create', 'Admin\ProfileController@add');
   Route::post('profile/create', 'Admin\ProfileController@create');

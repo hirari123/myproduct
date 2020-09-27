@@ -11,13 +11,13 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <h2>投稿記事一覧</h2>
+      <h2 class="h3 m-2">投稿記事一覧</h2>
     </div>
 
     <div class="row">
     {{-- 投稿作成ボタン --}}
       <div class="col-md-4">
-        <a class="btn btn-primary js-modal-open" href="" data-target="modal01">＋投稿作成</a>
+        <a class="btn btn-primary m-2 js-modal-open" href="" data-target="modal01">＋投稿作成</a>
       </div>
 
       {{-- 投稿の検索 --}}
@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-4">
               {{ csrf_field() }}
-              <input type="submit" class="btn btn-primary" value="検索">
+              <input type="submit" class="btn btn-primary ml-4" value="検索">
             </div>
           </div>
         </form>
@@ -42,14 +42,14 @@
     <div class="row">
       <div class="col-md-10 mx-auto">
         @foreach ($articles as $post)
-        <div class="post-list card" style="max-width: 50em">
+        <div class="card post-list" style="max-width: 50em">
           <div class="card-header bg-dark text-white">
             書いたひと：{{ $post->user_name }}
             <span class="float-right">
               投稿日時 {{ $post->created_at->format('Y年m月d日 H:i') }}
             </span>
           </div>
-          <div class="card-body">
+          <div class="card-body pt-1 pb-1">
             <div class="card-text">
               {!! nl2br(e($post->body)) !!}
               @if( $post->edited_at != null)
@@ -60,7 +60,7 @@
               @endif
             </div>
           </div>
-          <div class="card-footer bg-white">
+          <div class="card-footer bg-white py-1">
             <a class="badge badge-secondary" href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}">
                 コメント {{ $post->comments->count() }}件
             </a>
@@ -74,6 +74,9 @@
           </div>
         </div>
         @endforeach
+        <div class="d-flex justify-content-center mb-5">
+          {{ $articles->links() }}
+        </div>
       </div>
     </div>
   </div>
@@ -89,20 +92,20 @@
       <div class="c-modal_content_inner">
         <h3>投稿を新規作成</h3>
         <form action="{{ action('Admin\ArticleController@create') }}" method="post" enctype="multipart/form-data" id="post-form">
-          <!-- バリデーションメッセージを表示したい.. -->
+          <!-- バリデーションメッセージを表示-->
           @error('body')
-            <tr><td>{{$message}}</td></tr>
+            <tr><td>{{ $message }}</td></tr>
           @enderror
           <!-- 投稿本文 -->
           <div class="form-group row">
-            <label class="col-md-2" for="body">投稿内容</label>
+            {{-- <label class="col-md-2" for="body">投稿内容</label> --}}
             <div class="col-md-10">
-              <textarea name="body" cols="40" rows="5">{{ old('body') }}</textarea>
+              <textarea name="body" cols="70" rows="8">{{ old('body') }}</textarea>
             </div>
           </div>
           <!-- 画像の投稿 -->
           <div class="form-group row">
-            <label class="col-md-2" for="body">画像</label>
+            <label class="col-md-2 h5" for="body">画像</label>
             <div class="col-md-10">
               <input type="file" class="form-control-file" name="image">
             </div>

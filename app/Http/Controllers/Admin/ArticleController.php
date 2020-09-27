@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; // 通常のリクエスト
 use App\Article; // Article Modelを使う
-use App\Comment; // Comment Modelを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 use Carbon\Carbon; // 日付操作ライブラリを使う
@@ -104,16 +103,15 @@ class ArticleController extends Controller
   // indexアクション
   // 部分一致のあいまい検索とした
   // URLからtokenを削除する記述は不要？
-  // ページネーションは不要？無限スクロールにする？
   public function index(Request $request)
   {
     $cond_title = $request->cond_title;
     if ($cond_title != '') {
       // 検索されたら検索結果を取得する
-      $articles = Article::where('body', 'like', '%'.$cond_title.'%')->orderBy('created_at', 'desc')->get();
+      $articles = Article::where('body', 'like', '%'.$cond_title.'%')->orderBy('created_at', 'desc')->paginate(10);
     } else {
       // それ以外はすべての投稿を取得する
-      $articles = Article::orderBy('created_at', 'desc')->get();
+      $articles = Article::orderBy('created_at', 'desc')->paginate(10);
     }
   
     return view('admin.article.index', ['articles' => $articles, 'cond_title' => $cond_title]);

@@ -8,8 +8,8 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <div class="col-md-8 mx-auto">
-        <h2>投稿の編集画面</h2>
+      <div class="col-md-8 mx-auto mt-4 mb-4">
+        <h3>投稿の編集画面</h3>
         <form action="{{ action('Admin\ArticleController@update') }}" method="post" enctype="multipart/form-data">
           <!-- バリデーションで返すメッセージを表示 -->
           @error('body')
@@ -19,7 +19,7 @@
           <div class="form-group row">
             <label class="col-md-2" for="body">投稿内容</label>
             <div class="col-md-10">
-              <textarea class="form-control" name="body" cols="30" rows="6">{{ $article_form->body }}</textarea>
+              <textarea class="form-control" name="body" cols="50" rows="6">{{ $article_form->body }}</textarea>
             </div>
           </div>
 

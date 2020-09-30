@@ -4,9 +4,6 @@
 {{-- タイトルを埋め込む --}}
 @section('title', '投稿記事一覧')
 
-<!-- 背景画像は変えたい,navbarを埋め込みたい -->
-<!-- 背景画像はbodyタグにクラスを付ければ良い？ -->
-
 {{-- コンテンツを埋め込む --}}
 @section('content')
   <div class="container">
@@ -16,8 +13,8 @@
 
     <div class="row">
     {{-- 投稿作成ボタン --}}
-      <div class="col-md-4">
-        <a class="btn btn-primary m-2 js-modal-open" href="" data-target="modal01">＋投稿作成</a>
+      <div class="col-md-3 offset-1">
+        <a class="btn btn-primary mt-2 js-modal-open" href="" data-target="modal01">＋投稿作成</a>
       </div>
 
       {{-- 投稿の検索 --}}
@@ -42,22 +39,31 @@
     <div class="row">
       <div class="col-md-10 mx-auto">
         @foreach ($articles as $post)
-        <div class="card post-list" style="max-width: 50em">
+        <div class="card post-list">
           <div class="card-header bg-dark text-white">
             書いたひと：{{ $post->user_name }}
             <span class="float-right">
               投稿日時 {{ $post->created_at->format('Y年m月d日 H:i') }}
             </span>
           </div>
+
           <div class="card-body pt-1 pb-1">
             <div class="card-text">
               {!! nl2br(e($post->body)) !!}
-              @if( $post->edited_at != null)
+            </div>
+            <div class="card-image">
+              @isset($post->image_path)
+                <img src="{{ '/storage/image/' . $post->image_path }}">
+                {{-- <img src="{{ asset('image/' . $post->image_path) }}" style="width=50 height=50"> --}}
+              @endisset
+            </div>
+            <div class="card-text">
+              @isset($post->edited_at)
                 <div class="float-right">
                   <br>
                   [{{ $post->edited_at->format('Y年m月d日 H:i') }}編集]
                 </div>
-              @endif
+              @endisset
             </div>
           </div>
           <div class="card-footer bg-white py-1">

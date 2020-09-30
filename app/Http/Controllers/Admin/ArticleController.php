@@ -8,6 +8,7 @@ use App\Article; // Article Modelを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 use Carbon\Carbon; // 日付操作ライブラリを使う
+use Intervention\Image; //InterventionImageを使う(画像リサイズ)
 
 class ArticleController extends Controller
 {
@@ -28,15 +29,15 @@ class ArticleController extends Controller
 
     // フォームからの送信に画像があれば$articles->image_pathに画像のパスを保存する
     if (isset($form['image'])) {
-      $path = $request->file('image')->store('public/image'); // ひとまずpublicとしている
+      // $path = $request->file('image')->store('public/image');
+      $path = $request->file('image')->store('Storage/app/public/image'); // 画像を保存
       $articles->image_path = basename($path); // フルパスからファイル名を取得
     } else {
-        $articles->image_path = null;
+      $articles->image_path = null;
     }
 
     // ログインユーザー情報を取得する
     $articles->user_name = Auth::user()->name;
-    // $articles->user_name = 'ユーザー1';
 
     // フォームから送信されてきた_tokenとimageを削除
     unset($form['_token']);

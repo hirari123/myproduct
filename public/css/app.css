@@ -10976,6 +10976,15 @@ footer {
 
 .post-list {
   margin-bottom: 25px;
+  max-width: 50em;
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+.card-image img {
+  width: 80%;
 }
 
 .card-deck {

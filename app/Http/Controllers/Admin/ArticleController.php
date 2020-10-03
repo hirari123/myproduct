@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; // 通常のリクエスト
+use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 use App\Article; // Article Modelを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
-use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 use Carbon\Carbon; // 日付操作ライブラリを使う
+use Intervention\Image\Facades\Image; // InterventionImageを使う(画像リサイズ)
+use Illuminate\Support\Facades\Storage; // Storageファサードを使う
+use Illuminate\Http\File; // Fileは使わない
 
 class ArticleController extends Controller
 {
@@ -20,23 +23,34 @@ class ArticleController extends Controller
   // createアクション(引数のRequestはArticleRequestに変更)
   public function create(ArticleRequest $request)
   {
-    // モデルの$rulesを引数にVaridateメソッドを呼び出す→削除
-    // $this->validate($request, Article::$rules);
-
     $articles = new Article;
     $form = $request->all();
 
-    // フォームからの送信に画像があれば$articles->image_pathに画像のパスを保存する
+    // フォームに画像があれば画像を保存する処理を行う
     if (isset($form['image'])) {
-      $path = $request->file('image')->store('public/image'); // ひとまずpublicとしている
-      $articles->image_path = basename($path); // フルパスからファイル名を取得
+
+      // 画像ファイルを取得
+      $posted_image = $request->file('image');
+      // $original_file_name = $posted_image->getClientOriginalName(); // 元のファイル名
+
+      // 画像をリサイズしてjpgにencodeする(InterventionImageのImageファサードを使用)
+      $resized_image = Image::make($posted_image)->fit(640, 360)->encode('jpg');
+
+      // 加工した画像からhashを生成し、ファイル名を設定する
+      $image_hash = md5($resized_image->__toString());
+      $image_name = "{$image_hash}.jpg";
+      $articles->image_path = $image_name; // image_pathカラムにファイル名を代入
+
+      // 加工した画像を保存する
+      // $resized_image->store('public/image'); // storeは使えない(GDでサポートしていない)
+      Storage::put('public/image/'.$image_name, $resized_image); // Storageファサードを使用
+      
     } else {
-        $articles->image_path = null;
+      $articles->image_path = null;
     }
 
     // ログインユーザー情報を取得する
     $articles->user_name = Auth::user()->name;
-    // $articles->user_name = 'ユーザー1';
 
     // フォームから送信されてきた_tokenとimageを削除
     unset($form['_token']);
@@ -49,10 +63,11 @@ class ArticleController extends Controller
     return redirect('admin/articles');
   }
 
+
   // editアクションを定義
   public function edit(Request $request)
   {
-    // Modelからデータを取得する
+    // idで検索してModelからデータを取得する(無ければ404を返す)
     $articles = Article::find($request->id);
     if (empty($articles))
     {
@@ -61,21 +76,32 @@ class ArticleController extends Controller
     return view('admin.article.edit', ['article_form' => $articles]);
   }
   
+
   // updateアクションを定義
   public function update(ArticleRequest $request)
   {
-    // Modelの$rulesを使用したValidation
-    // $this->validate($request, Article::$rules);
     
-    // Modelからデータを取得する
+    // Modelからデータを取得する(idで検索)
     $articles = Article::find($request->id);
-    
-    // 送信されてきたフォームデータを格納する
     $articles_form = $request->all();
-    if (isset($articles_form['image'])) { //imageがあるかを判定
-      $path = $request->file('image')->store('public/image');
-      $articles->image_path = basename($path); // フルパスからファイル名を取得
-      unset($articles_form['imege']);
+
+    // フォームに画像があれば画像を保存する処理を行う
+    if (isset($articles_form['image'])) {
+
+      // 新しい画像ファイルとファイル名を取得
+      $posted_image = $request->file('image');
+
+      // 画像をリサイズしてjpgにencodeする(InterventionImageのImageファサードを使用)
+      $resized_image = Image::make($posted_image)->fit(640, 360)->encode('jpg');
+
+      // 加工した画像からhashを生成し、ファイル名を設定する
+      $image_hash = md5($resized_image->__toString());
+      $image_name = "{$image_hash}.jpg";
+      $articles->image_path = $image_name; // image_pathカラムにファイル名を上書き
+
+      // 加工した画像を保存する
+      Storage::put('public/image/'.$image_name, $resized_image); // Storageファサードを使用
+
     } elseif (strcmp($request->remove, 'true') == 0) {
       $articles->image_path = null; // 画像を削除する場合はimage_pathにnullをセット
     }
@@ -100,9 +126,8 @@ class ArticleController extends Controller
     return redirect('admin/articles');
   }
   
-  // indexアクション
-  // 部分一致のあいまい検索とした
-  // URLからtokenを削除する記述は不要？
+  // indexアクションを定義
+  // 部分一致であいまい検索
   public function index(Request $request)
   {
     $cond_title = $request->cond_title;

@@ -89,6 +89,17 @@ footer {
 // 一覧画面のカードの装飾(classをmb-2などにすれば良い？不要？)
 .post-list {
   margin-bottom: 25px;
+  max-width: 50em;
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+.card-image {
+  img {
+    width: 80%;
+  }
 }
 
 .card-deck {

@@ -16,7 +16,8 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             // return route('login'); // 元の記述
-            return route('top'); // topに変更
+            // return route('top'); // topに変更
+            return route('/'); // "/"にさらに変更
         }
     }
 }

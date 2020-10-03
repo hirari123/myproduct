@@ -14,11 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* "/"にアクセスしたときのルーティング→無効にする
+// "/"にアクセスしたときのルーティング
 Route::get('/', function () {
-  return view('welcome');
+  return view('auth.login');
 });
-*/
 
 // adminのルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {

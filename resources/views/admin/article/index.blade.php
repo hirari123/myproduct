@@ -48,13 +48,13 @@
           </div>
 
           <div class="card-body pt-1 pb-1">
-            <div class="card-text">
+            <div class="card-text pt-2 pb-2">
               {!! nl2br(e($post->body)) !!}
             </div>
             <div class="card-image">
               @isset($post->image_path)
-                <img src="{{ '/storage/image/' . $post->image_path }}">
-                {{-- <img src="{{ asset('image/' . $post->image_path) }}" style="width=50 height=50"> --}}
+                <img class="d-block mx-auto" src="{{ '/storage/image/' . $post->image_path }}">
+                {{-- <img src="{{ asset('image/' . $post->image_path) }}" > --}}
               @endisset
             </div>
             <div class="card-text">

@@ -1,4 +1,4 @@
-@extends('layouts.top')
+@extends('top')
 
 @section('login_form')
 <div class="container">
@@ -8,7 +8,7 @@
                 <div class="login-header card-header float-left">登録済みの方はこちらから{{ __('messages.Login') }}</div>
 
                 <div class="login-body card-body">
-                    <form method="POST" action="{{ route('top') }}">
+                    <form method="POST" action="{{ route('/') }}">
                         @csrf
 
                         <div class="form-group row">

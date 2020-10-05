@@ -16,34 +16,34 @@ use Illuminate\Support\Facades\Route;
 
 // "/"にアクセスしたときのルーティング
 Route::get('/', function () {
-  return view('auth.login');
+    return view('auth.login');
 });
 
-// adminのルーティング
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-  Route::get('article/create', 'Admin\ArticleController@add');
-  Route::post('article/create', 'Admin\ArticleController@create');
-  Route::get('article/edit', 'Admin\ArticleController@edit');
-  Route::post('article/edit', 'Admin\ArticleController@update');
-  Route::get('article/delete', 'Admin\ArticleController@delete');
+// 投稿関連のルーティング
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('article/create', 'Admin\ArticleController@add');
+    Route::post('article/create', 'Admin\ArticleController@create');
+    Route::get('article/edit', 'Admin\ArticleController@edit');
+    Route::post('article/edit', 'Admin\ArticleController@update');
+    Route::get('article/delete', 'Admin\ArticleController@delete');
 
-  Route::get('article/show', 'Admin\ArticleController@show');
-  Route::get('articles', 'Admin\ArticleController@index');
+    Route::get('article/show', 'Admin\ArticleController@show');
+    Route::get('articles', 'Admin\ArticleController@index');
 
-  Route::post('article/show', 'Admin\CommentController@create');
-  Route::get('comment/edit', 'Admin\CommentController@edit');
-  Route::post('comment/edit', 'Admin\CommentController@update');
-  Route::get('comment/delete', 'Admin\CommentController@delete');
+    Route::post('article/show', 'Admin\CommentController@create');
+    Route::get('comment/edit', 'Admin\CommentController@edit');
+    Route::post('comment/edit', 'Admin\CommentController@update');
+    Route::get('comment/delete', 'Admin\CommentController@delete');
 });
 
 
-// profileのルーティング
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-  Route::get('profile/create', 'Admin\ProfileController@add');
-  Route::post('profile/create', 'Admin\ProfileController@create');
-  Route::get('profile/edit', 'Admin\ProfileController@edit');
-  Route::post('profile/edit', 'Admin\ProfileController@update');
-  Route::get('users', 'Admin\ProfileController@index');
+// プロフィール関連のルーティング
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('profile/create', 'Admin\ProfileController@add');
+    Route::post('profile/create', 'Admin\ProfileController@create');
+    Route::get('profile/edit', 'Admin\ProfileController@edit');
+    Route::post('profile/edit', 'Admin\ProfileController@update');
+    Route::get('users', 'Admin\ProfileController@index');
 });
 
 // Authファサードで生成されるルーティング

@@ -8,13 +8,13 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h2 class="h3 m-2">投稿記事一覧</h2>
+        <h2 class="h3 m-2">みんなの投稿</h2>
     </div>
 
     <div class="row">
         {{-- 投稿作成ボタン --}}
         <div class="col-md-3 offset-1">
-            <a class="btn btn-primary mt-2 js-modal-open" href="" data-target="modal01">＋投稿作成</a>
+            <a class="btn btn-primary mt-3 js-modal-open" href="" data-target="modal01">＋投稿作成</a>
         </div>
 
         {{-- 投稿の検索 --}}
@@ -98,7 +98,7 @@
     <!-- 本体 -->
     <div class="c-modal_content">
         <div class="c-modal_content_inner">
-            <h3>投稿を新規作成</h3>
+            <h4>投稿を作成する</h4>
             <form action="{{ action('Admin\ArticleController@create') }}" method="post" enctype="multipart/form-data"
                 id="post-form">
                 <!-- バリデーションメッセージを表示-->

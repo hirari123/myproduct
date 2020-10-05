@@ -28,7 +28,7 @@
         <div class="login-contents">
             <div class="row">
                 <div class="mx-auto">
-                    <a class="btn btn-success" href="{{ route('register') }}">{{ __('messages.Register') }}はこちら</a>
+                    <a class="btn btn-success" href="{{ route('register') }}">新規{{ __('Register') }}はこちら</a>
                     <a class="btn btn-info" href="{{ route('register') }}">ゲストログインで全機能を使用(期間限定)</a>
                 </div>
             </div>

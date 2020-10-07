@@ -31,10 +31,13 @@ class ArticleController extends Controller
 
             // 画像ファイルを取得
             $posted_image = $request->file('image');
-            // $original_file_name = $posted_image->getClientOriginalName(); // 元のファイル名
+            // $original_file_name = $posted_image->getClientOriginalName(); // 元のファイル名を取得する(あとで使う？)
 
             // 画像をリサイズしてjpgにencodeする(InterventionImageのImageファサードを使用)
             $resized_image = Image::make($posted_image)->fit(640, 360)->encode('jpg');
+
+            // さらに自動回転を行う(ここでEXIFが削除される)
+            $resized_image->orientate()->save();
 
             // 加工した画像からhashを生成し、ファイル名を設定する
             $image_hash = md5($resized_image->__toString());
@@ -42,14 +45,15 @@ class ArticleController extends Controller
             $articles->image_path = $image_name; // image_pathカラムにファイル名を代入
 
             // 加工した画像を保存する
-            // $resized_image->store('public/image'); // storeは使えない(GDでサポートしていない)
             Storage::put('public/image/' . $image_name, $resized_image); // Storageファサードを使用
+            // $resized_image->store('public/image'); // storeは使えない(GDでサポートしていない)
 
         } else {
             $articles->image_path = null;
         }
 
         // ログインユーザー情報を取得する
+        $articles->user_id = Auth::user()->id;
         $articles->user_name = Auth::user()->name;
 
         // フォームから送信されてきた_tokenとimageを削除
@@ -80,7 +84,7 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request)
     {
 
-        // Modelからデータを取得する(idで検索)
+        // Modelからデータを取得する(投稿idで検索)
         $articles = Article::find($request->id);
         $articles_form = $request->all();
 
@@ -93,6 +97,9 @@ class ArticleController extends Controller
             // 画像をリサイズしてjpgにencodeする(InterventionImageのImageファサードを使用)
             $resized_image = Image::make($posted_image)->fit(640, 360)->encode('jpg');
 
+            // さらに自動回転を行う(ここでEXIFが削除される)
+            $resized_image->orientate()->save();
+
             // 加工した画像からhashを生成し、ファイル名を設定する
             $image_hash = md5($resized_image->__toString());
             $image_name = "{$image_hash}.jpg";
@@ -102,7 +109,7 @@ class ArticleController extends Controller
             Storage::put('public/image/' . $image_name, $resized_image); // Storageファサードを使用
 
         } elseif (strcmp($request->remove, 'true') == 0) {
-            $articles->image_path = null; // 画像を削除する場合はimage_pathにnullをセット
+            $articles->image_path = null; // 画像を削除する場合はimage_pathにnullをセット(画像自体は削除してない！)
         }
         unset($articles_form['_token']);
         unset($articles_form['image']);
@@ -120,7 +127,8 @@ class ArticleController extends Controller
     // deleteアクションを定義
     public function delete(Request $request)
     {
-        $articles = Article::find($request->id); // Modelから該当データを取得
+        // Modelからデータを取得して削除(投稿idで検索)
+        $articles = Article::find($request->id);
         $articles->delete();
         return redirect('admin/articles');
     }
@@ -144,7 +152,7 @@ class ArticleController extends Controller
     // showアクション
     public function show(Request $request)
     {
-        // idが一致する投稿データを取得
+        // 投稿idが一致する投稿データを取得
         $post = Article::find($request->id);
         if (empty($post)) {
             abort(404);

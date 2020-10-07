@@ -41,7 +41,7 @@
             @foreach ($articles as $post)
             <div class="card post-list">
                 <div class="card-header bg-dark text-white">
-                    書いたひと：{{ $post->user_name }}
+                    書いたひと：{{ $post->user_name }} (id：{{ $post->user_id }})
                     <span class="float-right">
                         投稿日時 {{ $post->created_at->format('Y年m月d日 H:i') }}
                     </span>
@@ -66,6 +66,7 @@
                         @endisset
                     </div>
                 </div>
+
                 <div class="card-footer bg-white py-1">
                     <a class="badge badge-secondary"
                         href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}">
@@ -75,10 +76,15 @@
                         href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}">
                         コメントを追加する
                     </a>
+
+                    {{-- ログインユーザーと一致する場合は編集削除可能にする --}}
+                    {{-- さらに管理ユーザーは全ての投稿の編集削除可能にする --}}
+                    @if ($post->user_id == auth::user()->id || auth::user()->id == 1)
                     <div class="card-link float-right">
                         <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
                         <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
                     </div>
+                    @endif
                 </div>
             </div>
             @endforeach

@@ -19,14 +19,17 @@
         <div class="card-deck">
             <div class="card" style="width: 24em">
                 <div class="card-header bg-dark text-white">
+                    @isset($user->user_image_path)
+                    <img class="prof-image float-left" src="{{ '/storage/user_image/' . $user->user_image_path }}">
+                    @endisset
                     名前：{{ $user->name }}
                 </div>
                 <div class="card-body">
                     {{ $user->introduction }}
                 </div>
 
-                {{-- ログインユーザーは編集できるようにする --}}
-                @if ($user->id == auth::user()->id)
+                {{-- ログインユーザーのみ編集リンクを設置 --}}
+                @if ($user->id == auth::user()->id || auth::user()->id == 1)
                 <div class="card-footer">
                     <a href="{{ action('Admin\ProfileController@edit', ['id' => $user->id]) }}">プロフィールを編集する</a>
                 </div>

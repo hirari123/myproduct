@@ -10980,7 +10980,7 @@ footer {
 }
 
 .card-text {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .card-image img {
@@ -10994,5 +10994,11 @@ footer {
 
 .comment-list {
   margin-bottom: 30px;
+}
+
+.card-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
 }
 

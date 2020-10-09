@@ -1,10 +1,7 @@
-{{-- layouts/app.blade.phpを読み込む --}}
 @extends('layouts.app')
 
-{{-- タイトルを埋め込む --}}
 @section('title', '投稿記事一覧')
 
-{{-- コンテンツを埋め込む --}}
 @section('content')
 <div class="container">
     <div class="row">
@@ -41,6 +38,7 @@
             @foreach ($articles as $post)
             <div class="card post-list">
                 <div class="card-header bg-dark text-white">
+                    <img class="prof-image float-left" src="{{ '/storage/user_image/' . $post->user_image_path }}">
                     書いたひと：{{ $post->user_name }} (id：{{ $post->user_id }})
                     <span class="float-right">
                         投稿日時 {{ $post->created_at->format('Y年m月d日 H:i') }}

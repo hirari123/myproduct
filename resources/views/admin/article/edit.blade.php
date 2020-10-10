@@ -1,24 +1,37 @@
-{{-- レイアウトを読み込む --}}
 @extends('layouts.app')
 
-{{-- タイトルを埋め込む --}}
 @section('title', '投稿の編集')
 
-{{-- コンテンツを埋め込む --}}
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto mt-4 mb-4">
-            <h3>投稿の編集画面</h3>
+            <h4>投稿の編集画面</h4>
             <br>
-            <form action="{{ action('Admin\ArticleController@update') }}" method="post" enctype="multipart/form-data">
+            {{-- 投稿のバリデーションメッセージを表示する --}}
+            @if (count($errors) > 0)
+            <p class="row ml-4">投稿に失敗しました..</p>
+            @endif
 
+            @error('body')
+            <ul class="row ml-2 text-danger">
+                @foreach ($errors->all() as $e)
+                <li>{{ $e }}</li>
+                @endforeach
+            </ul>
+            @enderror
+
+            @error('image')
+            <ul class="row ml-2 text-danger">
+                @foreach ($errors->all() as $e)
+                <li>{{ $e }}</li>
+                @endforeach
+            </ul>
+            @enderror
+
+            {{-- 投稿の編集フォーム --}}
+            <form action="{{ action('Admin\ArticleController@update') }}" method="post" enctype="multipart/form-data">
                 {{-- 投稿本文の項目 --}}
-                @error('body')
-                <tr>
-                    <td>{{$message}}</td>
-                </tr>
-                @enderror
                 <div class="form-group row">
                     <label class="col-md-2" for="body">投稿内容</label>
                     <div class="col-md-10">

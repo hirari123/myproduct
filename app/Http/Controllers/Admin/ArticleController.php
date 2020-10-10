@@ -14,12 +14,6 @@ use Illuminate\Http\File; // Fileは使わない
 
 class ArticleController extends Controller
 {
-    //add,create,edit,updateアクションを定義
-    public function add()
-    {
-        return view('admin.article.create');
-    }
-
     // createアクション(引数のRequestはArticleRequestに変更)
     public function create(ArticleRequest $request)
     {
@@ -27,8 +21,9 @@ class ArticleController extends Controller
         $form = $request->all();
 
         // フォームに画像があれば画像を保存する処理を行う
-        if (isset($form['image'])) {
-
+        if (empty($form['image'])) {
+            $articles->image_path = null;
+        } else {
             // 画像ファイルを取得
             $posted_image = $request->file('image');
             // $original_file_name = $posted_image->getClientOriginalName(); // 元のファイル名を取得する(あとで使う？)
@@ -47,9 +42,6 @@ class ArticleController extends Controller
             // 加工した画像を保存する
             Storage::put('public/image/' . $image_name, $resized_image); // Storageファサードを使用
             // $resized_image->store('public/image'); // storeは使えない(GDでサポートしていない)
-
-        } else {
-            $articles->image_path = null;
         }
 
         // ログインユーザー情報を取得する
@@ -84,14 +76,14 @@ class ArticleController extends Controller
     // updateアクションを定義
     public function update(ArticleRequest $request)
     {
-
         // Modelからデータを取得する(投稿idで検索)
         $articles = Article::find($request->id);
-        $articles_form = $request->all();
+        $form = $request->all();
 
-        // フォームに画像があれば画像を保存する処理を行う(画像が無い場合を先にした方が良いコード？)
-        if (isset($articles_form['image'])) {
-
+        // フォームに画像があれば画像を保存する処理を行う
+        if (strcmp($request->remove, 'true') == 0) {
+            $articles->image_path = null;
+        } elseif (isset($form['image'])) {
             // 新しい画像ファイルとファイル名を取得
             $posted_image = $request->file('image');
 
@@ -108,19 +100,18 @@ class ArticleController extends Controller
 
             // 加工した画像を保存する
             Storage::put('public/image/' . $image_name, $resized_image); // Storageファサードを使用
-
-        } elseif (strcmp($request->remove, 'true') == 0) {
-            $articles->image_path = null; // 画像を削除する場合はimage_pathにnullをセット(画像自体は削除してない！)
         }
-        unset($articles_form['_token']);
-        unset($articles_form['image']);
-        unset($articles_form['remove']);
+
+        // フォームの不要なデータを削除する
+        unset($form['_token']);
+        unset($form['image']);
+        unset($form['remove']);
 
         // 編集日時を追加する
         $articles->edited_at = Carbon::now();
 
         // データを上書きして保存する
-        $articles->fill($articles_form)->save();
+        $articles->fill($form)->save();
 
         return redirect('admin/articles');
     }
@@ -146,7 +137,6 @@ class ArticleController extends Controller
             // それ以外はすべての投稿を取得する
             $articles = Article::orderBy('created_at', 'desc')->paginate(10);
         }
-
         return view('admin.article.index', ['articles' => $articles, 'cond_title' => $cond_title]);
     }
 

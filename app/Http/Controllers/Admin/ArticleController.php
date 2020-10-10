@@ -55,6 +55,7 @@ class ArticleController extends Controller
         // ログインユーザー情報を取得する
         $articles->user_id = Auth::user()->id;
         $articles->user_name = Auth::user()->name;
+        $articles->user_image_path = Auth::user()->user_image_path;
 
         // フォームから送信されてきた_tokenとimageを削除
         unset($form['_token']);

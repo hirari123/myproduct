@@ -98,7 +98,9 @@ footer {
 
 .card-image {
   img {
-    width: 80%;
+    max-width: 90%;
+    max-height: 360px;
+    border-radius: 5px;
   }
 }
 

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    // 'driver' => 'gd' // GDを使う(デフォルト)
-    'driver' => 'imagick' // imagickを使う
+    'driver' => 'gd' // GDを使う(デフォルト)
+    // 'driver' => 'imagick' // imagickを使う
 
 ];

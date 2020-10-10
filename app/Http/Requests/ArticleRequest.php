@@ -13,13 +13,11 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        // 適用するパスをチェック
-        // if ($this->path() == 'admin/article/create' || $this->path() == 'admin/article/edit')
-        if ($this->path() == ('admin/article/create' || 'admin/article/edit'))
-        {
-            return true;
+        // 適用するパスをチェックして権限の判定を行う
+        if ($this->path() == ('admin/articles' || 'admin/article/edit')) {
+            return true; // trueの場合にバリデーション処理が実行される
         } else {
-            return false; // パスが異なれば実行しない(403エラーになる)
+            return false; // falseの場合はHttpExceptionでエラーになる
         }
     }
 
@@ -31,8 +29,20 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            // バリデーションルールを定義
+            // バリデーションルールを定義(オーバーライド)
             'body' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:3072',
+        ];
+    }
+
+    // メッセージを定義(日本語化)
+    public function messages()
+    {
+        return [
+            "body.required" => "本文は必須項目です。",
+            "image.image" => "画像ファイルを選択してください。",
+            "image.mimes" => "JPG/PNG/GIF形式の画像を選択してください。",
+            "image.max" => "アップロードできるファイルは3MBまでです。"
         ];
     }
 }

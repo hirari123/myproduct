@@ -31,6 +31,19 @@
         </div>
     </div>
 
+    {{-- 投稿のバリデーションメッセージを表示する --}}
+    @if (count($errors) > 0)
+    <p class="row ml-4">投稿に失敗しました..</p>
+    @endif
+
+    @error('image')
+    <ul class="row ml-2 text-danger">
+        @foreach ($errors->all() as $e)
+        <li>{{ $e }}</li>
+        @endforeach
+    </ul>
+    @enderror
+
     {{-- 投稿一覧 --}}
     {{-- 検索で取得した結果をforeachでカード表示する --}}
     <div class="row">

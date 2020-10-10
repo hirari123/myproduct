@@ -55,6 +55,7 @@ class ArticleController extends Controller
         // ログインユーザー情報を取得する
         $articles->user_id = Auth::user()->id;
         $articles->user_name = Auth::user()->name;
+        $articles->user_image_path = Auth::user()->user_image_path;
 
         // フォームから送信されてきた_tokenとimageを削除
         unset($form['_token']);
@@ -88,7 +89,7 @@ class ArticleController extends Controller
         $articles = Article::find($request->id);
         $articles_form = $request->all();
 
-        // フォームに画像があれば画像を保存する処理を行う
+        // フォームに画像があれば画像を保存する処理を行う(画像が無い場合を先にした方が良いコード？)
         if (isset($articles_form['image'])) {
 
             // 新しい画像ファイルとファイル名を取得

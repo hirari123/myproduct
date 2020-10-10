@@ -10,14 +10,15 @@
     <div class="row">
         <div class="col-md-8 mx-auto mt-4 mb-4">
             <h3>投稿の編集画面</h3>
+            <br>
             <form action="{{ action('Admin\ArticleController@update') }}" method="post" enctype="multipart/form-data">
-                <!-- バリデーションで返すメッセージを表示 -->
+
+                {{-- 投稿本文の項目 --}}
                 @error('body')
                 <tr>
                     <td>{{$message}}</td>
                 </tr>
                 @enderror
-
                 <div class="form-group row">
                     <label class="col-md-2" for="body">投稿内容</label>
                     <div class="col-md-10">
@@ -26,6 +27,7 @@
                     </div>
                 </div>
 
+                {{-- 投稿画像の項目 --}}
                 <div class="form-group row">
                     <label class="col-md-2" for="image">画像</label>
                     <div class="col-md-10">
@@ -40,6 +42,8 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- 更新ボタン --}}
                 <div class="form-group row">
                     <div class="col-md-10">
                         <input type="hidden" name="id" value="{{ $article_form->id }}">

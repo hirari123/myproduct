@@ -14,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// "/"にアクセスしたときのルーティング
+// "/"のルーティング
 Route::get('/', function () {
     return view('auth.login');
 });
 
 // 投稿関連のルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('article/create', 'Admin\ArticleController@add');
     Route::post('article/create', 'Admin\ArticleController@create');
     Route::get('article/edit', 'Admin\ArticleController@edit');
     Route::post('article/edit', 'Admin\ArticleController@update');
@@ -36,7 +35,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('comment/delete', 'Admin\CommentController@delete');
 });
 
-
 // プロフィール関連のルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('profile/create', 'Admin\ProfileController@add');
@@ -49,5 +47,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 // Authファサードで生成されるルーティング
 Auth::routes();
 
-// home画面へのルーティング(初期)→無効する
+// ゲストログインのルーティング
+Route::post('login/guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
+// home画面へのルーティング→無効する
 // Route::get('/home', 'HomeController@index')->name('home');

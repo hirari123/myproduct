@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         // テストデータの作成実行を定義
-        factory(Article::Class, 30)
+        factory(Article::Class, 2)
             ->create()
             ->each(function ($post) {
                 $comments = factory(App\Comment::class, 2)->make();

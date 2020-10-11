@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use App\Article;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,7 +30,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    // ここではなくRouteServicePrividerでHOME定数の値を変更する
+    // RouteServicePrividerでHOME定数の値を変更する(ここではHOMEのまま)
     // なおここで変更してもMiddlewareのRedirectIfAuthenticated.phpが優先される
 
     /**
@@ -38,5 +41,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    // ゲストログインを追加
+    public function guestLogin(Request $request)
+    {
+        // dd($request->input('email'), $request->input('password'));
+        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+            // ゲストログイン認証に成功した場合の処理
+            $search_text = $request->search_text;
+            $articles = Article::orderBy('created_at', 'desc')->paginate(10);
+
+            return view('admin.article.index', ['articles' => $articles, 'search_text' => $search_text]);
+        } else {
+            return redirect('/'); // 失敗した場合
+        }
     }
 }

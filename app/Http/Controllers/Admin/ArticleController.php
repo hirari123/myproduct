@@ -129,15 +129,15 @@ class ArticleController extends Controller
     // 部分一致であいまい検索
     public function index(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title != '') {
+        $search_text = $request->search_text;
+        if ($search_text != '') {
             // 検索されたら検索結果を取得する
-            $articles = Article::where('body', 'like', '%' . $cond_title . '%')->orderBy('created_at', 'desc')->paginate(10);
+            $articles = Article::where('body', 'like', '%' . $search_text . '%')->orderBy('created_at', 'desc')->paginate(10);
         } else {
             // それ以外はすべての投稿を取得する
             $articles = Article::orderBy('created_at', 'desc')->paginate(10);
         }
-        return view('admin.article.index', ['articles' => $articles, 'cond_title' => $cond_title]);
+        return view('admin.article.index', ['articles' => $articles, 'search_text' => $search_text]);
     }
 
     // showアクション

@@ -20,7 +20,7 @@
             <form action="{{ action('Admin\ArticleController@index') }}" method="get" id="serch">
                 <div class="form-group row">
                     <div class="col-md-4">
-                        <input type="text" class="form-controll" name="cond_title" value="{{ $cond_title }}">
+                        <input type="text" class="form-controll" name="search_text" value="{{ $search_text }}">
                     </div>
                     <div class="col-md-4">
                         {{ csrf_field() }}

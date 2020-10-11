@@ -28,8 +28,17 @@
         <div class="login-contents">
             <div class="row">
                 <div class="mx-auto">
-                    <a class="btn btn-success" href="{{ route('register') }}">新規{{ __('Register') }}はこちら</a>
-                    <a class="btn btn-info" href="{{ route('register') }}">ゲストログインで全機能を使用(期間限定)</a>
+                    <div class="float-left">
+                        <a class="btn btn-success" href="{{ route('register') }}">新規登録はこちら</a>
+                    </div>
+                    <div class="float-right">
+                        <form method="post" action="{{ route('login.guest') }}">
+                            @csrf
+                            <input type="hidden" id="email" name="email" value="guest@gmail.com">
+                            <input type="hidden" id="password" name="password" value="guest1234">
+                            <button type="submit" class="btn btn-info">ゲストログイン(期間限定)</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             @yield('login_form')
@@ -49,9 +58,8 @@
                 </ul>
             </div>
             <div class="col-md-5 mr-auto">
-                <h4>今後追加される機能(予定)</h4>
+                <h4>今後追加予定の機能</h4>
                 <ul>
-                    <li>いいね機能</li>
                     <li>食品データベースを用いた栄養素計算機能</li>
                 </ul>
             </div>

@@ -2,6 +2,19 @@
 
 @section('title', '投稿記事一覧')
 
+@section('navbar-left')
+<li>
+    <a class="nav-link" href="{{ url('/admin/articles') }}">
+        みんなの投稿
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/admin/users') }}">
+        みんなのプロフィール
+    </a>
+</li>
+
+@endsection
 @section('content')
 <div class="container">
     <div class="row">

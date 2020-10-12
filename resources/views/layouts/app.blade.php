@@ -39,7 +39,7 @@
             <div class="container">
                 <!-- サイトロゴ -->
                 <a class="navbar-brand" href="{{ url('/admin/articles') }}">
-                    {{ config('app.name', 'Peleos') }}
+                    {{ config('app.name', 'Peleo Boost') }}
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse"

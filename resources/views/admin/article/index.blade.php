@@ -5,15 +5,16 @@
 @section('navbar-left')
 <li>
     <a class="nav-link" href="{{ url('/admin/articles') }}">
-        みんなの投稿
+        みんなの投稿一覧
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/admin/users') }}">
-        みんなのプロフィール
+        みんなのプロフィール一覧
     </a>
 </li>
 
+{{-- ここからコンテンツ --}}
 @endsection
 @section('content')
 <div class="container">
@@ -44,6 +45,7 @@
         </div>
     </div>
 
+    {{-- 投稿一覧 --}}
     {{-- 投稿のバリデーションメッセージを表示する --}}
     @if (count($errors) > 0)
     <p class="row ml-4">投稿に失敗しました..</p>
@@ -57,7 +59,6 @@
     </ul>
     @enderror
 
-    {{-- 投稿一覧 --}}
     {{-- 検索で取得した結果をforeachでカード表示する --}}
     <div class="row">
         <div class="col-md-10 mx-auto">

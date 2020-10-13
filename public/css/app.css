@@ -10945,21 +10945,28 @@ a.text-dark:focus {
   padding: 0px;
   background-color: #153;
   color: #000;
-  font-weight: bold;
   font-size: 20px;
+  font-weight: bold;
   box-shadow: 0 2px 4px rgba(50, 50, 50, 0.1);
 }
 
 .navbar-brand {
-  color: #111;
+  font-size: 24px;
 }
 
 .navbar-nav {
   color: #fff;
+  font-size: 16px;
 }
 
 .nav-link {
   color: #fff;
+}
+
+.nav-item img {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
 }
 
 body {

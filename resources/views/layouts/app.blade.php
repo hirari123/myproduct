@@ -28,16 +28,14 @@
     <link rel="shortcut icon" href="{{ asset('images/cat_icon.jpeg') }}" type="image/x-icon">
 
 </head>
-<!-- ここまでheadタグ -->
 
 
 <body>
     <div id="app">
-        <!-- ここからナビゲーションバー -->
-        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm"> --}}
+        {{-- ナビゲーションバー --}}
         <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
             <div class="container">
-                <!-- サイトロゴ -->
+                {{-- サイトロゴ --}}
                 <a class="navbar-brand" href="{{ url('/admin/articles') }}">
                     {{ config('app.name', 'Peleo Boost') }}
                 </a>
@@ -49,28 +47,28 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    {{-- ナビゲーションリンク(グローバルメニュー) --}}
                     <ul class="navbar-nav mr-auto">
                         @yield('navbar-left')
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+                    {{-- ログイン情報を右上に表示 --}}
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        {{-- ログインしていない場合の処理 --}}
                         @guest
-                        <!-- ログインしていない場合の処理 -->
                         <li></li>
 
-                        <!-- ログインしている場合の処理 -->
-                        <!-- ドロップダウンメニューを表示する -->
+                        {{-- ログインしている場合の処理(ドロップダウンメニュー) --}}
                         @else
                         <li class="nav-item dropdown">
+                            {{-- ログインユーザー名 --}}
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <span>{{ Auth::user()->name }}</span>
+                                <img src="{{ '/storage/user_image/' . Auth::user()->user_image_path }}">
                             </a>
 
-                            <!-- プロフィール編集 -->
+                            {{-- プロフィール編集 --}}
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ url('/admin/profile/edit') }}">プロフィール編集</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

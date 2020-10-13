@@ -1,10 +1,20 @@
-{{-- layouts/admin.blade.phpを読み込む --}}
 @extends('layouts.app')
 
-{{-- タイトルを埋め込む --}}
 @section('title', '登録ユーザーの一覧')
 
-{{-- コンテンツを埋め込む --}}
+@section('navbar-left')
+<li>
+    <a class="nav-link" href="{{ url('/admin/articles') }}">
+        みんなの投稿一覧
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/admin/users') }}">
+        みんなのプロフィール一覧
+    </a>
+</li>
+
+{{-- ここからコンテンツ --}}
 @section('content')
 <div class="container">
     <div class="row">
@@ -14,7 +24,6 @@
 
     {{-- ユーザーをforeachでカード表示する --}}
     <div class="row">
-        {{-- <div class="list-news col-md-10 mx-auto"> --}}
         @foreach ($users as $user)
         <div class="card-deck">
             <div class="card" style="width: 24em">
@@ -38,7 +47,6 @@
             </div>
         </div>
         @endforeach
-        {{-- </div> --}}
     </div>
 </div>
 @endsection

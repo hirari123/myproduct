@@ -1,17 +1,26 @@
-{{-- レイアウトを読み込む --}}
 @extends('layouts.app')
 
-{{-- タイトルを埋め込む --}}
 @section('title', 'コメントの編集')
 
-{{-- コンテンツを埋め込む --}}
+@section('navbar-left')
+<li>
+    <a class="nav-link" href="{{ url('/admin/articles') }}">
+        みんなの投稿一覧
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/admin/users') }}">
+        みんなのプロフィール一覧
+    </a>
+</li>
+
+{{-- ここからコンテンツ --}}
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto mt-4 mb-4">
             <h3>コメントの編集</h3>
             <form action="{{ action('Admin\CommentController@update') }}" method="post" enctype="multipart/form-data">
-                <!-- バリデーションで返すメッセージを表示 -->
                 @error('body')
                 <tr>
                     <td>{{$message}}</td>

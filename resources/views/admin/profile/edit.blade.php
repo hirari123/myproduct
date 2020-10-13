@@ -2,6 +2,19 @@
 
 @section('title', 'ユーザー情報の編集')
 
+@section('navbar-left')
+<li>
+    <a class="nav-link" href="{{ url('/admin/articles') }}">
+        みんなの投稿一覧
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/admin/users') }}">
+        みんなのプロフィール一覧
+    </a>
+</li>
+
+{{-- ここからコンテンツ --}}
 @section('content')
 <div class="container">
     <div class="row">

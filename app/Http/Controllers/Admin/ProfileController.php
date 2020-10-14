@@ -16,8 +16,8 @@ class ProfileController extends Controller
     // editアクション
     public function edit(Request $request)
     {
-        // ログインユーザーの情報を取得してViewに渡す
-        $user_data = Auth::user();
+        // Modelからデータを取得する(idで検索)
+        $user_data = User::find($request->id);
         return view('admin.profile.edit', ['user_data' => $user_data]);
     }
 
@@ -63,8 +63,15 @@ class ProfileController extends Controller
         return redirect('admin/users');
     }
 
-    // deleteアクション(未実装)
-    // ログインユーザーを削除してトップ画面にリダイレクトする？
+    // deleteアクション
+    public function delete(Request $request)
+    {
+        // Modelからデータを取得して削除する
+        $user_data = User::find($request->id);
+        $user_data->delete();
+
+        return redirect('admin/users');
+    }
 
     // indexアクション
     public function index(Request $request)

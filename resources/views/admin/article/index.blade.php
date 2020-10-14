@@ -104,8 +104,7 @@
                         コメントを追加する
                     </a>
 
-                    {{-- ログインユーザーと一致する場合は編集削除可能にする --}}
-                    {{-- さらに管理ユーザーは全ての投稿の編集削除可能にする --}}
+                    {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}
                     @if ($post->user_id == auth::user()->id || auth::user()->id == 1)
                     <div class="card-link float-right">
                         <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>

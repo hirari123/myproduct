@@ -13,9 +13,9 @@
         みんなのプロフィール一覧
     </a>
 </li>
+@endsection
 
 {{-- ここからコンテンツ --}}
-@endsection
 @section('content')
 <div class="container">
     <div class="row">

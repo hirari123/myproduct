@@ -2,6 +2,7 @@
 
 @section('title', '登録ユーザーの一覧')
 
+{{-- ナビゲーションバー --}}
 @section('navbar-left')
 <li>
     <a class="nav-link" href="{{ url('/admin/articles') }}">

@@ -75,8 +75,9 @@
                     </span>
                 </div>
 
-                <div class="card-body pt-1 pb-1">
-                    <div class="card-text pt-2 pb-2">
+                <a class="card-body pt-1 pb-1" href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}"
+                    style="text-decoration: none;">
+                    <div class="card-text text-dark pt-2 pb-2">
                         {!! nl2br(e($post->body)) !!}
                     </div>
                     <div class="card-image">
@@ -93,7 +94,7 @@
                         </div>
                         @endisset
                     </div>
-                </div>
+                </a>
 
                 <div class="card-footer bg-white py-1">
                     <a class="badge badge-secondary"

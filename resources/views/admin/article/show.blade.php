@@ -69,48 +69,47 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    {{-- 投稿に対するコメント一覧 --}}
+    <div class="row">
+        <div class="col-md-12 ml-4">
+            <a class="btn btn-primary mt-4 mb-4 js-modal-open" href="" data-target="modal02">＋コメントする</a>
+            @if($post->comments->count() == 0)
+            <h5 class="mb-4">まだコメントはありません。</h5>
+            @else
+            <h5 class="mb-2">コメント一覧(新しい順)</h5>
+            @endif
 
-        {{-- 投稿に対するコメント一覧 --}}
-        <div class="row">
-            <div class="col-md-10 ml-4 mt-2">
-                <a class="btn btn-primary mb-4 js-modal-open" href="" data-target="modal02">＋コメントする</a>
-                @if($post->comments->count() == 0)
-                <p class="h5 mb-4">まだコメントはありません。</p>
-                @else
-                <h2 class="h5 mb-2">コメント一覧(新しい順)</h2>
-                @endif
-
-                @foreach ($post->comments as $comment)
-                <div class="card comment-list" style="max-width: 49em">
-                    <div class="card-header bg-secondary text-white py-2">
-                        <img class="float-left prof-image"
-                            src="{{ '/storage/user_image/' . $comment->user_image_path }}">
-                        <span class="float-left pl-2 pt-3">
-                            {{ $comment->user_name }} (id：{{ $comment->user_id }})
-                        </span>
-                        <span class="float-right pt-3">
-                            {{ $comment->created_at->format('Y年m月d日 H:i') }}
-                        </span>
-                    </div>
-                    <div class="card-body py-2">
-                        <div class="card-text">
-                            {!! nl2br(e($comment->body)) !!}
-                        </div>
-                    </div>
-                    <div class="card-footer bg-white py-1">
-                        <div class="card-link float-right">
-                            <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集する</a>
-                            <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除する</a>
-                        </div>
+            {{-- コメントのカードをforeachで表示する --}}
+            @foreach ($post->comments as $comment)
+            <div class="card comment-list">
+                <div class="card-header bg-secondary text-white py-2">
+                    <img class="float-left prof-image" src="{{ '/storage/user_image/' . $comment->user_image_path }}">
+                    <span class="float-left pl-2 pt-3">
+                        {{ $comment->user_name }} (id：{{ $comment->user_id }})
+                    </span>
+                    <span class="float-right pt-3">
+                        {{ $comment->created_at->format('Y年m月d日 H:i') }}
+                    </span>
+                </div>
+                <div class="card-body py-2">
+                    <div class="card-text">
+                        {!! nl2br(e($comment->body)) !!}
                     </div>
                 </div>
-                @endforeach
+                <div class="card-footer bg-white py-1">
+                    <div class="card-link float-right">
+                        <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集する</a>
+                        <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除する</a>
+                    </div>
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>
-</div>
+
 
 {{-- 新規コメント投稿のモーダルウィンドウ --}}
 <div id="modal02" class="c-modal js-modal">

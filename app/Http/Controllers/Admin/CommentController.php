@@ -20,7 +20,10 @@ class CommentController extends Controller
         $form = $request->all();
 
         // ログインユーザー情報と投稿idを代入する
+        $comments->user_id = Auth::user()->id;
         $comments->user_name = Auth::user()->name;
+        // $comments->user_image_path = Auth::user()->user_image_path; // commentテーブルにuser画像カラムは無い！
+        // そもそも投稿にはuser_idさえ持たせれば、表示する時にuser_idでUserモデルから最新の名前や画像を検索できる？
         $comments->article_id = $request->articleId;
 
         // フォームから送信されてきた_tokenを削除
@@ -30,10 +33,10 @@ class CommentController extends Controller
         $comments->fill($form);
         $comments->save();
 
-        return redirect('admin/articles');
+        return redirect('admin/article/show');
     }
 
-    // editアクションを定義→モーダル画面でできるようにしたい！
+    // editアクションを定義
     public function edit(Request $request)
     {
         // Modelからデータを取得する
@@ -62,7 +65,7 @@ class CommentController extends Controller
         // データを上書きして保存する
         $comments->fill($comment_form)->save();
 
-        return redirect('admin/articles');
+        return redirect('admin/article/show');
     }
 
     // deleteアクションを定義
@@ -71,6 +74,6 @@ class CommentController extends Controller
         $comments = Comment::find($request->id); // Modelから該当データを取得
 
         $comments->delete();
-        return redirect('admin/articles');
+        return redirect('admin/article/show');
     }
 }

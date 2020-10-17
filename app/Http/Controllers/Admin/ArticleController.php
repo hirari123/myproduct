@@ -139,15 +139,4 @@ class ArticleController extends Controller
         }
         return view('admin.article.index', ['articles' => $articles, 'search_text' => $search_text]);
     }
-
-    // showアクション
-    public function show(Request $request)
-    {
-        // 投稿idが一致する投稿データを取得
-        $post = Article::find($request->id);
-        if (empty($post)) {
-            abort(404);
-        }
-        return view('admin.article.show', ['post' => $post]);
-    }
 }

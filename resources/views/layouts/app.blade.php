@@ -65,7 +65,11 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <span>{{ Auth::user()->name }}</span>
+                                @isset(Auth::user()->user_image_path)
                                 <img src="{{ '/storage/user_image/' . Auth::user()->user_image_path }}">
+                                @else
+                                <img src="{{ '/storage/user_image/defaulte_user.jpg' }}">
+                                @endisset
                             </a>
 
                             {{-- プロフィール編集 --}}

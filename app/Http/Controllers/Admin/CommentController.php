@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; // 通常のリクエスト
-use App\Comment; // Comment Modelを使う
-// use App\Article; // Article Modelを使う
+use App\User; // Userモデルを使う
+use App\Article; // Articleモデルを使う
+use App\Comment; // Commentモデルを使う
+
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use App\Http\Requests\CommentRequest; // フォームリクエストを使う
 use Carbon\Carbon; // 日付操作ライブラリを使う
@@ -21,7 +23,8 @@ class CommentController extends Controller
 
         // ログインユーザー情報と投稿idを代入する
         $comments->user_id = Auth::user()->id;
-        $comments->user_name = Auth::user()->name;
+        $comments->user_name = Auth::user()->name; // defaulte値として必要なのでこれは残しておく(nullableでない)
+
         // $comments->user_image_path = Auth::user()->user_image_path; // commentテーブルにuser画像カラムは無い！
         // そもそも投稿にはuser_idさえ持たせれば、表示する時にuser_idでUserモデルから最新の名前や画像を検索できる？
         $comments->article_id = $request->articleId;
@@ -33,7 +36,7 @@ class CommentController extends Controller
         $comments->fill($form);
         $comments->save();
 
-        return redirect('admin/article/show');
+        return redirect('admin/articles');
     }
 
     // editアクションを定義
@@ -65,7 +68,7 @@ class CommentController extends Controller
         // データを上書きして保存する
         $comments->fill($comment_form)->save();
 
-        return redirect('admin/article/show');
+        return redirect('admin/articles');
     }
 
     // deleteアクションを定義
@@ -74,6 +77,27 @@ class CommentController extends Controller
         $comments = Comment::find($request->id); // Modelから該当データを取得
 
         $comments->delete();
-        return redirect('admin/article/show');
+        return redirect('admin/comment/show');
+    }
+
+    // showアクション
+    public function show(Request $request)
+    {
+        // 投稿idが一致する投稿データを取得
+        $post = Article::find($request->id);
+        if (empty($post)) {
+            abort(404);
+        }
+
+        // 各コメントに最新のユーザー情報を格納する(Userモデルからidで取得)
+        foreach ($post->comments as $comment) {
+            $comment->user_name = User::find($comment->user_id)->name;
+            $comment->user_image_path = User::find($comment->user_id)->user_image_path;
+        }
+
+        // ここに保存の処理が必要？フォームではないから不要？？
+
+        // Viewに投稿データを渡す
+        return view('admin.comment.show', ['post' => $post]);
     }
 }

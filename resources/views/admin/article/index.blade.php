@@ -66,16 +66,20 @@
             @foreach ($articles as $post)
             <div class="card post-list">
                 <div class="card-header bg-dark text-white py-1">
+                    @isset($post->user_image_path)
                     <img class="float-left prof-image" src="{{ '/storage/user_image/' . $post->user_image_path }}">
+                    @else
+                    <img class="float-left prof-image" src="{{ '/storage/user_image/defaulte_user.jpg' }}">
+                    @endisset
                     <span class="float-left pl-2 pt-3">
-                        {{ $post->user_name }} (id：{{ $post->user_id }})
+                        {{ $post->user_name }}
                     </span>
                     <span class="float-right pt-3">
                         {{ $post->created_at->format('Y年m月d日 H:i') }}
                     </span>
                 </div>
 
-                <a class="card-body pt-1 pb-1" href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}"
+                <a class="card-body pt-1 pb-1" href="{{ action('Admin\CommentController@show', ['id' => $post->id]) }}"
                     style="text-decoration: none;">
                     <div class="card-text text-dark pt-2 pb-2">
                         {!! nl2br(e($post->body)) !!}
@@ -86,7 +90,7 @@
                         {{-- <img src="{{ asset('image/' . $post->image_path) }}" > --}}
                         @endisset
                     </div>
-                    <div class="card-text">
+                    <div class="card-text text-dark">
                         @isset($post->edited_at)
                         <div class="float-right">
                             <br>
@@ -97,13 +101,9 @@
                 </a>
 
                 <div class="card-footer bg-white py-1">
-                    <a class="badge badge-secondary"
-                        href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}">
-                        コメント {{ $post->comments->count() }}件
-                    </a>
                     <a class="badge badge-primary"
-                        href="{{ action('Admin\ArticleController@show', ['id' => $post->id]) }}">
-                        コメントを追加する
+                        href="{{ action('Admin\CommentController@show', ['id' => $post->id]) }}">
+                        コメント {{ $post->comments->count() }}件
                     </a>
 
                     {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}

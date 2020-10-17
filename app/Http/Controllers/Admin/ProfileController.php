@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request; // 通常のリクエスト
-// use Illuminate\Foundation\Auth\User; // AuthのUserモデル(以前の記述)
-// use Illuminate\Foundation\Auth\RegistersUsers; // 追加(使用していないので無効にする)
-use App\User; // Userモデル(こっちを使う)
+use Illuminate\Http\Request;
+
+use App\User; // Userモデルを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use Intervention\Image\Facades\Image; // InterventionImageを使う(画像リサイズ)
-use Illuminate\Support\Facades\Storage; // Storageファサードを使う
+use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユーザー画像を保存)
 
 class ProfileController extends Controller
 {
     // editアクション
-    public function edit(Request $request)
+    public function edit()
     {
-        // Modelからデータを取得する(idで検索)
-        $user_data = User::find($request->id);
+        // Modelからデータを取得する(ログインユーザーのidで検索)
+        $user_data = User::find(Auth::user()->id);
+
         return view('admin.profile.edit', ['user_data' => $user_data]);
     }
 
@@ -46,7 +46,7 @@ class ProfileController extends Controller
 
             // 加工した画像からhashを生成し、ファイル名を設定する
             $image_hash = md5($resized_image->__toString());
-            $image_name = "{$image_hash}.jpg"; // TODO:$image_nameという変数は無くせるのでは？
+            $image_name = "{$image_hash}.jpg"; // todo:「$image_name」という変数は無くせないか？
             $user_data->user_image_path = $image_name; // user_image_pathカラムに書き込む
 
             // 加工した画像を保存する
@@ -74,7 +74,7 @@ class ProfileController extends Controller
     }
 
     // indexアクション
-    public function index(Request $request)
+    public function index()
     {
         // Userモデルから全データを取り出してViewに渡す
         $users = User::all();

@@ -29,9 +29,13 @@
             <a href="{{ action('Admin\ArticleController@index') }}">← 投稿一覧に戻る</a>
             <div class="card">
                 <div class="card-header bg-dark text-white">
+                    @isset($post->user_image_path)
                     <img class="float-left prof-image" src="{{ '/storage/user_image/' . $post->user_image_path }}">
+                    @else
+                    <img class="float-left prof-image" src="{{ '/storage/user_image/defaulte_user.jpg' }}">
+                    @endisset
                     <span class="float-left pl-2 pt-3">
-                        {{ $post->user_name }} (id：{{ $post->user_id }})
+                        {{ $post->user_name }}
                     </span>
                     <span class="float-right pt-3">
                         {{ $post->created_at->format('Y年m月d日 H:i') }}
@@ -85,9 +89,13 @@
             @foreach ($post->comments as $comment)
             <div class="card comment-list">
                 <div class="card-header bg-secondary text-white py-2">
+                    @isset($comment->user_image_path)
                     <img class="float-left prof-image" src="{{ '/storage/user_image/' . $comment->user_image_path }}">
+                    @else
+                    <img class="float-left prof-image" src="{{ '/storage/user_image/defaulte_user.jpg' }}">
+                    @endisset
                     <span class="float-left pl-2 pt-3">
-                        {{ $comment->user_name }} (id：{{ $comment->user_id }})
+                        {{ $comment->user_name }}
                     </span>
                     <span class="float-right pt-3">
                         {{ $comment->created_at->format('Y年m月d日 H:i') }}
@@ -98,12 +106,15 @@
                         {!! nl2br(e($comment->body)) !!}
                     </div>
                 </div>
+                {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}
+                @if ($comment->user_id == auth::user()->id || auth::user()->id == 1)
                 <div class="card-footer bg-white py-1">
                     <div class="card-link float-right">
                         <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集する</a>
                         <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除する</a>
                     </div>
                 </div>
+                @endif
             </div>
             @endforeach
         </div>

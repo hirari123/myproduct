@@ -14,6 +14,7 @@
         みんなのプロフィール一覧
     </a>
 </li>
+@endsection
 
 {{-- ここからコンテンツ --}}
 @section('content')

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\User; // Userモデルを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use Intervention\Image\Facades\Image; // InterventionImageを使う(画像リサイズ)
-use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユーザー画像を保存)
+use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユーザー画像を保存,削除)
 
 class ProfileController extends Controller
 {
@@ -31,9 +31,12 @@ class ProfileController extends Controller
         $users_form = $request->all();
         unset($users_form['_token']);
 
-        // 画像処理を追加
-        // フォームに画像があれば画像を保存する処理を行う(画像が無い場合を先にした方が良いコード？)
-        if (isset($users_form['image'])) {
+        // フォームに画像があれば画像を保存する処理を行う
+        // (可読性を考え画像を削除する場合の処理を先にした)
+        if (strcmp($request->remove, 'true') == 0) {
+            Storage::delete('public/user_image/' . $user_data->image_path);
+            $user_data->user_image_path = null;
+        } elseif (isset($users_form['image'])) {
 
             // 新しい画像ファイルとファイル名を取得
             $posted_image = $request->file('image');
@@ -51,14 +54,10 @@ class ProfileController extends Controller
 
             // 加工した画像を保存する
             Storage::put('public/user_image/' . $image_name, $resized_image); // Storageファサードを使用
-
-        } elseif (strcmp($request->remove, 'true') == 0) {
-            $user_data->user_image_path = null; // 画像を削除する場合はnullをセット(画像自体は削除してない！)
         }
 
-        // データを上書きして保存する
-        $user_data->fill($users_form);
-        $user_data->save();
+        // フォームにデータを上書きして保存する
+        $user_data->fill($users_form)->save();
 
         return redirect('admin/users');
     }
@@ -68,6 +67,7 @@ class ProfileController extends Controller
     {
         // Modelからデータを取得して削除する
         $user_data = User::find($request->id);
+        Storage::delete('public/image/' . $user_data->image_path);
         $user_data->delete();
 
         return redirect('admin/users');

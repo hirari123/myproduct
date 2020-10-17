@@ -18,11 +18,10 @@
 
 {{-- ここからコンテンツ --}}
 @section('content')
-<div class="container">
-    <div class="row">
-        <h2 class="h3 m-2">みんなの投稿</h2>
-    </div>
-
+<div class="container mt-4">
+    {{-- <div class="row">
+        <h2 class="h3 m-4">みんなの投稿</h2>
+    </div> --}}
     <div class="row">
         {{-- 投稿作成ボタン --}}
         <div class="col-md-3 offset-1">

@@ -23,7 +23,7 @@ class CommentController extends Controller
 
         // ログインユーザー情報と投稿idを代入する
         $comments->user_id = Auth::user()->id;
-        $comments->user_name = Auth::user()->name; // defaulte値として必要なのでこれは残しておく(nullableでない)
+        $comments->user_name = Auth::user()->name; // defaulte値として必要なのでnameは残しておく(nullableでない)
 
         // $comments->user_image_path = Auth::user()->user_image_path; // commentテーブルにuser画像カラムは無い！
         // そもそも投稿にはuser_idさえ持たせれば、表示する時にuser_idでUserモデルから最新の名前や画像を検索できる？
@@ -65,7 +65,7 @@ class CommentController extends Controller
         // 編集日時を追加する
         $comments->edited_at = Carbon::now();
 
-        // データを上書きして保存する
+        // フォームにデータを上書きして保存する
         $comments->fill($comment_form)->save();
 
         return redirect('admin/articles');
@@ -94,8 +94,6 @@ class CommentController extends Controller
             $comment->user_name = User::find($comment->user_id)->name;
             $comment->user_image_path = User::find($comment->user_id)->user_image_path;
         }
-
-        // ここに保存の処理が必要？フォームではないから不要？？
 
         // Viewに投稿データを渡す
         return view('admin.comment.show', ['post' => $post]);

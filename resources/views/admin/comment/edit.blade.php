@@ -31,8 +31,13 @@
 
                 <div class="form-group row">
                     <div class="col-md-10">
-                        <textarea class="form-control" name="body" cols="50"
-                            rows="6">{{ $comment_form->body }}</textarea>
+                        <textarea id="countUp" class="form-control" name="body" cols="50" rows="6">
+                            {{ $comment_form->body }}
+                        </textarea>
+                        <label class="badge badge-secondary px-3 py-1 float-right">
+                            <span id="count1">0</span>
+                            <span> / 120</span>
+                        </label>
                     </div>
                 </div>
 

@@ -142,7 +142,11 @@
                 <!-- コメント本文 -->
                 <div class="form-group row">
                     <div class="col-md-10">
-                        <textarea name="body" cols="80" rows="6">{{ old('body') }}</textarea>
+                        <textarea id="countUp" name="body" cols="80" rows="6">{{ old('body') }}</textarea>
+                        <label class="badge badge-secondary px-3 py-1 float-right">
+                            <span id="count1">0</span>
+                            <span> / 120</span>
+                        </label>
                     </div>
                 </div>
                 {{ csrf_field() }}

@@ -144,7 +144,11 @@
                 <div class="form-group row">
                     {{-- <label class="col-md-2" for="body">投稿内容</label> --}}
                     <div class="col-md-10">
-                        <textarea name="body" cols="70" rows="8">{{ old('body') }}</textarea>
+                        <textarea id="countUp" name="body" cols="70" rows="8">{{ old('body') }}</textarea>
+                        <label class="badge badge-secondary px-3 py-1 float-right">
+                            <span id="count1">0</span>
+                            <span> / 120</span>
+                        </label>
                     </div>
                 </div>
                 <!-- 画像の投稿 -->

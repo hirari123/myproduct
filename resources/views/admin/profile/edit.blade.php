@@ -48,8 +48,12 @@
                 <div class="form-group row">
                     <label class="col-md-2" for="introduction">プロフィール</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" name="introduction" cols="30"
-                            rows="6">{{ optional($user_data)->introduction }}</textarea>
+                        <textarea id="countUp" class="form-control" name="introduction" cols="30"
+                            rows="5">{{ optional($user_data)->introduction }}</textarea>
+                        <label class="badge badge-secondary px-3 py-1 float-right">
+                            <span id="count1">0</span>
+                            <span> / 120</span>
+                        </label>
                     </div>
                 </div>
 

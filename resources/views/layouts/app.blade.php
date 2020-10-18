@@ -14,6 +14,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/modal.js') }}" defer></script>
+    <script src="{{ asset('js/strCount.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,7 +34,7 @@
 <body>
     <div id="app">
         {{-- ナビゲーションバー --}}
-        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel py-2">
             <div class="container">
                 {{-- サイトロゴ --}}
                 <a class="navbar-brand" href="{{ url('/admin/articles') }}">

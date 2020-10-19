@@ -34,7 +34,7 @@
                         <textarea id="countUp" class="form-control" name="body" cols="50" rows="6">
                             {{ $comment_form->body }}
                         </textarea>
-                        <label class="badge badge-secondary px-3 py-1 float-right">
+                        <label class="badge badge-secondary px-3 py-1 my-2 float-right">
                             <span id="count1">0</span>
                             <span> / 120</span>
                         </label>

@@ -50,7 +50,7 @@
                     <div class="col-md-9">
                         <textarea id="countUp" class="form-control" name="introduction" cols="30"
                             rows="5">{{ optional($user_data)->introduction }}</textarea>
-                        <label class="badge badge-secondary px-3 py-1 float-right">
+                        <label class="badge badge-secondary px-3 py-1 my-2 float-right">
                             <span id="count1">0</span>
                             <span> / 120</span>
                         </label>

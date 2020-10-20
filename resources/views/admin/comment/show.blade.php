@@ -87,7 +87,7 @@
 
             {{-- コメントのカードをforeachで表示する --}}
             @foreach ($post->comments as $comment)
-            <div class="card comment-list">
+            <div class="card comment-list mb-2">
                 <div class="card-header bg-secondary text-white py-2">
                     @isset($comment->user_image_path)
                     <img class="float-left prof-image" src="{{ '/storage/user_image/' . $comment->user_image_path }}">

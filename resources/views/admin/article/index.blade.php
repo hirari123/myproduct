@@ -63,7 +63,7 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
             @foreach ($articles as $post)
-            <div class="card post-list">
+            <div class="card post-list mb-2">
                 <div class="card-header bg-dark text-white py-1">
                     @isset($post->user_image_path)
                     <img class="float-left prof-image" src="{{ '/storage/user_image/' . $post->user_image_path }}">

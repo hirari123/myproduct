@@ -13,8 +13,6 @@
   margin-top: 0px;
   padding-top: 25px;
   background-image: url('/images/italy-1587287_1280.jpg');
-  // background-image: url('/images/sunrise-1014712_1280.jpg');
-  // background-image: url('/images/buildings-4222462_1280.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -95,9 +93,8 @@ footer {
   color: #000;
 }
 
-// 一覧画面のカードの装飾(classをmb-2などにすれば良い？不要？)
+// 一覧画面のカードの装飾
 .post-list {
-  margin-bottom: 25px;
   max-width: 50em;
 }
 
@@ -113,13 +110,7 @@ footer {
   }
 }
 
-.card-deck {
-  margin-right: 10px;
-  margin-bottom: 15px;
-}
-
 .comment-list {
-  margin-bottom: 25px;
   max-width: 50em
 }
 

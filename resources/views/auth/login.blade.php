@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="login-box card mb-5">
-                <div class="login-header card-header float-left">登録済みの方はこちらから{{ __('Login') }}</div>
+                <div class="login-header card-header float-left">登録済みの方はこちらからログイン</div>
 
                 <div class="login-body card-body">
                     <form method="POST" action="{{ route('/') }}">

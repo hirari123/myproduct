@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use Carbon\Carbon; // 日付操作ライブラリを使う
 use Intervention\Image\Facades\Image; // InterventionImageを使う(画像リサイズ)
 use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユーザー画像を保存,削除)
-use Illuminate\Http\File; // Fileは使わない
+use Illuminate\Http\File; // Fileは使用していない
 
 class ArticleController extends Controller
 {
@@ -27,7 +27,6 @@ class ArticleController extends Controller
         } else {
             // 画像ファイルを取得
             $posted_image = $request->file('image');
-            // $original_file_name = $posted_image->getClientOriginalName(); // 元のファイル名を取得する(あとで使う？)
 
             // 画像をリサイズしてjpgにencodeする(InterventionImageのImageファサードを使用)
             $resized_image = Image::make($posted_image)->fit(640, 360)->encode('jpg');
@@ -47,8 +46,7 @@ class ArticleController extends Controller
 
         // ログインユーザー情報を取得する
         $articles->user_id = Auth::user()->id;
-        $articles->user_name = Auth::user()->name; // defaulte値として必要なのでnameは残しておく(nullableでない)
-        // $articles->user_image_path = Auth::user()->user_image_path;
+        $articles->user_name = Auth::user()->name; // defaulte値として必要(nullableでない)
 
         // フォームから送信されてきた_tokenとimageを削除
         unset($form['_token']);

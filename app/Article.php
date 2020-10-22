@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $guarded = array('id'); // idは書き換えられない
-    protected $table = 'Articles';
+    protected $table = 'articles';
 
     // 更新日時の記述を追加
     protected $dates = [

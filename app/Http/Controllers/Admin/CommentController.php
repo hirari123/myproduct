@@ -23,10 +23,9 @@ class CommentController extends Controller
 
         // ログインユーザー情報と投稿idを代入する
         $comments->user_id = Auth::user()->id;
-        $comments->user_name = Auth::user()->name; // defaulte値として必要なのでnameは残しておく(nullableでない)
+        $comments->user_name = Auth::user()->name; // defaulte値として必要(nullableでない)
 
-        // $comments->user_image_path = Auth::user()->user_image_path; // commentテーブルにuser画像カラムは無い！
-        // そもそも投稿にはuser_idさえ持たせれば、表示する時にuser_idでUserモデルから最新の名前や画像を検索できる？
+        // requestから受け取ったarticleIdをcommentsテーブルに格納(外部キー)
         $comments->article_id = $request->articleId;
 
         // フォームから送信されてきた_tokenを削除

@@ -8,7 +8,7 @@
                 <div class="login-header card-header float-left">登録済みの方はこちらからログイン</div>
 
                 <div class="login-body card-body">
-                    <form method="POST" action="{{ route('/') }}">
+                    <form method="POST" action="{{ route('top.page') }}">
                         @csrf
 
                         <div class="form-group row">

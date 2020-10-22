@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 // "/"のルーティング
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('top.page');
 
 // 投稿関連のルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {

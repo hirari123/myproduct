@@ -44,8 +44,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('users', 'Admin\ProfileController@index');
 });
 
-// Authファサードで生成されるルーティング
-Auth::routes();
+// Authファサードで生成されるルーティング →無効にして手動で記述する
+// Auth::routes();
+
+// AuthRouteMethods.phpのルートを手動で記述してURLをカスタマイズ
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login'); // 'login'を'/'に変更
+Route::post('/', 'Auth\LoginController@login'); // 'login'を'/'に変更
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 // ゲストログインのルーティング
 Route::post('login/guest', 'Auth\LoginController@guestLogin')->name('login.guest');

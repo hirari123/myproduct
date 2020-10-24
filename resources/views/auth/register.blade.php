@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card mt-4 mb-4">
-                <div class="card-header bg-info">{{ __('Register') }}</div>
+            <div class="card mt-4 mb-5">
+                <div class="card-header bg-dark text-light h5">ユーザー登録</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

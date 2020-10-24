@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 // "/"のルーティング
 Route::get('/', function () {
     return view('auth.login');
-})->name('top.page');
+});
+// })->name('top.page');
 
 // 投稿関連のルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
@@ -44,12 +45,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('users', 'Admin\ProfileController@index');
 });
 
-// Authファサードで生成されるルーティング →無効にして手動で記述する
+// Authファサードで生成されるルーティング →無効にして手動で記述してURLをカスタマイズする
 // Auth::routes();
 
 // AuthRouteMethods.phpのルートを手動で記述してURLをカスタマイズ
-Route::get('/', 'Auth\LoginController@showLoginForm')->name('login'); // 'login'を'/'に変更
-Route::post('/', 'Auth\LoginController@login'); // 'login'を'/'に変更
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('login'); // urlの'login'を'/'に変更
+Route::post('/', 'Auth\LoginController@login'); // urlの'login'を'/'に変更
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');

@@ -64,7 +64,7 @@
                     </span>
 
                     {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}
-                    @if ($post->user_id == auth::user()->id || auth::user()->id == 1)
+                    @if ($post->user_id == Auth::user()->id || Auth::user()->id == 1)
                     <div class="card-link float-right">
                         <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
                         <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}
-                @if ($comment->user_id == auth::user()->id || auth::user()->id == 1)
+                @if ($comment->user_id == Auth::user()->id || Auth::user()->id == 1)
                 <div class="card-footer bg-white py-1">
                     <div class="card-link float-right">
                         <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集する</a>

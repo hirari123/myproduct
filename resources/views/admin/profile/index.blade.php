@@ -44,7 +44,7 @@
                 </div>
 
                 {{-- ログインユーザーと一致する場合もしくは管理者の場合は編集リンクを表示 --}}
-                @if ($user->id == auth::user()->id || auth::user()->id == 1)
+                @if ($user->id == Auth::user()->id || Auth::user()->id == 1)
                 <div class="card-footer">
                     <a href="{{ action('Admin\ProfileController@edit', ['id' => $user->id]) }}">編集する</a>
                     <a href="{{ action('Admin\ProfileController@delete', ['id' => $user->id]) }}">削除する</a>

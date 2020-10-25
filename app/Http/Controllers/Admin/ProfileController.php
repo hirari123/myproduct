@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユ�
 class ProfileController extends Controller
 {
     // editアクション
-    public function edit()
+    public function edit(Request $request)
     {
-        // Modelからデータを取得する(ログインユーザーのidで検索)
-        $user_data = User::find(Auth::user()->id);
+        // Modelからデータを取得する(編集対象のユーザーidで検索)
+        $user_data = User::find($request->id);
 
         return view('admin.profile.edit', ['user_data' => $user_data]);
     }
@@ -34,7 +34,8 @@ class ProfileController extends Controller
         // フォームに画像があれば画像を保存する処理を行う
         // (可読性を考え画像を削除する場合の処理を先にした)
         if (strcmp($request->remove, 'true') == 0) {
-            Storage::delete('public/user_image/' . $user_data->image_path);
+            Storage::disk('s3')->delete('user_images/' . $user_data->image_path);
+            // Storage::delete('public/user_image/' . $user_data->image_path); // ローカル環境での記述
             $user_data->user_image_path = null;
         } elseif (isset($users_form['image'])) {
 
@@ -49,11 +50,15 @@ class ProfileController extends Controller
 
             // 加工した画像からhashを生成し、ファイル名を設定する
             $image_hash = md5($resized_image->__toString());
-            $image_name = "{$image_hash}.jpg"; // todo:「$image_name」という変数は無くせないか？
-            $user_data->user_image_path = $image_name; // user_image_pathカラムに書き込む
+            $image_name = "{$image_hash}.jpg";
 
-            // 加工した画像を保存する
-            Storage::put('public/user_image/' . $image_name, $resized_image); // Storageファサードを使用
+            // 現在設定中の画像を削除し、加工した新しい画像を保存する
+            Storage::disk('s3')->delete('user_images/' . $user_data->image_path);
+            Storage::disk('s3')->put('user_images/' . $image_name, $resized_image, 'public');
+            // Storage::put('public/user_image/' . $image_name, $resized_image); // ローカル環境での記述
+
+            // S3のファイルのURLを取得してuser_image_pathカラムに書き込む
+            $user_data->user_image_path = Storage::disk('s3')->url('user_images/' . $image_name);
         }
 
         // フォームにデータを上書きして保存する
@@ -67,8 +72,9 @@ class ProfileController extends Controller
     {
         // Modelからデータを取得して削除する
         $user_data = User::find($request->id);
-        Storage::delete('public/image/' . $user_data->image_path);
-        $user_data->delete();
+        Storage::disk('s3')->delete('user_images/' . $user_data->image_path); // S3のファイルを削除
+        // Storage::delete('public/image/' . $user_data->image_path); // ローカル環境での記述
+        $user_data->delete(); // テーブルのファイルパスを削除
 
         return redirect('admin/users');
     }

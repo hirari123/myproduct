@@ -31,9 +31,9 @@
             <div class="card" style="width: 24em">
                 <div class="card-header bg-dark text-white py-1">
                     @isset($user->user_image_path)
-                    <img class="prof-image float-left" src="{{ '/storage/user_image/' . $user->user_image_path }}">
+                    <img class="prof-image float-left" src="{{ $user->user_image_path }}">
                     @else
-                    <img class="prof-image float-left" src="{{ '/storage/user_image/defaulte_user.jpg' }}">
+                    <img class="prof-image float-left" src="{{ '/images/defaulte_user.jpg' }}">
                     @endisset
                     <span class="float-left pl-2 pt-3">
                         名前：{{ $user->name }}

@@ -30,9 +30,9 @@
             <div class="card">
                 <div class="card-header bg-dark text-white">
                     @isset($post->user_image_path)
-                    <img class="float-left prof-image" src="{{ '/storage/user_image/' . $post->user_image_path }}">
+                    <img class="float-left prof-image" src="{{ $post->user_image_path }}">
                     @else
-                    <img class="float-left prof-image" src="{{ '/storage/user_image/defaulte_user.jpg' }}">
+                    <img class="float-left prof-image" src="{{ '/images/defaulte_user.jpg' }}">
                     @endisset
                     <span class="float-left pl-2 pt-3">
                         {{ $post->user_name }}
@@ -47,7 +47,7 @@
                     </div>
                     <div class="card-image">
                         @isset($post->image_path)
-                        <img class="d-block mx-auto" src="{{ '/storage/image/' . $post->image_path }}">
+                        <img class="d-block mx-auto" src="{{ $post->image_path }}">
                         @endisset
                     </div>
                     @if( $post->edited_at != null)
@@ -90,9 +90,9 @@
             <div class="card comment-list mb-2">
                 <div class="card-header bg-secondary text-white py-2">
                     @isset($comment->user_image_path)
-                    <img class="float-left prof-image" src="{{ '/storage/user_image/' . $comment->user_image_path }}">
+                    <img class="float-left prof-image" src="{{ $comment->user_image_path }}">
                     @else
-                    <img class="float-left prof-image" src="{{ '/storage/user_image/defaulte_user.jpg' }}">
+                    <img class="float-left prof-image" src="{{ '/images/defaulte_user.jpg' }}">
                     @endisset
                     <span class="float-left pl-2 pt-3">
                         {{ $comment->user_name }}

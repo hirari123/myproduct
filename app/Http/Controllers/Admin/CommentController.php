@@ -87,6 +87,7 @@ class CommentController extends Controller
         if (empty($post)) {
             abort(404);
         }
+        $post->user_name = User::find($post->user_id)->name;
 
         // 各コメントに最新のユーザー情報を格納する(Userモデルからidで取得)
         foreach ($post->comments as $comment) {

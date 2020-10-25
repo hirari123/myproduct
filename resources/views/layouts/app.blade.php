@@ -75,7 +75,8 @@
 
                             {{-- プロフィール編集 --}}
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/admin/profile/edit') }}">プロフィール編集</a>
+                                <a class="dropdown-item"
+                                    href="{{ action('Admin\ProfileController@edit', ['id' => Auth::user()->id]) }}">プロフィール編集</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit()">
                                     {{ __('Logout') }}

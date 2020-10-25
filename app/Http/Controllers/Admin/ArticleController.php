@@ -37,11 +37,13 @@ class ArticleController extends Controller
             // 加工した画像からhashを生成し、ファイル名を設定する
             $image_hash = md5($resized_image->__toString());
             $image_name = "{$image_hash}.jpg";
-            $articles->image_path = $image_name; // image_pathカラムにファイル名を代入
 
             // 加工した画像を保存する
-            Storage::put('public/image/' . $image_name, $resized_image); // Storageファサードを使用
-            // $resized_image->store('public/image'); // storeは使えない(GDでサポートしていない)
+            Storage::disk('s3')->put('article_images/' . $image_name, $resized_image, 'public');
+            // Storage::put('public/image/' . $image_name, $resized_image); // ローカル環境での記述
+
+            // S3のファイルのURLを取得してuser_image_pathカラムに書き込む
+            $articles->image_path = Storage::disk('s3')->url('article_images/' . $image_name);
         }
 
         // ログインユーザー情報を取得する
@@ -83,11 +85,11 @@ class ArticleController extends Controller
         // (可読性を考え画像を削除する場合の処理を先にした)
         if (strcmp($request->remove, 'true') == 0) {
             // 画像を削除
-            Storage::delete('public/image/' . $articles->image_path);
+            Storage::disk('s3')->delete('article_images/' . $articles->image_path);
+            // Storage::delete('public/image/' . $articles->image_path); // ローカル環境での記述
             $articles->image_path = null;
         } elseif (isset($form['image'])) {
-            // 古い画像は削除
-            Storage::delete('public/image/' . $articles->image_path);
+
             // 新しい画像ファイルとファイル名を取得
             $posted_image = $request->file('image');
 
@@ -100,10 +102,14 @@ class ArticleController extends Controller
             // 加工した画像からhashを生成し、ファイル名を設定する
             $image_hash = md5($resized_image->__toString());
             $image_name = "{$image_hash}.jpg";
-            $articles->image_path = $image_name; // image_pathカラムにファイル名を上書き
 
-            // 加工した画像を保存する
-            Storage::put('public/image/' . $image_name, $resized_image); // Storageファサードを使用
+            // 現在設定中の画像を削除し、加工した新しい画像を保存する
+            Storage::disk('s3')->delete('article_images/' . $articles->image_path);
+            Storage::disk('s3')->put('article_images/' . $image_name, $resized_image);
+            // Storage::put('public/image/' . $image_name, $resized_image); // ローカル環境での記述
+
+            // S3のファイルのURLを取得してuser_image_pathカラムに書き込む
+            $articles->image_path = Storage::disk('s3')->url('article_images/' . $image_name);
         }
 
         // フォームの不要なデータを削除する
@@ -125,8 +131,9 @@ class ArticleController extends Controller
     {
         // Modelからデータを取得して削除(投稿idで検索)
         $articles = Article::find($request->id);
-        Storage::delete('public/image/' . $articles->image_path);
-        $articles->delete();
+        Storage::disk('s3')->delete('user_images/' . $articles->image_path); // S3のファイルを削除
+        // Storage::delete('public/image/' . $articles->image_path); // ローカル環境での記述
+        $articles->delete(); // テーブルのファイルパスを削除
         return redirect('admin/articles');
     }
 

@@ -31,7 +31,7 @@ class ArticleRequest extends FormRequest
         return [
             // バリデーションルールを定義(オーバーライド)
             'body' => 'required',
-            'image' => 'image|mimes:jpeg,jpg,png,gif|max:3072',
+            'image_file' => 'image|mimes:jpeg,jpg,png,gif|max:3072',
         ];
     }
 
@@ -40,9 +40,9 @@ class ArticleRequest extends FormRequest
     {
         return [
             "body.required" => "本文は必須項目です。",
-            "image.image" => "画像ファイルを選択してください。",
-            "image.mimes" => "JPG/PNG/GIF形式の画像を選択してください。",
-            "image.max" => "アップロードできるファイルは3MBまでです。"
+            "image_file.image" => "画像ファイルを選択してください。",
+            "image_file.mimes" => "JPG/PNG/GIF形式の画像を選択してください。",
+            "image_file.max" => "アップロードできるファイルは3MBまでです。"
         ];
     }
 }

@@ -51,7 +51,7 @@
     <p class="row ml-4">投稿に失敗しました..</p>
     @endif
 
-    @error('image')
+    @error('image_file')
     <ul class="row ml-2 text-danger">
         @foreach ($errors->all() as $e)
         <li>{{ $e }}</li>
@@ -154,7 +154,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 h5" for="body">画像</label>
                     <div class="col-md-10">
-                        <input type="file" class="form-control-file" name="image">
+                        <input type="file" class="form-control-file" name="image_file">
                     </div>
                 </div>
 

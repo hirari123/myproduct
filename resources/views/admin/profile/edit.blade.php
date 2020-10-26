@@ -59,9 +59,9 @@
 
                 {{-- ユーザー画像の項目 --}}
                 <div class="form-group row">
-                    <label class="col-md-2" for="image">トップ画像</label>
+                    <label class="col-md-2" for="image_file">トップ画像</label>
                     <div class="col-md-10">
-                        <input type="file" class="form-control-file" name="image">
+                        <input type="file" class="form-control-file" name="image_file">
                         <div class="form-text text-info">
                             設定中の画像ファイル： {{ optional($user_data)->user_image_path }}
                         </div>

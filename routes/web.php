@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('article/edit', 'Admin\ArticleController@update');
     Route::get('article/delete', 'Admin\ArticleController@delete');
     Route::get('articles', 'Admin\ArticleController@index');
+    Route::post('ajaxlike', 'Admin\ArticleController@ajaxlike')->name('posts.ajaxlike');
 
     Route::get('comment/show', 'Admin\CommentController@show');
     Route::post('comment/show', 'Admin\CommentController@create');

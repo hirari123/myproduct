@@ -99,12 +99,30 @@
                 </a>
 
                 <div class="card-footer bg-white py-1">
+                    {{-- コメントボタン --}}
                     <a class="badge badge-primary"
                         href="{{ action('Admin\CommentController@show', ['id' => $post->id]) }}">
                         コメント {{ $post->comments->count() }}件
                     </a>
 
-                    {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}
+                    {{-- いいねボタン(Likeモデルからいいねを取得) --}}
+                    @if($like_model->like_exist(Auth::user()->id, $post->id))
+                    <p class="favorite-mark">
+                        <a class="js-like-toggle loved" href="" data-postid="{{ $post->id }}">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                        <span class="likeCount">{{ $post->likes_count }}</span>
+                    </p>
+                    @else
+                    <p class="favorite-mark">
+                        <a class="js-like-toggle" href="" data-postid="{{ $post->id }}">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                        <span class="likesCount">{{ $post->likes_count }}</span>
+                    </p>
+                    @endif
+
+                    {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除ボタンを表示 --}}
                     @if ($post->user_id == Auth::user()->id || Auth::user()->id == 1)
                     <div class="card-link float-right">
                         <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>

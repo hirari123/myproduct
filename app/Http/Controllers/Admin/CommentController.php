@@ -83,19 +83,19 @@ class CommentController extends Controller
     public function show(Request $request)
     {
         // 投稿idが一致する投稿データを取得
-        $post = Article::find($request->id);
-        if (empty($post)) {
+        $article = Article::find($request->id);
+        if (empty($article)) {
             abort(404);
         }
-        $post->user_name = User::find($post->user_id)->name;
+        $article->user_name = User::find($article->user_id)->name;
 
         // 各コメントに最新のユーザー情報を格納する(Userモデルからidで取得)
-        foreach ($post->comments as $comment) {
+        foreach ($article->comments as $comment) {
             $comment->user_name = User::find($comment->user_id)->name;
             $comment->user_image_path = User::find($comment->user_id)->user_image_path;
         }
 
         // Viewに投稿データを渡す
-        return view('admin.comment.show', ['post' => $post]);
+        return view('admin.comment.show', ['article' => $article]);
     }
 }

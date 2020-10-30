@@ -7,11 +7,11 @@ use Illuminate\Http\Request; // 通常のリクエスト
 use App\Http\Requests\ArticleRequest; // フォームリクエストを使う
 use App\Article; // Articlelモデルを使う
 use App\User; // Userモデルを使う
+use App\Like; // Likeモデルを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use Carbon\Carbon; // 日付操作ライブラリを使う
 use Intervention\Image\Facades\Image; // InterventionImageを使う(画像リサイズ)
 use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユーザー画像を保存,削除)
-use Illuminate\Http\File; // Fileは使用していない
 
 class ArticleController extends Controller
 {
@@ -147,22 +147,64 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $search_text = $request->search_text;
+
         if ($search_text != '') {
-            // 検索されたら検索結果を取得する
-            $articles = Article::where('body', 'like', '%' . $search_text . '%')->orderBy('created_at', 'desc')->paginate(7);
+            // 検索されたら検索結果を取得する(likesテーブルとのリレーションの数も取得)
+            $articles = Article::where('body', 'like', '%' . $search_text . '%')->withCount('likes')->orderBy('created_at', 'desc')->paginate(7);
+
             foreach ($articles as $article) {
                 $article->user_name = User::find($article->user_id)->name;
                 $article->user_image_path = User::find($article->user_id)->user_image_path;
             }
         } else {
-            // 検索が無い場合はすべての投稿を取得する
-            $articles = Article::orderBy('created_at', 'desc')->paginate(7);
+            // 検索が無い場合はすべての投稿を取得する(likesテーブルとのリレーションの数も取得)
+            $articles = Article::withCount('likes')->orderBy('created_at', 'desc')->paginate(7);
 
             foreach ($articles as $article) {
                 $article->user_name = User::find($article->user_id)->name;
                 $article->user_image_path = User::find($article->user_id)->user_image_path;
             }
         }
-        return view('admin.article.index', ['articles' => $articles, 'search_text' => $search_text]);
+
+        // LikeモデルのインスタンスをViewに渡す
+        $like_model = new Like;
+
+        // Viewに渡すパラメータ
+        $params = [
+            'articles' => $articles,
+            'search_text' => $search_text,
+            'like_model' => $like_model,
+        ];
+        dd($params);
+
+        return view('admin.article.index', $params);
+    }
+
+    // ajaxlikeアクションを定義
+    public function ajaxlike(Request $request)
+    {
+        $id = Auth::user()->id;
+        dd($id);
+        $article_id = $request->article_id;
+        $like = new Like;
+        $article = Article::findOrFail($article_id);
+
+        // LoadCount()でリレーションの数を取得(〇〇_countとする)
+        $articleLikesCount = $article->loadCount('likes')->likes_count;
+
+        // likeが存在する(空でない)場合
+        if ($like->like_exist($id, $article_id)) {
+            // likesテーブルのレコードを削除する
+            $like = Like::where('article_id', $article_id)->where('user_id', $id)->delete();
+        } else {
+            // 無ければlikesテーブルに新しいレコードを作成する
+            $like = new Like;
+            $like->article_id = $request->article_id;
+            $like->user_id = Auth::user()->id;
+            $like->save();
+        }
+
+        // ajaxにいいねの総数をjson形式で返す
+        return response()->json($articleLikesCount);
     }
 }

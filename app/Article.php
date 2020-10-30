@@ -25,4 +25,10 @@ class Article extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    // Likeモデルと1対多で関連づける
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }

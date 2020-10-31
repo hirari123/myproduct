@@ -106,22 +106,19 @@
                         コメント {{ $article->comments->count() }}件
                     </a>
 
-                    {{-- いいねボタン(Likeモデルからいいねを取得) --}}
-                    @if(isset($like_model->id))
-                    {{-- Auth::userがその記事にいいねしていればtrueというロジックにしたい --}}
-                    {{-- @if($likes_table->like_exists(Auth::user()->id, $article->id)) --}}
-                    {{-- like_existというメソッドは存在しない --}}
+                    {{-- いいねボタン --}}
+                    {{-- LikeモデルにAuth::userがある場合 --}}
+                    @if($like_model->like_exist(Auth::user()->id, $article->id))
                     <p class="favorite-mark float-left ml-2">
-                        <a class="js-like-toggle loved" href="" data-article_id="{{ $article->id }}">
+                        <a class="js-like-toggle loved" href="" data-articleid="{{ $article->id }}">
                             <i class="fas fa-heart"></i>
                         </a>
-                        <span class="likeCount">{{ $article->likes_count }}</span>
+                        <span class="likesCount">{{ $article->likes_count }}</span>
                     </p>
-                    {{-- テーブルにいいねが存在しない場合はclass"loved”は付与しない --}}
-                    {{-- つまりデフォルトの状態 --}}
+                    {{-- テーブルにいいねが存在しない場合は(class="loved”は付与しない) --}}
                     @else
                     <p class="favorite-mark float-left ml-2">
-                        <a class="js-like-toggle" href="" data-article_id="{{ $article->id }}">
+                        <a class="js-like-toggle" href="" data-articleid="{{ $article->id }}">
                             <i class="fas fa-heart"></i>
                         </a>
                         <span class="likesCount">{{ $article->likes_count }}</span>

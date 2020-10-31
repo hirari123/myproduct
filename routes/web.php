@@ -27,13 +27,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('article/edit', 'Admin\ArticleController@update');
     Route::get('article/delete', 'Admin\ArticleController@delete');
     Route::get('articles', 'Admin\ArticleController@index');
-    Route::post('ajaxlike', 'Admin\ArticleController@ajaxlike')->name('posts.ajaxlike');
 
     Route::get('comment/show', 'Admin\CommentController@show');
     Route::post('comment/show', 'Admin\CommentController@create');
     Route::get('comment/edit', 'Admin\CommentController@edit');
     Route::post('comment/edit', 'Admin\CommentController@update');
     Route::get('comment/delete', 'Admin\CommentController@delete');
+});
+
+// いいね機能のルーティング(ajaxlike)
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('ajaxlike', 'Admin\ArticleController@ajaxlike')->name('article.ajaxlike');
+    // Route::get('ajaxlike', 'Admin\ArticleController@index');
 });
 
 // プロフィール関連のルーティング
@@ -64,6 +69,3 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 
 // ゲストログインのルーティング
 Route::post('login/guest', 'Auth\LoginController@guestLogin')->name('login.guest');
-
-// home画面へのルーティング→無効する
-// Route::get('/home', 'HomeController@index')->name('home');

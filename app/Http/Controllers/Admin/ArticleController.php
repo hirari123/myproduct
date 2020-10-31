@@ -170,32 +170,29 @@ class ArticleController extends Controller
         $like_model = new Like;
 
         // Viewに渡すパラメータ
-        $params = [
+        $data = [
             'articles' => $articles,
             'search_text' => $search_text,
             'like_model' => $like_model,
         ];
-        dd($params);
 
-        return view('admin.article.index', $params);
+        return view('admin.article.index', $data);
     }
 
     // ajaxlikeアクションを定義
     public function ajaxlike(Request $request)
     {
         $id = Auth::user()->id;
-        dd($id);
         $article_id = $request->article_id;
-        $like = new Like;
         $article = Article::findOrFail($article_id);
+        $like = new Like;
 
-        // LoadCount()でリレーションの数を取得(〇〇_countとする)
+        // LoadCount()でlikesテーブルとのリレーションの数を取得(〇〇_countとする)
         $articleLikesCount = $article->loadCount('likes')->likes_count;
 
-        // likeが存在する(空でない)場合
+        // Auth::userのlikeがある場合はlikesテーブルのレコードを削除する
         if ($like->like_exist($id, $article_id)) {
-            // likesテーブルのレコードを削除する
-            $like = Like::where('article_id', $article_id)->where('user_id', $id)->delete();
+            Like::where('article_id', $article_id)->where('user_id', $id)->delete();
         } else {
             // 無ければlikesテーブルに新しいレコードを作成する
             $like = new Like;
@@ -204,7 +201,7 @@ class ArticleController extends Controller
             $like->save();
         }
 
-        // ajaxにいいねの総数をjson形式で返す
+        // 記事のいいね数をajaxにjson形式で返す
         return response()->json($articleLikesCount);
     }
 }

@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Article;
+use App\Like;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -46,15 +47,7 @@ class LoginController extends Controller
     // ゲストログインを追加
     public function guestLogin(Request $request)
     {
-        // dd($request->input('email'), $request->input('password'));
-        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-            // ゲストログイン認証に成功した場合の処理
-            $search_text = $request->search_text;
-            $articles = Article::orderBy('created_at', 'desc')->paginate(10);
-
-            return view('admin.article.index', ['articles' => $articles, 'search_text' => $search_text]);
-        } else {
-            return redirect('/'); // 失敗した場合
-        }
+        Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')]);
+        return redirect('/');
     }
 }

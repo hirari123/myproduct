@@ -62,53 +62,76 @@
     {{-- 検索で取得した結果をforeachでカード表示する --}}
     <div class="row">
         <div class="col-md-10 mx-auto">
-            @foreach ($articles as $post)
+            @foreach ($articles as $article)
             <div class="card post-list mb-2">
                 <div class="card-header bg-dark text-white py-1">
-                    @isset($post->user_image_path)
-                    <img class="float-left prof-image" src="{{ $post->user_image_path }}">
+                    @isset($article->user_image_path)
+                    <img class="float-left prof-image" src="{{ $article->user_image_path }}">
                     @else
                     <img class="float-left prof-image" src="{{ '/images/defaulte_user.jpg' }}">
                     @endisset
                     <span class="float-left pl-2 pt-3">
-                        {{ $post->user_name }}
+                        {{ $article->user_name }}
                     </span>
                     <span class="float-right pt-3">
-                        {{ $post->created_at->format('Y年m月d日 H:i') }}
+                        {{ $article->created_at->format('Y年m月d日 H:i') }}
                     </span>
                 </div>
 
-                <a class="card-body pt-1 pb-1" href="{{ action('Admin\CommentController@show', ['id' => $post->id]) }}"
+                <a class="card-body pt-1 pb-1"
+                    href="{{ action('Admin\CommentController@show', ['id' => $article->id]) }}"
                     style="text-decoration: none;">
                     <div class="card-text text-dark pt-2 pb-2">
-                        {!! nl2br(e($post->body)) !!}
+                        {!! nl2br(e($article->body)) !!}
                     </div>
                     <div class="card-image">
-                        @isset($post->image_path)
-                        <img class="d-block mx-auto" src="{{ $post->image_path }}">
+                        @isset($article->image_path)
+                        <img class="d-block mx-auto" src="{{ $article->image_path }}">
                         @endisset
                     </div>
                     <div class="card-text text-dark">
-                        @isset($post->edited_at)
+                        @isset($article->edited_at)
                         <div class="float-right">
                             <br>
-                            [{{ $post->edited_at->format('Y年m月d日 H:i') }}編集]
+                            [{{ $article->edited_at->format('Y年m月d日 H:i') }}編集]
                         </div>
                         @endisset
                     </div>
                 </a>
 
                 <div class="card-footer bg-white py-1">
-                    <a class="badge badge-primary"
-                        href="{{ action('Admin\CommentController@show', ['id' => $post->id]) }}">
-                        コメント {{ $post->comments->count() }}件
+                    {{-- コメントボタン --}}
+                    <a class="badge badge-primary float-left"
+                        href="{{ action('Admin\CommentController@show', ['id' => $article->id]) }}">
+                        コメント {{ $article->comments->count() }}件
                     </a>
 
-                    {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}
-                    @if ($post->user_id == Auth::user()->id || Auth::user()->id == 1)
+                    {{-- いいねボタン --}}
+                    {{-- Likeモデルにいいねが存在する場合 --}}
+                    @if($like_model->like_exist(Auth::user()->id, $article->id))
+                    <p class="favorite-mark float-left ml-2">
+                        <a class="js-like-toggle text-dark loved" href="" data-articleid="{{ $article->id }}"
+                            style="text-decoration: none;">
+                            <i class="fas fa-heart"></i>
+                            <span class="likesCount">{{ $article->likes_count }}</span>
+                        </a>
+                    </p>
+                    {{-- いいねが存在しない場合(class="loved”は付与しない) --}}
+                    @else
+                    <p class="favorite-mark float-left ml-2">
+                        <a class="js-like-toggle text-dark" href="" data-articleid="{{ $article->id }}"
+                            style="text-decoration: none;">
+                            <i class="fas fa-heart"></i>
+                            <span class="likesCount">{{ $article->likes_count }}</span>
+                        </a>
+                    </p>
+                    @endif
+
+                    {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除ボタンを表示 --}}
+                    @if ($article->user_id == Auth::user()->id || Auth::user()->id == 1)
                     <div class="card-link float-right">
-                        <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
-                        <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
+                        <a href="{{ action('Admin\ArticleController@edit', ['id' => $article->id]) }}">編集する</a>
+                        <a href="{{ action('Admin\ArticleController@delete', ['id' => $article->id]) }}">削除する</a>
                     </div>
                     @endif
                 </div>

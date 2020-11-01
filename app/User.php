@@ -40,16 +40,22 @@ class User extends Authenticatable
     /**
      * リレーションの設定
      */
-    
-    // Articlesモデルと紐づける(1対多)
+
+    // Articlesテーブルと紐づける(1対多)
     public function articles()
     {
-        return $this->hasMany('App\articles');
+        return $this->hasMany('App\article');
     }
 
-    // Commentモデルと紐づける(1対多)
+    // Commentsテーブルと紐づける(1対多)
     public function comments()
     {
-        return $this->hasMany('App\comments');
+        return $this->hasMany('App\comment');
+    }
+
+    // Likesテーブルと紐づける(1対多)
+    public function likes()
+    {
+        return $this->hasMany('App\like');
     }
 }

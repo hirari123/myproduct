@@ -16,9 +16,9 @@ class PostsTableSeeder extends Seeder
         // テストデータの作成実行を定義
         factory(Article::Class, 2)
             ->create()
-            ->each(function ($post) {
+            ->each(function ($article) {
                 $comments = factory(App\Comment::class, 2)->make();
-                $post->comments()->saveMany($comments);
+                $article->comments()->saveMany($comments);
             });
     }
 }

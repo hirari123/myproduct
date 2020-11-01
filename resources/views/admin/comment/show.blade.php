@@ -29,45 +29,45 @@
             <a href="{{ action('Admin\ArticleController@index') }}">← 投稿一覧に戻る</a>
             <div class="card">
                 <div class="card-header bg-dark text-white">
-                    @isset($post->user_image_path)
-                    <img class="float-left prof-image" src="{{ $post->user_image_path }}">
+                    @isset($article->user_image_path)
+                    <img class="float-left prof-image" src="{{ $article->user_image_path }}">
                     @else
                     <img class="float-left prof-image" src="{{ '/images/defaulte_user.jpg' }}">
                     @endisset
                     <span class="float-left pl-2 pt-3">
-                        {{ $post->user_name }}
+                        {{ $article->user_name }}
                     </span>
                     <span class="float-right pt-3">
-                        {{ $post->created_at->format('Y年m月d日 H:i') }}
+                        {{ $article->created_at->format('Y年m月d日 H:i') }}
                     </span>
                 </div>
                 <div class="card-body pt-1 pb-1">
                     <div class="card-text pt-1 pb-1">
-                        {!! nl2br(e($post->body)) !!}
+                        {!! nl2br(e($article->body)) !!}
                     </div>
                     <div class="card-image">
-                        @isset($post->image_path)
-                        <img class="d-block mx-auto" src="{{ $post->image_path }}">
+                        @isset($article->image_path)
+                        <img class="d-block mx-auto" src="{{ $article->image_path }}">
                         @endisset
                     </div>
-                    @if( $post->edited_at != null)
+                    @if( $article->edited_at != null)
                     <div class="float-right">
                         <br>
-                        [{{ $post->edited_at->format('Y年m月d日 H:i') }}編集]
+                        [{{ $article->edited_at->format('Y年m月d日 H:i') }}編集]
                     </div>
                     @endif
                 </div>
 
                 <div class="card-footer bg-white py-1">
                     <span class="badge badge-secondary">
-                        コメント {{ $post->comments->count() }}件
+                        コメント {{ $article->comments->count() }}件
                     </span>
 
                     {{-- ログインユーザーと一致する場合または管理ユーザーの場合は編集削除可能 --}}
-                    @if ($post->user_id == Auth::user()->id || Auth::user()->id == 1)
+                    @if ($article->user_id == Auth::user()->id || Auth::user()->id == 1)
                     <div class="card-link float-right">
-                        <a href="{{ action('Admin\ArticleController@edit', ['id' => $post->id]) }}">編集する</a>
-                        <a href="{{ action('Admin\ArticleController@delete', ['id' => $post->id]) }}">削除する</a>
+                        <a href="{{ action('Admin\ArticleController@edit', ['id' => $article->id]) }}">編集する</a>
+                        <a href="{{ action('Admin\ArticleController@delete', ['id' => $article->id]) }}">削除する</a>
                     </div>
                     @endif
                 </div>
@@ -79,14 +79,14 @@
     <div class="row">
         <div class="col-md-12 ml-4">
             <a class="btn btn-primary mt-4 mb-4 js-modal-open" href="" data-target="modal02">＋コメントする</a>
-            @if($post->comments->count() == 0)
+            @if($article->comments->count() == 0)
             <h5 class="mb-4">まだコメントはありません。</h5>
             @else
             <h5 class="mb-2">コメント一覧(新しい順)</h5>
             @endif
 
             {{-- コメントのカードをforeachで表示する --}}
-            @foreach ($post->comments as $comment)
+            @foreach ($article->comments as $comment)
             <div class="card comment-list mb-2">
                 <div class="card-header bg-secondary text-white py-2">
                     @isset($comment->user_image_path)
@@ -150,7 +150,7 @@
                     </div>
                 </div>
                 {{ csrf_field() }}
-                <input type="hidden" value="{{ $post->id }}" name="articleId">
+                <input type="hidden" value="{{ $article->id }}" name="articleId">
                 <input type="submit" class="btn btn-primary" value="コメントを投稿">
             </form>
             <a class="js-modal-close c-modal_close" href=""><span>閉じる</span></a>

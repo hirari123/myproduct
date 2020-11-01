@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
@@ -15,10 +13,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/modal.js') }}" defer></script>
     <script src="{{ asset('js/strCount.js') }}" defer></script>
+    <script src="{{ asset('js/ajaxlike.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" type="text/css">
 
     <!-- Styles -->
@@ -28,6 +27,8 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('images/cat_icon.jpeg') }}" type="image/x-icon">
 
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
 </head>
 
 

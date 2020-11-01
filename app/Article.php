@@ -6,30 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $guarded = array('id'); // idは書き換えられない
     protected $table = 'articles';
+    protected $guarded = array('id');
 
     // 更新日時の記述を追加
     protected $dates = [
         'edited_at',
     ];
 
-    // バリデーションルールはフォームリクエストでの定義に変更
-    /*
-    public static $rules = array(
-        'body' => 'required',
-    );
-    */
-
-    // Userモデルと紐づける(1対多)
+    // Userモデルと1対多で関連づける
     public function user()
     {
-        return $this->belongsTo(App\User);
+        return $this->belongsTo('App\User');
     }
 
-    // Commentモデルと紐づける(1対多)
+    // Commentモデルと1対多で関連づける
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    // Likeモデルと1対多で関連づける
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
     }
 }

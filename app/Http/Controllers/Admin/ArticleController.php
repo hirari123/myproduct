@@ -146,6 +146,7 @@ class ArticleController extends Controller
     // 部分一致であいまい検索
     public function index(Request $request)
     {
+        $data = [];
         $search_text = $request->search_text;
 
         if ($search_text != '') {
@@ -184,11 +185,8 @@ class ArticleController extends Controller
     {
         $id = Auth::user()->id;
         $article_id = $request->article_id;
-        $article = Article::findOrFail($article_id);
         $like = new Like;
-
-        // LoadCount()でlikesテーブルとのリレーションの数を取得(〇〇_countとする)
-        $articleLikesCount = $article->loadCount('likes')->likes_count;
+        $article = Article::findOrFail($article_id);
 
         // Auth::userのlikeがある場合はlikesテーブルのレコードを削除する
         if ($like->like_exist($id, $article_id)) {
@@ -201,7 +199,10 @@ class ArticleController extends Controller
             $like->save();
         }
 
-        // 記事のいいね数をajaxにjson形式で返す
+        // LoadCount()でlikesテーブルとのリレーションの数を取得(〇〇_countとする)
+        $articleLikesCount = $article->loadCount('likes')->likes_count;
+
+        // 記事のいいね数をajaxのdataとしてjson形式で返す
         return response()->json($articleLikesCount);
     }
 }

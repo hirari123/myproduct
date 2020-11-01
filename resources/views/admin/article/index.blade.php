@@ -107,21 +107,23 @@
                     </a>
 
                     {{-- いいねボタン --}}
-                    {{-- LikeモデルにAuth::userがある場合 --}}
+                    {{-- Likeモデルにいいねが存在する場合 --}}
                     @if($like_model->like_exist(Auth::user()->id, $article->id))
                     <p class="favorite-mark float-left ml-2">
-                        <a class="js-like-toggle loved" href="" data-articleid="{{ $article->id }}">
+                        <a class="js-like-toggle text-dark loved" href="" data-articleid="{{ $article->id }}"
+                            style="text-decoration: none;">
                             <i class="fas fa-heart"></i>
+                            <span class="likesCount">{{ $article->likes_count }}</span>
                         </a>
-                        <span class="likesCount">{{ $article->likes_count }}</span>
                     </p>
-                    {{-- テーブルにいいねが存在しない場合は(class="loved”は付与しない) --}}
+                    {{-- いいねが存在しない場合(class="loved”は付与しない) --}}
                     @else
                     <p class="favorite-mark float-left ml-2">
-                        <a class="js-like-toggle" href="" data-articleid="{{ $article->id }}">
+                        <a class="js-like-toggle text-dark" href="" data-articleid="{{ $article->id }}"
+                            style="text-decoration: none;">
                             <i class="fas fa-heart"></i>
+                            <span class="likesCount">{{ $article->likes_count }}</span>
                         </a>
-                        <span class="likesCount">{{ $article->likes_count }}</span>
                     </p>
                     @endif
 

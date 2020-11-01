@@ -3,7 +3,7 @@ $(function () {
 
     $('.js-like-toggle').on('click', function () {
         var $this = $(this);
-        likeArticleId = $this.data('articleid'); // Viewからdata-articleid受け取った？
+        likeArticleId = $this.data('articleid'); // Viewのdata-articleidから受け取る
 
         $.ajax({
             headers: {
@@ -21,8 +21,8 @@ $(function () {
                 // lovedクラスを追加する
                 $this.toggleClass('loved');
 
-                // .likesCountの次の要素のhtmlを「data.articleLikesCount」の値に書き換える
-                $this.next('.likesCount').html(data.articleLikesCount); // ここの処理がうまくいっていない？？
+                // 子要素のlikesCountクラスのhtml要素を「data(articleLikesCount)」の値に書き換える
+                $this.children('.likesCount').html(data);
             })
 
             // Ajaxリクエストが失敗した場合の処理
@@ -31,7 +31,7 @@ $(function () {
                 console.log('エラー');
                 console.log(err);
                 console.log(xhr);
-                alert('Ajaxリクエスト失敗');
+                // alert('Ajaxリクエスト失敗！');
             });
 
         return false;

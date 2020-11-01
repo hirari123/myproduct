@@ -20,4 +20,18 @@ class Like extends Model
     {
         return $this->belongsTo('App\Article');
     }
+
+    // いいねが既にされているかを確認するメソッドを定義(ControllerとViewで呼び出す)
+    public function like_exist($id, $article_id)
+    {
+        // Likesテーブルのレコードにユーザーidと投稿idが一致するものを取得
+        $exist = Like::where('user_id', '=', $id)->where('article_id', '=', $article_id)->get();
+
+        // 存在する場合はtrueを返す
+        if (!$exist->isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

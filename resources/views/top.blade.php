@@ -34,8 +34,8 @@
                     <div class="float-right">
                         <form method="post" action="{{ route('login.guest') }}">
                             @csrf
-                            <input type="hidden" id="email" name="email" value="guest@gmail.com">
-                            <input type="hidden" id="password" name="password" value="guest1234">
+                            <input type="hidden" name="email" value="guest@gmail.com">
+                            <input type="hidden" name="password" value="guest1234">
                             <button type="submit" class="btn btn-info">ゲストログイン(期間限定)</button>
                         </form>
                     </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\User; // Userモデルを使う
+use App\BuildingIntake; // BuildingIntakeモデルを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use Intervention\Image\Facades\Image; // InterventionImageを使う(画像リサイズ)
 use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユーザー画像を保存,削除)
@@ -82,11 +83,29 @@ class ProfileController extends Controller
         return redirect('admin/users');
     }
 
-    // indexアクション
+    // indexアクション(ユーザー一覧を表示する)
     public function index()
     {
         // Userモデルから全データを取り出してViewに渡す
         $users = User::all();
         return view('admin.profile.index', ['users' => $users]);
+    }
+
+    // showアクション(ユーザー一覧を表示する)
+    public function show()
+    {
+        $id = Auth::user()->id;
+
+        // BuildingIntakesモデルから計算結果を取り出す
+        $building_intakes = new BuildingIntake;
+
+        // すでにログインユーザーの計算結果が存在する場合は該当データを取得する
+        if ($building_intakes->calculate_exist($id)) {
+            $building_intakes = BuildingIntake::where('user_id', $id)->first();
+        }
+
+        // Userモデルからログインユーザーのデータを取り出してViewに渡す
+        $user_data = User::find(Auth::user()->id);
+        return view('admin.profile.mypage', ['user_data' => $user_data, 'building_intakes' => $building_intakes]);
     }
 }

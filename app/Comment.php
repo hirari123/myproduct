@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $guarded = array('id'); // idは書き換えられない
+    protected $guarded = array('id');
     protected $table = 'comments';
 
     // 更新日時の記述を追加

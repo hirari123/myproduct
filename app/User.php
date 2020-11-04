@@ -44,18 +44,24 @@ class User extends Authenticatable
     // Articlesテーブルと紐づける(1対多)
     public function articles()
     {
-        return $this->hasMany('App\article');
+        return $this->hasMany('App\Article');
     }
 
     // Commentsテーブルと紐づける(1対多)
     public function comments()
     {
-        return $this->hasMany('App\comment');
+        return $this->hasMany('App\Comment');
     }
 
     // Likesテーブルと紐づける(1対多)
     public function likes()
     {
-        return $this->hasMany('App\like');
+        return $this->hasMany('App\Like');
+    }
+
+    // Building_intakesテーブルと紐づける(1対多)
+    public function building_intakes()
+    {
+        return $this->hasMany('App\BuildingIntake');
     }
 }

@@ -35,12 +35,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('comment/delete', 'Admin\CommentController@delete');
 });
 
-// いいね機能のルーティング(ajaxlike)
-Route::group(['middleware' => 'auth'], function () {
-    Route::post('ajaxlike', 'Admin\ArticleController@ajaxlike')->name('article.ajaxlike');
-    // Route::get('ajaxlike', 'Admin\ArticleController@index');
-});
-
 // プロフィール関連のルーティング
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('profile/create', 'Admin\ProfileController@add');
@@ -49,6 +43,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('profile/edit', 'Admin\ProfileController@update');
     Route::get('profile/delete', 'Admin\ProfileController@delete');
     Route::get('users', 'Admin\ProfileController@index');
+    Route::get('mypage', 'Admin\ProfileController@show');
+});
+
+// ajax処理のルーティング(いいね機能,目標カロリー計算)
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('ajaxlike', 'Admin\ArticleController@ajaxlike')->name('article.ajaxlike');
+    Route::get('ajaxlike', 'Admin\ArticleController@index'); // 不意にurl指定でアクセスが来た場合
+    Route::post('ajaxbuilding', 'Calculate\BuildingIntakeController@ajaxBuildingIntake')->name('calculate.ajaxbuilding');
+    Route::get('ajaxbuilding', 'Calculate\BuildingIntakeController@index'); // 不意にurl指定でアクセスが来た場合
+});
+
+// 目標カロリー計算のルーティング
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('calculate/building_intake', 'Calculate\BuildingIntakeController@index');
+    Route::post('calculate/building_intake', 'Calculate\BuildingIntakeController@create');
 });
 
 // Authファサードで生成されるルーティング →無効にして手動で記述してURLをカスタマイズする

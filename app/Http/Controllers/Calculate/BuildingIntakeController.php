@@ -49,7 +49,6 @@ class BuildingIntakeController extends Controller
 
         // トークンを削除してデータベースに保存する
         unset($form['_token']);
-        // $building_intakes->fill($form)->save();
         $building_intakes->save();
 
         return redirect('admin/mypage');

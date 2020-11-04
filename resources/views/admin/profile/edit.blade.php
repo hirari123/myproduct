@@ -14,6 +14,11 @@
         みんなのプロフィール一覧
     </a>
 </li>
+<li>
+    <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
+        目標摂取カロリー計算
+    </a>
+</li>
 @endsection
 
 {{-- ここからコンテンツ --}}

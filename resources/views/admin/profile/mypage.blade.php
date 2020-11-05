@@ -62,11 +62,12 @@
                 <li>1日の目標脂質：{{ $building_intakes->building_target_lipid }} g
                 <li>1日の目標糖質：{{ $building_intakes->building_target_carbohydrate }} g
             </ul>
-            <a href="{{ url('/calculate/build') }}">→こちらからもう一度計算できます</a>
+            <a href="{{ url('/calculate/building_intake') }}" class="btn btn-primary col-md-2">再度計算する</a>
+            <a href="{{ url('/calculate/building_intake') }}" class="btn btn-danger col-md-2">結果を削除</a>
             @else
             <div>
                 <p>まだ計算結果はありません。</p>
-                <a href="{{ url('/calculate/build') }}">→こちらから計算できます</a>
+                <a href="{{ url('/calculate/building_intake') }}">→こちらから計算できます</a>
             </div>
             @endif
         </div>

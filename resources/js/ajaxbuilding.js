@@ -2,7 +2,7 @@ $(function () {
     var bodyWeight;
     var bodyFatPercentage;
 
-    $('.js-building-intake').on('keyup', function () {
+    $('.js-building-intake').on('change mouseover', function () {
         var $this = $(this);
         // Viewのフォームから受け取る
         bodyWeight = $("[name=body_weight]").val();

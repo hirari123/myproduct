@@ -26,11 +26,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <h3 class="mt-2">効率よく筋肉を増やすための目標摂取カロリーを計算しよう</h3>
-            <br>
+            <h3 class="mt-3 mb-4">効率よく筋肉を増やすための目標摂取カロリーを計算しよう</h3>
             <img class="eye-catche mb-4" src="{{ '/images/training.jpg' }}">
             <br>
-            <p>しっかりと筋トレをしているのに筋肉が増えないというのはよくあることです。</p>
+            <p>しっかりと筋トレをしているのに筋肉が増えないというのはよくあること。</p>
             <br>
             <p>その原因は大きく分けて、</p>
             <ol>
@@ -54,23 +53,82 @@
                 <li>目標糖質摂取量(g) = (目標総カロリー(kCal) - (目標タンパク質摂取量(g) * 4) - (目標脂質摂取量(g) * 9)) / 4</li>
             </ol>
             <br>
-            <p>書きのフォームに体重と体脂肪率を入力すると計算を行います！</p>
+            <p>こちらに現在の体重と体脂肪率を入力すると自動で計算を行います！</p>
 
             <form action="{{ action('Calculate\BuildingIntakeController@create') }}" method="post"
                 enctype="multipart/form-data">
                 {{-- 体重の入力(※要バリデーション追加！) --}}
                 <div class="form-group row">
-                    <label class="col-md-2" for="name">現在の体重(kg)</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control js-building-intake" name="body_weight" value="">
+                    <label class="col-md-3" for="body_weight">現在の体重(kg)</label>
+                    <div class="col-md-2">
+                        <select type="number" class="form-control js-building-intake" name="body_weight">
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                            <option value="60" selected>60</option>
+                            <option value="61">61</option>
+                            <option value="62">62</option>
+                            <option value="63">63</option>
+                            <option value="64">64</option>
+                            <option value="65">65</option>
+                            <option value="66">66</option>
+                            <option value="67">67</option>
+                            <option value="68">68</option>
+                            <option value="69">69</option>
+                            <option value="70">70</option>
+                        </select>
                     </div>
                 </div>
                 <br>
                 {{-- 体脂肪率の入力(※要バリデーション追加！) --}}
                 <div class="form-group row">
-                    <label class="col-md-2" for="name">現在の体脂肪率(%)</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control js-building-intake" name="body_fat_percentage" value="">
+                    <label class="col-md-3" for="body_fat_percentage">現在の体脂肪率(%)</label>
+                    <div class="col-md-2">
+                        <select type="number" class="form-control js-building-intake" name="body_fat_percentage">
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15" selected>15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                        </select>
                     </div>
                 </div>
                 <br>

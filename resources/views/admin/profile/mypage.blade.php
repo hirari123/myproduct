@@ -15,7 +15,7 @@
     </a>
 </li>
 <li>
-    <a class="nav-link" href="{{ url('/Calculate/building_intake') }}">
+    <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
         目標摂取カロリー計算
     </a>
 </li>
@@ -64,14 +64,14 @@
                 <li>1日の目標糖質：{{ $building_intakes->building_target_carbohydrate }} g
             </ul>
             <div class="form-group">
-                <a href="{{ url('/Calculate/building_intake') }}" class="btn btn-primary col-md-2 mx-1 p-1">再度計算する</a>
+                <a href="{{ url('/calculate/building_intake') }}" class="btn btn-primary col-md-2 mx-1 p-1">再度計算する</a>
                 <a href="{{ action('Calculate\BuildingIntakeController@delete') }}"
                     class="btn btn-danger col-md-2 mx-1 p-1">結果を削除</a>
             </div>
             @else
             <div>
                 <p>まだ計算結果はありません。</p>
-                <a href="{{ url('/Calculate/building_intake') }}"
+                <a href="{{ url('/calculate/building_intake') }}"
                     class="btn btn-primary col-md-4 mx-1 p-1">こちらから計算できます</a>
             </div>
             @endif

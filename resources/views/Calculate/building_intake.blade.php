@@ -44,7 +44,7 @@
             <br>
             <form action="{{ action('Calculate\BuildingIntakeController@create') }}" method="post"
                 enctype="multipart/form-data" id="js_building_submit">
-                {{-- 体重の入力 --}}
+                {{-- 体重の入力(optionで選択する) --}}
                 <div class="form-group row">
                     <label class="col-md-3" for="body_weight">現在の体重(kg)</label>
                     <div class="col-md-2">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <br>
-                {{-- 体脂肪率の入力 --}}
+                {{-- 体脂肪率の入力(optionで選択する) --}}
                 <div class="form-group row">
                     <label class="col-md-3" for="body_fat_percentage">現在の体脂肪率(%)</label>
                     <div class="col-md-2">

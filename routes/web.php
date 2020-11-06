@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('calculate/building_intake', 'Calculate\BuildingIntakeController@index');
     Route::post('calculate/building_intake', 'Calculate\BuildingIntakeController@create');
+    Route::get('calculate/building_intake/delete', 'Calculate\BuildingIntakeController@delete');
 });
 
 // Authファサードで生成されるルーティング →無効にして手動で記述してURLをカスタマイズする

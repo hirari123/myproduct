@@ -2,7 +2,7 @@ $(function () {
     var bodyWeight;
     var bodyFatPercentage;
 
-    $('.js-building-intake').on('keyup', function () {
+    $('.js-building-intake').on('change mouseout', function () {
         var $this = $(this);
         // Viewのフォームから受け取る
         bodyWeight = $("[name=body_weight]").val();
@@ -45,5 +45,15 @@ $(function () {
             });
 
         return false;
+    });
+
+    // 未計算でフォーム送信した時のバリデーション
+    $("#js_building_submit").submit(function () {
+        if ($("input[name='building-target-calories']").val() == 0) {
+            alert('未計算です。現在の体重と体脂肪率を設定してください。');
+            return false;
+        } else {
+            $("js_building_submit").submit();
+        }
     });
 });

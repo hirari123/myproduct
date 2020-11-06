@@ -26,38 +26,25 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <h3 class="mt-3 mb-4">効率よく筋肉を増やすための目標摂取カロリーを計算しよう</h3>
-            <img class="eye-catche mb-4" src="{{ '/images/training.jpg' }}">
+            <h3 class="mt-3 mb-3">効率よく筋肉を増やすための目標摂取カロリーを計算しよう</h3>
+            <img class="eye-catche mb-3" src="{{ '/images/training.jpg' }}">
             <br>
-            <p>しっかりと筋トレをしているのに筋肉が増えないというのはよくあること。</p>
-            <br>
+            <p>しっかりと筋トレをしているのになかなか筋肉が増えない！</p>
             <p>その原因は大きく分けて、</p>
-            <ol>
-                <li>腸内環境の悪化(十分に栄養が吸収できていない)</li>
-                <li>甲状腺機能の異常(ホルモンバランスによる代謝の低下)</li>
+            <ul>
+                <li>腸内環境の悪化で十分に栄養が吸収できていない</li>
+                <li>ホルモンバランスの異常で代謝が低下している</li>
                 <li>単純にカロリー不足</li>
-            </ol>
-            <p>の3つが考えられます。</p>
+            </ul>
+            <p>などが考えられますが、ほとんどの場合は単純に摂取カロリーが不足しているだけだと考えてよいでしょう。</p>
+            <p>効率よく筋肉量を増やすなら「脂肪が増えすぎないレベルの適度な摂取カロリー」を把握しておかねばなりません。</p>
             <br>
-            <p>しかしほとんどの場合は単純に摂取カロリーが不足しているだけだと考えてよいでしょう。</p>
-            <p>このため効率よく筋肉量を増やすなら、まずは1日にどれだけのカロリーが必要かを把握しておかねばなりません。</p>
+            <p>ここでは以下のフォームから体重と体脂肪率から目標の摂取量を簡単に算出することができます。</p>
+            <p>またタンパク質・脂質・糖質の目安の摂取量も併せて算出します。</p>
             <br>
-            <p>そこで各種研究結果を参考に、体重と体脂肪率から目標の摂取量を簡単に計算できる機能を追加しました。</p>
-            <p>また併せてタンパク質・脂質・糖質の目安の摂取量も算出します。</p>
-            <br>
-            <p>具体的には以下の計算方法にて算出します。</p>
-            <ol>
-                <li>目標総カロリー(kCal) = 除脂肪体重(kg) × 44</li>
-                <li>目標タンパク質摂取量(g) = 体重(kg) × 1.6(g)</li>
-                <li>目標脂質摂取量(g) = 目標総カロリー(kCal) × 30% / 9</li>
-                <li>目標糖質摂取量(g) = (目標総カロリー(kCal) - (目標タンパク質摂取量(g) * 4) - (目標脂質摂取量(g) * 9)) / 4</li>
-            </ol>
-            <br>
-            <p>こちらに現在の体重と体脂肪率を入力すると自動で計算を行います！</p>
-
             <form action="{{ action('Calculate\BuildingIntakeController@create') }}" method="post"
-                enctype="multipart/form-data">
-                {{-- 体重の入力(※要バリデーション追加！) --}}
+                enctype="multipart/form-data" id="js_building_submit">
+                {{-- 体重の入力 --}}
                 <div class="form-group row">
                     <label class="col-md-3" for="body_weight">現在の体重(kg)</label>
                     <div class="col-md-2">
@@ -93,11 +80,40 @@
                             <option value="68">68</option>
                             <option value="69">69</option>
                             <option value="70">70</option>
+                            <option value="71">71</option>
+                            <option value="72">72</option>
+                            <option value="73">73</option>
+                            <option value="74">74</option>
+                            <option value="75">75</option>
+                            <option value="76">76</option>
+                            <option value="77">77</option>
+                            <option value="78">78</option>
+                            <option value="79">79</option>
+                            <option value="80">80</option>
+                            <option value="81">81</option>
+                            <option value="82">82</option>
+                            <option value="83">83</option>
+                            <option value="84">84</option>
+                            <option value="85">85</option>
+                            <option value="86">86</option>
+                            <option value="87">87</option>
+                            <option value="88">88</option>
+                            <option value="89">89</option>
+                            <option value="90">90</option>
+                            <option value="91">91</option>
+                            <option value="92">92</option>
+                            <option value="93">93</option>
+                            <option value="94">94</option>
+                            <option value="95">95</option>
+                            <option value="96">96</option>
+                            <option value="97">97</option>
+                            <option value="98">98</option>
+                            <option value="99">99</option>
                         </select>
                     </div>
                 </div>
                 <br>
-                {{-- 体脂肪率の入力(※要バリデーション追加！) --}}
+                {{-- 体脂肪率の入力 --}}
                 <div class="form-group row">
                     <label class="col-md-3" for="body_fat_percentage">現在の体脂肪率(%)</label>
                     <div class="col-md-2">
@@ -160,10 +176,18 @@
                         <td class="building-target-carbohydrate">0</td>
                     </tr>
                 </table>
+                <br>
+                <p>以下の計算方法にて算出しています。(各種研究結果等を参考に設定)</p>
+                <ol>
+                    <li>目標総カロリー(kCal) = 除脂肪体重(kg) × 44</li>
+                    <li>目標タンパク質摂取量(g) = 体重(kg) × 1.6(g)</li>
+                    <li>目標脂質摂取量(g) = 目標総カロリー(kCal) × 30% / 9</li>
+                    <li>目標糖質摂取量(g) = (目標総カロリー(kCal) - (目標タンパク質摂取量(g) * 4) - (目標脂質摂取量(g) * 9)) / 4</li>
+                </ol>
+                <p>また計算結果を登録すればマイページでいつでも確認することができます。</p>
                 {{-- 登録/更新ボタン --}}
                 <br>
-                <p>計算結果を登録すればマイページでいつでも確認することができます。</p>
-                <div class="form-group row my-4 mx-auto">
+                <div class="form-group row mb-4 mx-auto">
                     <div class="col-md-8">
                         {{-- <input type="hidden" name="id" value="{{ Auth::user()->id }}"> --}}
                         <input type="hidden" name="lean-body-mass" value="">

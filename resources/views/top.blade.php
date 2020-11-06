@@ -56,13 +56,10 @@
                     <li>コメント機能</li>
                     <li>投稿とコメントの編集,削除機能</li>
                     <li>いいね機能(非同期通信)</li>
+                    <li>目標摂取カロリー計算機能</li>
                     <li>投稿の検索機能</li>
                     <li>ページネーション</li>
                     <li>ゲストログイン機能</li>
-                </ul>
-                <h4>今後追加予定の機能</h4>
-                <ul>
-                    <li>食品データベースを用いた栄養計算機能</li>
                 </ul>
             </div>
             <div class="col-md-4 mr-auto">
@@ -75,7 +72,7 @@
                 <h4>インフラ構成(AWS)</h4>
                 <ul>
                     <li>VPC, EC2, ELB(ALB)</li>
-                    <li>RDS, S3, Route53, ACM</li>
+                    <li>RDS, S3, Route53</li>
                     <li>Apache, Amazon Linux 2</li>
                 </ul>
             </div>

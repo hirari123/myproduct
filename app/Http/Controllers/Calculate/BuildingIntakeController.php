@@ -85,4 +85,15 @@ class BuildingIntakeController extends Controller
         // ajaxのdataとしてjson形式で返す
         return response()->json($data);
     }
+
+    // deleteアクション(マイページから結果を削除する)
+    // マイページからauth::user()->idでデータを抽出してレコードを削除する
+    // データ自体をなかったことにできる？？idがfillableじゃないけど削除できる？idは残っても良い？
+    public function delete()
+    {
+        $id = Auth::user()->id;
+        BuildingIntake::where('user_id', $id)->first()->delete();
+
+        return redirect('admin/mypage');
+    }
 }

@@ -45,29 +45,34 @@
                 {{ $user_data->introduction }}
             </div>
             <div class="card-footer">
-                <a href="{{ action('Admin\ProfileController@edit', ['id' => $user_data->id]) }}">編集する</a>
+                <a href="{{ action('Admin\ProfileController@edit', ['id' => $user_data->id]) }}">プロフィールを編集する</a>
             </div>
         </div>
     </div>
     <div class="row my-2">
-        <div class="card col-md-8 offset-left-2 mt-2 p-4">
+        <div class="card col-md-8 mt-2 ml-3 p-4">
             <h5>◆効率よく筋肉量を増やすための目標カロリー</h5>
             @if($building_intakes->calculate_exist(Auth::user()->id))
-            {{-- 各項目にBuildモデルから変数を格納する --}}
+            {{-- 各項目にモデルから変数を格納する --}}
             <ul>
+                <li>最後に計算した日：{{ $building_intakes->updated_at->format('Y年m月d日')}}</li>
                 <li>計算したときの体重： {{ $building_intakes->body_weight }} kg
                 <li>計算したときの体脂肪率： {{ $building_intakes->body_fat_percentage }} %
                 <li>1日の目標カロリー： {{ $building_intakes->building_target_calories }} kCal
-                <li>1日の目標たんぱく質：{{ $building_intakes->building_target_trotein }} g
+                <li>1日の目標たんぱく質：{{ $building_intakes->building_target_protein }} g
                 <li>1日の目標脂質：{{ $building_intakes->building_target_lipid }} g
                 <li>1日の目標糖質：{{ $building_intakes->building_target_carbohydrate }} g
             </ul>
-            <a href="{{ url('/calculate/building_intake') }}" class="btn btn-primary col-md-2">再度計算する</a>
-            <a href="{{ url('/calculate/building_intake') }}" class="btn btn-danger col-md-2">結果を削除</a>
+            <div class="form-group">
+                <a href="{{ url('/calculate/building_intake') }}" class="btn btn-primary col-md-2 mx-1 p-1">再度計算する</a>
+                <a href="{{ action('Calculate\BuildingIntakeController@delete') }}"
+                    class="btn btn-danger col-md-2 mx-1 p-1">結果を削除</a>
+            </div>
             @else
             <div>
                 <p>まだ計算結果はありません。</p>
-                <a href="{{ url('/calculate/building_intake') }}">→こちらから計算できます</a>
+                <a href="{{ url('/calculate/building_intake') }}"
+                    class="btn btn-primary col-md-4 mx-1 p-1">こちらから計算できます</a>
             </div>
             @endif
         </div>

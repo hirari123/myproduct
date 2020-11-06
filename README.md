@@ -6,9 +6,9 @@ https://paleo-engineer.work
 <p>
 パレオダイエットや地中海式ダイエットなど、<br>
 健康に関する取り組みをしている人たちが情報交換をするコミュニティです。<br>
-情報を共有することにより健康増進の効果やモチベーションを高め合うことが目的です。<br>
+情報を共有したり計算機能を利用したりすることにより健康増進の効果を高め合うことが目的です。<br>
 </p>
-<img src="public/images/top-page-screen.png" alt="トップページのイメージ" style="width: 300px"></a>
+<img src="public/images/top-page-screen.png" alt="トップページのイメージ" style="width: 250px"></a>
 
 ## できること(実装した機能)
 - ユーザー登録・ログイン機能
@@ -43,6 +43,8 @@ AWS(Amazon Web Service)を使用
 - RDS
 - S3
 - Route53
+</p>
+<img src="public/images/aws-infra.png" alt="インフラ構成図" style="width: 250px"></a>
 
 ## Webサーバー環境
 - Apache HTTP Server

@@ -15,7 +15,7 @@
     </a>
 </li>
 <li>
-    <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
+    <a class="nav-link" href="{{ url('/Calculate/building_intake') }}">
         目標摂取カロリー計算
     </a>
 </li>

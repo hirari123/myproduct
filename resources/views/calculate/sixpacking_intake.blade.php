@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '効率よく筋肉量を増やすための目標カロリー計算')
+@section('title', '最速で腹筋を割るための目標カロリー計算')
 
 {{-- ナビゲーションバー --}}
 @section('navbar-left')
@@ -16,7 +16,12 @@
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
-        目標摂取カロリー計算
+        効率よく筋肉量を増やすカロリー計算
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/calculate/sixpacking_intake') }}">
+        最速で腹筋を割るカロリー計算
     </a>
 </li>
 @endsection
@@ -26,29 +31,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <h3 class="mt-3 mb-3">効率よく筋肉を増やすための目標摂取カロリーを計算しよう</h3>
-            <img class="eye-catche mb-3" src="{{ '/images/training.jpg' }}">
+            <h3 class="mt-3 mb-3">最速で腹筋を割るための目標摂取カロリーを計算しよう</h3>
+            <img class="eye-catche mb-3" src="{{ '/images/sixpack.jpg' }}">
             <br>
-            <p>しっかりと筋トレをしているのになかなか筋肉が増えない！</p>
-            <p>その原因は大きく分けて、</p>
-            <ul>
-                <li>腸内環境の悪化で十分に栄養が吸収できていない</li>
-                <li>ホルモンバランスの異常で代謝が低下している</li>
-                <li>単純にカロリー不足</li>
-            </ul>
-            <p>などが考えられますが、ほとんどの場合は単純に摂取カロリーが不足しているだけだと考えてよいでしょう。</p>
-            <p>効率よく筋肉量を増やすなら「脂肪が増えすぎないレベルの適度な摂取カロリー」を把握しておかねばなりません。</p>
+            <p>ここでは以下のフォームで現在の体重を設定するだけで、<br>目標の摂取カロリーと三大栄養素(タンパク質・脂質・糖質)の必要な摂取量を簡単に算出することができます。</p>
             <br>
-            <p>ここでは以下のフォームから体重と体脂肪率から目標の摂取カロリーを簡単に算出することができます。</p>
-            <p>また必要なタンパク質・脂質・糖質の目安の摂取量も併せて算出します。</p>
-            <br>
-            <form action="{{ action('Calculate\BuildingIntakeController@create') }}" method="post"
-                enctype="multipart/form-data" id="js_building_submit">
+            <form action="{{ action('Calculate\SixpackingIntakeController@create') }}" method="post"
+                enctype="multipart/form-data" id="js_sixpacking_submit">
                 {{-- 体重の入力(optionで選択する) --}}
                 <div class="form-group row">
                     <label class="col-md-3" for="body_weight">現在の体重(kg)</label>
                     <div class="col-md-2">
-                        <select type="number" class="form-control js-building-intake" name="body_weight">
+                        <select type="number" class="form-control js-sixpacking-intake" name="body_weight">
                             <option value="40">40</option>
                             <option value="41">41</option>
                             <option value="42">42</option>
@@ -113,41 +107,6 @@
                     </div>
                 </div>
                 <br>
-                {{-- 体脂肪率の入力(optionで選択する) --}}
-                <div class="form-group row">
-                    <label class="col-md-3" for="body_fat_percentage">現在の体脂肪率(%)</label>
-                    <div class="col-md-2">
-                        <select type="number" class="form-control js-building-intake" name="body_fat_percentage">
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15" selected>15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                        </select>
-                    </div>
-                </div>
-                <br>
 
                 {{-- 計算結果を表形式で表示する(初期値は0でajaxで計算結果を上書きする) --}}
                 <table border="1" width="300" class="ml-4 text-center">
@@ -156,34 +115,39 @@
                         <th>計算結果</th>
                     </tr>
                     <tr>
-                        <td>除脂肪体重(kg)</td>
-                        <td class="lean-body-mass">0</td>
-                    </tr>
-                    <tr>
                         <td>1日の目標カロリー(kCal)</td>
-                        <td class="building-target-calories">0</td>
+                        <td class="sixpacking-target-calories">0</td>
                     </tr>
                     <tr>
                         <td>目標たんぱく質摂取量(g)</td>
-                        <td class="building-target-protein">0</td>
+                        <td class="sixpacking-target-protein">0</td>
                     </tr>
                     <tr>
                         <td>目標脂質摂取量(g)</td>
-                        <td class="building-target-lipid">0</td>
+                        <td class="sixpacking-target-lipid">0</td>
                     </tr>
                     <tr>
                         <td>目標糖質摂取量(g)</td>
-                        <td class="building-target-carbohydrate">0</td>
+                        <td class="sixpacking-target-carbohydrate">0</td>
                     </tr>
                 </table>
                 <br>
                 <p>以下の計算方法にて算出しています。(各種研究結果等を参考に設定)</p>
                 <ol>
-                    <li>目標総カロリー(kCal) = 除脂肪体重(kg) × 44</li>
-                    <li>目標タンパク質摂取量(g) = 体重(kg) × 1.6(g)</li>
-                    <li>目標脂質摂取量(g) = 目標総カロリー(kCal) × 30% / 9</li>
-                    <li>目標糖質摂取量(g) = (目標総カロリー(kCal) - (目標タンパク質摂取量(g) * 4) - (目標脂質摂取量(g) * 9)) / 4</li>
+                    <li>目標総カロリー(kCal) = 体重(kg) × 22</li>
+                    <li>目標タンパク質摂取量(g) = 目標総カロリー(kCal) × 0.30 / 4</li>
+                    <li>目標脂質摂取量(g) = 目標総カロリー(kCal) x 0.50 / 9</li>
+                    <li>目標糖質摂取量(g) = 目標総カロリー(kCal) × 0.15 / 4</li>
                 </ol>
+                <br>
+                <p>三大栄養素の考え方としては、</p>
+                <ol>
+                    <li>筋肉を維持しながら脂肪を落とすにはタンパク質の量の確保は最重要。</li>
+                    <li>ホルモンバランスを崩さないためには脂質も50%程度は必要。</li>
+                    <li>結果として糖質は減らす必要があり、根菜類や緑黄色野菜を中心に摂る。</li>
+                    <li>（白米やパン、パスタのような精製糖質は入る余地がなくなる）</li>
+                </ol>
+                <p>のようになります。</p>
                 <p>また計算結果を登録すればマイページでいつでも確認することができます。</p>
                 {{-- 登録/更新ボタン --}}
                 <br>
@@ -191,10 +155,10 @@
                     <div class="col-md-8">
                         {{-- <input type="hidden" name="id" value="{{ Auth::user()->id }}"> --}}
                         <input type="hidden" name="lean-body-mass" value="">
-                        <input type="hidden" name="building-target-calories" value="">
-                        <input type="hidden" name="building-target-protein" value="">
-                        <input type="hidden" name="building-target-lipid" value="">
-                        <input type="hidden" name="building-target-carbohydrate" value="">
+                        <input type="hidden" name="sixpacking-target-calories" value="">
+                        <input type="hidden" name="sixpacking-target-protein" value="">
+                        <input type="hidden" name="sixpacking-target-carbohydrate" value="">
+                        <input type="hidden" name="sixpacking-target-lipid" value="">
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-primary" value="マイデータに登録/更新">
                     </div>

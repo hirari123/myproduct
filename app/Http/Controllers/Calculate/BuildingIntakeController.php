@@ -88,7 +88,6 @@ class BuildingIntakeController extends Controller
 
     // deleteアクション(マイページから結果を削除する)
     // マイページからauth::user()->idでデータを抽出してレコードを削除する
-    // データ自体をなかったことにできる？？idがfillableじゃないけど削除できる？idは残っても良い？
     public function delete()
     {
         $id = Auth::user()->id;

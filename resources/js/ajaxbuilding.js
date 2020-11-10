@@ -3,7 +3,6 @@ $(function () {
     var bodyFatPercentage;
 
     $('.js-building-intake').on('change mouseout', function () {
-        var $this = $(this);
         // Viewのフォームから受け取る
         bodyWeight = $("[name=body_weight]").val();
         bodyFatPercentage = $("[name=body_fat_percentage]").val();

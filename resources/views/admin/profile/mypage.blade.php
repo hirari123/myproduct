@@ -16,7 +16,12 @@
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
-        目標摂取カロリー計算
+        効率よく筋肉量を増やすカロリー計算
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/calculate/sixpacking_intake') }}">
+        最速で腹筋を割るカロリー計算
     </a>
 </li>
 @endsection
@@ -72,6 +77,33 @@
             <div>
                 <p>まだ計算結果はありません。</p>
                 <a href="{{ url('/calculate/building_intake') }}"
+                    class="btn btn-primary col-md-4 mx-1 p-1">こちらから計算できます</a>
+            </div>
+            @endif
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="card col-md-8 mt-2 ml-3 p-4">
+            <h5>◆最速で腹筋を割るための目標カロリー</h5>
+            @if($sixpacking_intakes->calculate_exist(Auth::user()->id))
+            {{-- 各項目にモデルから変数を格納する --}}
+            <ul>
+                <li>最後に計算した日：{{ $sixpacking_intakes->updated_at->format('Y年m月d日')}}</li>
+                <li>計算したときの体重： {{ $sixpacking_intakes->body_weight }} kg
+                <li>1日の目標カロリー： {{ $sixpacking_intakes->sixpacking_target_calories }} kCal
+                <li>1日の目標たんぱく質：{{ $sixpacking_intakes->sixpacking_target_protein }} g
+                <li>1日の目標脂質：{{ $sixpacking_intakes->sixpacking_target_lipid }} g
+                <li>1日の目標糖質：{{ $sixpacking_intakes->sixpacking_target_carbohydrate }} g
+            </ul>
+            <div class="form-group">
+                <a href="{{ url('/calculate/sixpacking_intake') }}" class="btn btn-primary col-md-2 mx-1 p-1">再度計算する</a>
+                <a href="{{ action('Calculate\SixpackingIntakeController@delete') }}"
+                    class="btn btn-danger col-md-2 mx-1 p-1">結果を削除</a>
+            </div>
+            @else
+            <div>
+                <p>まだ計算結果はありません。</p>
+                <a href="{{ url('/calculate/sixpacking_intake') }}"
                     class="btn btn-primary col-md-4 mx-1 p-1">こちらから計算できます</a>
             </div>
             @endif

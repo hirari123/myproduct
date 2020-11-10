@@ -16,7 +16,12 @@
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
-        目標摂取カロリー計算
+        効率よく筋肉量を増やすカロリー計算
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/calculate/sixpacking_intake') }}">
+        最速で腹筋を割るカロリー計算
     </a>
 </li>
 @endsection

@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ajaxlike', 'Admin\ArticleController@index'); // 不意にurl指定でアクセスが来た場合
     Route::post('ajaxbuilding', 'Calculate\BuildingIntakeController@ajaxBuildingIntake')->name('calculate.ajaxbuilding');
     Route::get('ajaxbuilding', 'Calculate\BuildingIntakeController@index'); // 不意にurl指定でアクセスが来た場合
+    Route::post('ajaxsixpacking', 'Calculate\SixpackingIntakeController@ajaxSixpackingIntake')->name('calculate.ajaxsixpacking');
+    Route::get('ajaxsixpacking', 'Calculate\SixpackingIntakeController@index'); // 不意にurl指定でアクセスが来た場合
 });
 
 // 目標カロリー計算のルーティング
@@ -59,6 +61,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('calculate/building_intake', 'Calculate\BuildingIntakeController@index');
     Route::post('calculate/building_intake', 'Calculate\BuildingIntakeController@create');
     Route::get('calculate/building_intake/delete', 'Calculate\BuildingIntakeController@delete');
+
+    Route::get('calculate/sixpacking_intake', 'Calculate\SixpackingIntakeController@index');
+    Route::post('calculate/sixpacking_intake', 'Calculate\SixpackingIntakeController@create');
+    Route::get('calculate/sixpacking_intake/delete', 'Calculate\SixpackingIntakeController@delete');
 });
 
 // Authファサードで生成されるルーティング →無効にして手動で記述してURLをカスタマイズする

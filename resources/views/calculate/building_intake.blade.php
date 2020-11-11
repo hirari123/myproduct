@@ -6,17 +6,22 @@
 @section('navbar-left')
 <li>
     <a class="nav-link" href="{{ url('/admin/articles') }}">
-        みんなの投稿一覧
+        みんなの投稿
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/admin/users') }}">
-        みんなのプロフィール一覧
+        みんなのプロフィール
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
-        目標摂取カロリー計算
+        効率よく筋肉量を増やす
+    </a>
+</li>
+<li>
+    <a class="nav-link" href="{{ url('/calculate/sixpacking_intake') }}">
+        最速で腹筋を割る
     </a>
 </li>
 @endsection
@@ -184,7 +189,10 @@
                     <li>目標脂質摂取量(g) = 目標総カロリー(kCal) × 30% / 9</li>
                     <li>目標糖質摂取量(g) = (目標総カロリー(kCal) - (目標タンパク質摂取量(g) * 4) - (目標脂質摂取量(g) * 9)) / 4</li>
                 </ol>
-                <p>また計算結果を登録すればマイページでいつでも確認することができます。</p>
+                <p>なお普段の食事メニューのカロリーや栄養素を把握するには下記のようなサイトを利用するのが良いと思います。</p>
+                <a href="https://calorie.slism.jp/">カロリーSlism</a>
+                <br>
+                <p>今回の計算結果はこちらから登録すればマイページでいつでも確認することができます。</p>
                 {{-- 登録/更新ボタン --}}
                 <br>
                 <div class="form-group row mb-4 mx-auto">

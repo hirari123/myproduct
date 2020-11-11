@@ -6,22 +6,22 @@
 @section('navbar-left')
 <li>
     <a class="nav-link" href="{{ url('/admin/articles') }}">
-        みんなの投稿一覧
+        みんなの投稿
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/admin/users') }}">
-        みんなのプロフィール一覧
+        みんなのプロフィール
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
-        効率よく筋肉量を増やすカロリー計算
+        効率よく筋肉量を増やす
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/sixpacking_intake') }}">
-        最速で腹筋を割るカロリー計算
+        最速で腹筋を割る
     </a>
 </li>
 @endsection
@@ -32,9 +32,23 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
             <h3 class="mt-3 mb-3">最速で腹筋を割るための目標摂取カロリーを計算しよう</h3>
-            <img class="eye-catche mb-3" src="{{ '/images/sixpack.jpg' }}">
+            <img class="eye-catche mb-3" src="{{ '/images/sixpack2.jpg' }}">
             <br>
-            <p>ここでは以下のフォームで現在の体重を設定するだけで、<br>目標の摂取カロリーと三大栄養素(タンパク質・脂質・糖質)の必要な摂取量を簡単に算出することができます。</p>
+            <p>腹筋を割るためには腹筋運動だけをしても無駄なのは常識。</p>
+            <p>まずは前提条件を整理したいと思います。</p>
+            <ul>
+                <li>腹筋だけやっても腹筋は割れない。</li>
+                <li>腹筋を割るにはまず脂肪を落とす。体脂肪率10%（女性は15%）が目標。</li>
+                <li>しかしそこまで落とすには厳しいカロリー制限が必要があるので万人向けではない。</li>
+                <li>まずは自然に体脂肪率は13%程度（女性は18%程度）に落とした上で、方向性を考えるのもあり。</li>
+                <li>加工食品を避けてカロリーの質を考えつつ運動をすれば体脂肪率は自然とそのぐらいまで落ちるはず。</li>
+                <li></li>
+            </ul>
+            <p>といった具合です。</p>
+            <br>
+            <p>自身の体脂肪率を把握しつつ、ここでは体脂肪率10%（女性は15%）を目標に最速で腹筋を割るためのカロリーと三大栄養素を算出します。</p>
+            <p>以下のフォームで現在の体重を設定するだけで、
+                目標の摂取カロリーと三大栄養素(タンパク質・脂質・糖質)の必要な摂取量を簡単に計算することができます。</p>
             <br>
             <form action="{{ action('Calculate\SixpackingIntakeController@create') }}" method="post"
                 enctype="multipart/form-data" id="js_sixpacking_submit">
@@ -148,7 +162,10 @@
                     <li>（白米やパン、パスタのような精製糖質は入る余地がなくなる）</li>
                 </ol>
                 <p>のようになります。</p>
-                <p>また計算結果を登録すればマイページでいつでも確認することができます。</p>
+                <p>なお普段の食事メニューのカロリーや栄養素を把握するには下記のようなサイトを利用するのが良いと思います。</p>
+                <a href="https://calorie.slism.jp/">カロリーSlism</a>
+                <br>
+                <p>今回の計算結果はこちらから登録すればマイページでいつでも確認することができます。</p>
                 {{-- 登録/更新ボタン --}}
                 <br>
                 <div class="form-group row mb-4 mx-auto">

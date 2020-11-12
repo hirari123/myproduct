@@ -6,22 +6,22 @@
 @section('navbar-left')
 <li>
     <a class="nav-link" href="{{ url('/admin/articles') }}">
-        みんなの投稿一覧
+        みんなの投稿
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/admin/users') }}">
-        みんなのプロフィール一覧
+        みんなのプロフィール
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/building_intake') }}">
-        効率よく筋肉量を増やすカロリー計算
+        効率よく筋肉量を増やす
     </a>
 </li>
 <li>
     <a class="nav-link" href="{{ url('/calculate/sixpacking_intake') }}">
-        最速で腹筋を割るカロリー計算
+        最速で腹筋を割る
     </a>
 </li>
 @endsection

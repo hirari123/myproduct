@@ -15,6 +15,7 @@
     <script src="{{ asset('js/strCount.js') }}" defer></script>
     <script src="{{ asset('js/ajaxlike.js') }}" defer></script>
     <script src="{{ asset('js/ajaxbuilding.js') }}" defer></script>
+    <script src="{{ asset('js/ajaxsixpacking.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

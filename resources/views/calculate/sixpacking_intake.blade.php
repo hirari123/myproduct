@@ -32,29 +32,29 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
             <h3 class="mt-3 mb-3">最速で腹筋を割るための目標摂取カロリーを計算しよう</h3>
-            <img class="eye-catche mb-3" src="{{ '/images/sixpack2.jpg' }}">
+            <img class="eye-catche mb-3" src="{{ '/images/meat.jpg' }}">
             <br>
             <p>腹筋を割るためには腹筋運動だけをしても無駄なのは常識。</p>
-            <p>まずは前提条件を整理したいと思います。</p>
+            <p>前提条件としては、</p>
             <ul>
                 <li>腹筋だけやっても腹筋は割れない。</li>
                 <li>腹筋を割るにはまず脂肪を落とす。体脂肪率10%（女性は15%）が目標。</li>
-                <li>しかしそこまで落とすには厳しいカロリー制限が必要があるので万人向けではない。</li>
-                <li>まずは自然に体脂肪率は13%程度（女性は18%程度）に落とした上で、方向性を考えるのもあり。</li>
+                <li>しかしそこまで落とすには厳しいカロリー制限が必要があるので万人向けではない。(結構なストレス)</li>
                 <li>加工食品を避けてカロリーの質を考えつつ運動をすれば体脂肪率は自然とそのぐらいまで落ちるはず。</li>
-                <li></li>
+                <li>まずは自然に体脂肪率は13%程度（女性は18%程度）に落とした上で、方向性を考えるのもあり。</li>
+                <li>今回の「最速で腹筋を割る」は筋肉を維持しながら本気でカロリー制限をして最速で腹筋を割る、という計算。</li>
             </ul>
             <p>といった具合です。</p>
             <br>
             <p>自身の体脂肪率を把握しつつ、ここでは体脂肪率10%（女性は15%）を目標に最速で腹筋を割るためのカロリーと三大栄養素を算出します。</p>
-            <p>以下のフォームで現在の体重を設定するだけで、
+            <p>以下のフォームで現在の体重を設定すると、
                 目標の摂取カロリーと三大栄養素(タンパク質・脂質・糖質)の必要な摂取量を簡単に計算することができます。</p>
             <br>
             <form action="{{ action('Calculate\SixpackingIntakeController@create') }}" method="post"
                 enctype="multipart/form-data" id="js_sixpacking_submit">
                 {{-- 体重の入力(optionで選択する) --}}
                 <div class="form-group row">
-                    <label class="col-md-3" for="body_weight">現在の体重(kg)</label>
+                    <label class="col-md-2" for="body_weight">現在の体重(kg)</label>
                     <div class="col-md-2">
                         <select type="number" class="form-control js-sixpacking-intake" name="body_weight">
                             <option value="40">40</option>
@@ -162,8 +162,6 @@
                     <li>（白米やパン、パスタのような精製糖質は入る余地がなくなる）</li>
                 </ol>
                 <p>のようになります。</p>
-                <p>なお普段の食事メニューのカロリーや栄養素を把握するには下記のようなサイトを利用するのが良いと思います。</p>
-                <a href="https://calorie.slism.jp/">カロリーSlism</a>
                 <br>
                 <p>今回の計算結果はこちらから登録すればマイページでいつでも確認することができます。</p>
                 {{-- 登録/更新ボタン --}}
@@ -181,6 +179,9 @@
                     </div>
                 </div>
             </form>
+            <p>なお普段の食事メニューのカロリーや栄養素を把握するには下記のようなサイトを利用するのが良いと思います。</p>
+            <a href="https://calorie.slism.jp/">カロリーSlism</a>
+            <br>
         </div>
     </div>
 </div>

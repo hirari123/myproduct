@@ -61,7 +61,7 @@ class SixpackingIntakeController extends Controller
 
         // 目標カロリーと三大栄養素を算出する
         $sixpacking_target_calories = round($body_weight * 22, 0);
-        $sixpacking_target_protein = round($body_weight * 0.30 / 4, 0);
+        $sixpacking_target_protein = round($sixpacking_target_calories * 0.30 / 4, 0);
         $sixpacking_target_lipid = round($sixpacking_target_calories * 0.50 / 9, 0);
         $sixpacking_target_carbohydrate = round($sixpacking_target_calories * 0.15 / 4, 0);
 

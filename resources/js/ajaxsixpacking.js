@@ -1,7 +1,7 @@
 $(function () {
     var bodyWeight;
 
-    $('.js-sixpacking-intake').on('change mouseout', function () {
+    $('.js-sixpacking-intake').on('change mouseover', function () {
         // Viewのフォームから受け取る
         bodyWeight = $("[name=body_weight]").val();
 

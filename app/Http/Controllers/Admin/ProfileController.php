@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\User; // Userモデルを使う
 use App\BuildingIntake; // BuildingIntakeモデルを使う
+use App\SixpackingIntake; // SixpackingIntakeモデルを使う
 use Illuminate\Support\Facades\Auth; // Authファサードを使う
 use Intervention\Image\Facades\Image; // InterventionImageを使う(画像リサイズ)
 use Illuminate\Support\Facades\Storage; // Storageファサードを使う(ユーザー画像を保存,削除)
@@ -104,8 +105,24 @@ class ProfileController extends Controller
             $building_intakes = BuildingIntake::where('user_id', $id)->first();
         }
 
+        // SixpackingIntakesモデルから計算結果を取り出す
+        $sixpacking_intakes = new SixpackingIntake;
+
+        // すでにログインユーザーの計算結果が存在する場合は該当データを取得する
+        if ($sixpacking_intakes->calculate_exist($id)) {
+            $sixpacking_intakes = SixpackingIntake::where('user_id', $id)->first();
+        }
+
         // Userモデルからログインユーザーのデータを取り出してViewに渡す
         $user_data = User::find(Auth::user()->id);
-        return view('admin.profile.mypage', ['user_data' => $user_data, 'building_intakes' => $building_intakes]);
+
+        // Viewに渡すパラメータ
+        $data = [
+            'user_data' => $user_data,
+            'building_intakes' => $building_intakes,
+            'sixpacking_intakes' => $sixpacking_intakes,
+        ];
+
+        return view('admin.profile.mypage', $data);
     }
 }

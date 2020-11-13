@@ -29,15 +29,15 @@
             <div class="row">
                 <div class="mx-auto">
                     <div class="float-left">
+                        <a class="btn btn-success" href="{{ route('register') }}">新規登録はこちら</a>
+                    </div>
+                    <div class="float-right">
                         <form method="post" action="{{ route('login.guest') }}">
                             @csrf
                             <input type="hidden" name="email" value="guest@gmail.com">
                             <input type="hidden" name="password" value="guest1234">
                             <button type="submit" class="btn btn-info">ゲストログイン(期間限定)</button>
                         </form>
-                    </div>
-                    <div class="float-right">
-                        <a class="btn btn-success" href="{{ route('register') }}">新規登録はこちら</a>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '投稿記事一覧')
+@section('title', 'みんなの投稿')
 
 {{-- ナビゲーションバー --}}
 @section('navbar-left')
@@ -29,9 +29,9 @@
 {{-- ここからコンテンツ --}}
 @section('content')
 <div class="container mt-4">
-    {{-- <div class="row">
-        <h2 class="h3 m-4">みんなの投稿</h2>
-    </div> --}}
+    <div class="row">
+        <h2 class="h3 ml-4">みんなの投稿</h2>
+    </div>
     <div class="row">
         {{-- 投稿作成ボタン --}}
         <div class="col-md-3 offset-1">
@@ -102,7 +102,6 @@
                     <div class="card-text text-dark">
                         @isset($article->edited_at)
                         <div class="float-right">
-                            <br>
                             [{{ $article->edited_at->format('Y年m月d日 H:i') }}編集]
                         </div>
                         @endisset

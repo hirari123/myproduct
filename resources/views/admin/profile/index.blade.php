@@ -28,7 +28,7 @@
 
 {{-- ここからコンテンツ --}}
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <div class="row">
         <h2 class="h3 m-2">みんなのプロフィール</h2>
     </div>

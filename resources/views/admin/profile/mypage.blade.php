@@ -28,9 +28,9 @@
 
 {{-- ここからコンテンツ --}}
 @section('content')
-<div class="container">
+<div class="container mt-3">
     <div class="row">
-        <h2 class="h3 my-4">マイページ</h2>
+        <h2 class="h3 my-2">マイページ</h2>
     </div>
     <h3 class=" h5">プロフィール</h3>
     {{-- マイデータをカード表示する($user_dataはControllerからAuth::user()->idで一致したもの受け取る) --}}
@@ -82,8 +82,8 @@
             @endif
         </div>
     </div>
-    <div class="row my-2">
-        <div class="card col-md-8 mt-2 ml-3 p-4">
+    <div class="row my-3">
+        <div class="card col-md-8 m-3 p-4">
             <h5>◆最速で腹筋を割るための目標カロリー</h5>
             @if($sixpacking_intakes->calculate_exist(Auth::user()->id))
             {{-- 各項目にモデルから変数を格納する --}}

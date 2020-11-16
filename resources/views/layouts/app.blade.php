@@ -103,7 +103,7 @@
             @yield('content')
         </main>
 
-        <footer>
+        <footer class="mt-4">
             <div class="text-center pt-2">
                 <p>Powerd by Hiroyuki Nakajima</p>
             </div>

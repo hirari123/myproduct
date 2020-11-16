@@ -31,8 +31,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <h3 class="mt-3 mb-3">最速で腹筋を割るための目標摂取カロリーを計算しよう</h3>
-            <img class="eye-catche mb-3" src="{{ '/images/meat.jpg' }}">
+            <h3 class="my-4">最速で腹筋を割るための目標摂取カロリーを計算しよう</h3>
+            <img class="eye-catche mb-4" src="{{ '/images/meat.jpg' }}">
             <br>
             <p>腹筋を割るためには腹筋運動だけをしても無駄なのは常識。</p>
             <p>前提としては、</p>

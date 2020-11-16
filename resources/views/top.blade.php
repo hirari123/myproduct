@@ -6,13 +6,13 @@
     <div class="top-wrapper" style="color:#fafafa">
         <h1>
             <div class="row">
-                <div class="mx-auto">
+                <div class="mx-auto mt-3">
                     パレオダイエットを
                 </div>
             </div>
             <div class="row">
                 <div class="mx-auto">
-                    コミュニティの力でブーストさせよう
+                    コミュニティの力で<span style="color:#ddaaaa; font-style: italic;">ブースト</span>させよう
                 </div>
             </div>
         </h1>
@@ -27,7 +27,7 @@
         </div>
         <div class="login-contents">
             <div class="row">
-                <div class="mx-auto">
+                <div class="mx-auto mb-3">
                     <div class="float-left">
                         <a class="btn btn-success" href="{{ route('register') }}">新規登録はこちら</a>
                     </div>
@@ -46,7 +46,7 @@
     </div>
     <div class="container top-contens pt-3">
         <div class="row">
-            <div class="mx-auto col-md-5">
+            <div class="col-md-5 mx-auto mt-3">
                 <h4>Paleo Boostでできること</h4>
                 <ul>
                     <li>ユーザー登録・ログイン機能</li>
@@ -62,7 +62,7 @@
                     <li>ゲストログイン機能</li>
                 </ul>
             </div>
-            <div class="col-md-4 mr-auto">
+            <div class="col-md-4 mr-auto mt-3">
                 <h4>使用技術,開発環境等</h4>
                 <ul>
                     <li>Laravel, PHP, MySQL</li>

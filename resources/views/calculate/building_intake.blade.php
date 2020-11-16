@@ -31,8 +31,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <h3 class="mt-3 mb-3">効率よく筋肉を増やすための目標摂取カロリーを計算しよう</h3>
-            <img class="eye-catche mb-3" src="{{ '/images/training.jpg' }}">
+            <h3 class="mt-4 mb-4">効率よく筋肉を増やすための目標摂取カロリーを計算しよう</h3>
+            <img class="eye-catche mb-4" src="{{ '/images/training.jpg' }}">
             <br>
             <p>しっかりと筋トレをしているのになかなか筋肉が増えない！</p>
             <p>その原因は大きく分けて、</p>

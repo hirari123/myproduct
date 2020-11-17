@@ -10,14 +10,19 @@
 // トップページラッパーの装飾
 .top-wrapper {
   height: 625px;
-  margin-top: 0px;
-  padding-top: 25px;
-  background-image: url('/images/italy-1587287_1280.jpg');
+  color: #fff;
+  text-shadow: 2px 3px 4px #444;
+  font-weight: bold;
+  background-image: url('/images/running-on-beach.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: #fafafa;
-  text-shadow: 2px 3px 4px #333;
+}
+
+// 背景画像の背景色を重ねる
+.bg-opacity {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 // ログインフォームの装飾

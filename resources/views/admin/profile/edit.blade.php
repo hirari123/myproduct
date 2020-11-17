@@ -28,10 +28,10 @@
 
 {{-- ここからコンテンツ --}}
 @section('content')
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h3 class="mt-2 mb-2">ユーザー情報の編集</h3>
+            <h3 class="my-2">ユーザー情報の編集</h3>
             <br>
             <form action="{{ action('Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
 
@@ -59,7 +59,7 @@
                     <label class="col-md-2" for="introduction">プロフィール</label>
                     <div class="col-md-9">
                         <textarea id="countUp" class="form-control" name="introduction" cols="30"
-                            rows="5">{{ optional($user_data)->introduction }}</textarea>
+                            rows="8">{{ optional($user_data)->introduction }}</textarea>
                         <label class="badge badge-secondary px-3 py-1 my-2 float-right">
                             <span id="count1">0</span>
                             <span> / 120</span>
@@ -84,7 +84,7 @@
                 </div>
 
                 {{-- 更新ボタン --}}
-                <div class="form-group row">
+                <div class="form-group row mb-5">
                     <div class="col-md-4 offset-md-2">
                         <input type="hidden" name="id" value="{{ optional($user_data)->id }}">
                         {{ csrf_field() }}

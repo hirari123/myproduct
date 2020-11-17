@@ -28,9 +28,9 @@
 
 {{-- ここからコンテンツ --}}
 @section('content')
-<div class="container mt-4">
+<div class="container mt-3">
     <div class="row">
-        <h2 class="h3 ml-4">みんなの投稿</h2>
+        <h2 class="h3 m-2 ml-5">みんなの投稿</h2>
     </div>
     <div class="row">
         {{-- 投稿作成ボタン --}}

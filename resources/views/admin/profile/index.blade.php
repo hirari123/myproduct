@@ -37,7 +37,7 @@
     {{-- ユーザーをforeachでカード表示する --}}
     <div class="row">
         @foreach ($users as $user)
-        <div class="card-deck mb-2 mr-1">
+        <div class="card-deck mb-4 mr-2">
             <div class="card" style="width: 24em">
                 <div class="card-header bg-dark text-white py-1">
                     @isset($user->user_image_path)

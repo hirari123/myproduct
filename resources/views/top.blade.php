@@ -13,7 +13,7 @@
                 </div>
                 <div class="row">
                     <div class="mx-auto">
-                        コミュニティの力で<span style="color:#ffddaa; font-style: italic;">ブースト</span>させよう
+                        コミュニティの力で<span style="color:#ffddaa;">ブースト</span>させよう
                     </div>
                 </div>
             </h1>
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div class="container top-contens pt-3">
+    <div class="container top-contents pt-3">
         <div class="row">
             <div class="col-md-5 mx-auto mt-3">
                 <h4>Paleo Boostでできること</h4>

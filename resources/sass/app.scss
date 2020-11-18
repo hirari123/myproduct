@@ -10,7 +10,7 @@
 // トップページラッパーの装飾
 .top-wrapper {
   height: 625px;
-  color: #fff;
+  color: #fafadd;
   text-shadow: 2px 3px 4px #444;
   font-weight: bold;
   background-image: url('/images/running-on-beach.jpg');
@@ -22,7 +22,7 @@
 // 背景画像の背景色を重ねる
 .bg-opacity {
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 50, 0, 0.2);
 }
 
 // ログインフォームの装飾
@@ -64,16 +64,16 @@
 }
 
 .navbar-brand {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .navbar-nav {
-  color: #fff;
+  color: #fafafa;
   font-size:16px;
 }
 
 .nav-link {
-  color: #fff;
+  color: #fafafa;
 }
 
 .nav-item {
@@ -82,6 +82,12 @@
     height: 30px;
     border-radius: 30px;
   }
+}
+
+// top-contentsの装飾
+.top-contents {
+  background-color: #fafafa; 
+  color: #222;
 }
 
 // bodyの装飾
@@ -128,9 +134,9 @@ footer {
 }
 
 .fa-heart {
-  color: gray;
+  color: rgba(150, 150, 150, 0.9);
 }
 
 .loved i {
-  color: red !important;
+  color: rgba(230, 60, 20, 0.9) !important;
 }

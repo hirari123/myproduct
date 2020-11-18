@@ -23,15 +23,11 @@ https://paleo-engineer.com
 - 投稿の検索機能とページネーション
 - ゲストログイン機能
 
-## 今後追加予定の機能
-- 最速で腹筋を割るための目標摂取カロリー計算
-
 ## 使用技術(言語,フレームワーク,ライブラリ)
 - Laravel 7.25
 - PHP
 - MySQL
-- JavaScript
-- jQuery
+- JavaScript(jQuery)
 - Bootstrap
 - Sass
 

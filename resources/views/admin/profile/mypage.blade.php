@@ -77,7 +77,7 @@
             <div>
                 <p>まだ計算結果はありません。</p>
                 <a href="{{ url('/calculate/building_intake') }}"
-                    class="btn btn-primary col-md-4 mx-1 p-1">こちらから計算できます</a>
+                    class="btn btn-success col-md-4 mx-1 p-1">こちらから計算できます</a>
             </div>
             @endif
         </div>
@@ -104,7 +104,7 @@
             <div>
                 <p>まだ計算結果はありません。</p>
                 <a href="{{ url('/calculate/sixpacking_intake') }}"
-                    class="btn btn-primary col-md-4 mx-1 p-1">こちらから計算できます</a>
+                    class="btn btn-success col-md-4 mx-1 p-1">こちらから計算できます</a>
             </div>
             @endif
         </div>

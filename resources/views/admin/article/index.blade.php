@@ -73,7 +73,7 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
             @foreach ($articles as $article)
-            <div class="card post-list mb-2">
+            <div class="card post-list mb-4">
                 <div class="card-header bg-dark text-white py-1">
                     @isset($article->user_image_path)
                     <img class="float-left prof-image" src="{{ $article->user_image_path }}">

@@ -10906,7 +10906,7 @@ a.text-dark:focus {
 
 .top-wrapper {
   height: 625px;
-  color: #fff;
+  color: #fafadd;
   text-shadow: 2px 3px 4px #444;
   font-weight: bold;
   background-image: url("/images/running-on-beach.jpg");
@@ -10917,7 +10917,7 @@ a.text-dark:focus {
 
 .bg-opacity {
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 50, 0, 0.2);
 }
 
 .login-box {
@@ -10955,22 +10955,27 @@ a.text-dark:focus {
 }
 
 .navbar-brand {
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .navbar-nav {
-  color: #fff;
+  color: #fafafa;
   font-size: 16px;
 }
 
 .nav-link {
-  color: #fff;
+  color: #fafafa;
 }
 
 .nav-item img {
   width: 30px;
   height: 30px;
   border-radius: 30px;
+}
+
+.top-contents {
+  background-color: #fafafa;
+  color: #222;
 }
 
 body {
@@ -11010,10 +11015,10 @@ footer {
 }
 
 .fa-heart {
-  color: gray;
+  color: rgba(150, 150, 150, 0.9);
 }
 
 .loved i {
-  color: red !important;
+  color: rgba(230, 60, 20, 0.9) !important;
 }
 

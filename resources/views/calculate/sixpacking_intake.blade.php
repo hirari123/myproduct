@@ -166,7 +166,6 @@
                 <br>
                 <p>今回の計算結果はこちらから登録すればマイページでいつでも確認することができます。</p>
                 {{-- 登録/更新ボタン --}}
-                <br>
                 <div class="form-group row mb-4 mx-auto">
                     <div class="col-md-8">
                         {{-- <input type="hidden" name="id" value="{{ Auth::user()->id }}"> --}}
@@ -176,7 +175,7 @@
                         <input type="hidden" name="sixpacking-target-carbohydrate" value="">
                         <input type="hidden" name="sixpacking-target-lipid" value="">
                         {{ csrf_field() }}
-                        <input type="submit" class="btn btn-primary" value="マイデータに登録/更新">
+                        <input type="submit" class="btn btn-success" value="マイデータに登録/更新">
                     </div>
                 </div>
             </form>

@@ -32,10 +32,9 @@
     <div class="row">
         <h2 class="h3 my-2">マイページ</h2>
     </div>
-    <h3 class=" h5">プロフィール</h3>
     {{-- マイデータをカード表示する($user_dataはControllerからAuth::user()->idで一致したもの受け取る) --}}
     <div class="row">
-        <div class="card col-md-8 p-0">
+        <div class="card col-md-8 p-0 my-3">
             <div class="card-header bg-dark text-white py-1">
                 @isset($user_data->user_image_path)
                 <img class="prof-image float-left" src="{{ $user_data->user_image_path }}">

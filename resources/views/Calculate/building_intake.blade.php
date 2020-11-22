@@ -159,26 +159,42 @@
                     <tr>
                         <th>項目</th>
                         <th>計算結果</th>
+                        <th></th>
                     </tr>
                     <tr>
-                        <td>除脂肪体重(kg)</td>
+                        <td>除脂肪体重</td>
                         <td class="lean-body-mass">0</td>
+                        <td>
+                            <p>(kg)</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td>1日の目標カロリー(kCal)</td>
+                        <td>1日の目標カロリー</td>
                         <td class="building-target-calories">0</td>
+                        <td>
+                            <p>(kCal)</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td>目標たんぱく質摂取量(g)</td>
+                        <td>目標たんぱく質摂取量</td>
                         <td class="building-target-protein">0</td>
+                        <td>
+                            <p>(g)</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td>目標脂質摂取量(g)</td>
+                        <td>目標脂質摂取量</td>
                         <td class="building-target-lipid">0</td>
+                        <td>
+                            <p>(g)</p>
+                        </td>
                     </tr>
                     <tr>
-                        <td>目標糖質摂取量(g)</td>
+                        <td>目標糖質摂取量</td>
                         <td class="building-target-carbohydrate">0</td>
+                        <td>
+                            <p>(g)</p>
+                        </td>
                     </tr>
                 </table>
                 <br>

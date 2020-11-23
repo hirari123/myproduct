@@ -121,32 +121,34 @@
                         </select>
                     </div>
                 </div>
-                <br>
 
                 {{-- 計算結果を表形式で表示する(初期値は0でajaxで計算結果を上書きする) --}}
-                <table border="1" width="300" class="ml-4 text-center">
+                <table border="1" width="340" class="my-5 ml-4 text-center">
                     <tr>
-                        <th>項目</th>
-                        <th>計算結果</th>
+                        <th width="210">項目</th>
+                        <th width="130" colspan="2">計算結果</th>
                     </tr>
                     <tr>
-                        <td>1日の目標カロリー(kCal)</td>
-                        <td class="sixpacking-target-calories">0</td>
+                        <td>1日の目標カロリー</td>
+                        <td width="90" class="sixpacking-target-calories text-right p-2">0</td>
+                        <td class="text-left">kCal</td>
                     </tr>
                     <tr>
-                        <td>目標たんぱく質摂取量(g)</td>
-                        <td class="sixpacking-target-protein">0</td>
+                        <td>目標たんぱく質摂取量</td>
+                        <td class="sixpacking-target-protein text-right p-2">0</td>
+                        <td class="text-left">g</td>
                     </tr>
                     <tr>
-                        <td>目標脂質摂取量(g)</td>
-                        <td class="sixpacking-target-lipid">0</td>
+                        <td>目標脂質摂取量</td>
+                        <td class="sixpacking-target-lipid text-right p-2">0</td>
+                        <td class="text-left">g</td>
                     </tr>
                     <tr>
-                        <td>目標糖質摂取量(g)</td>
-                        <td class="sixpacking-target-carbohydrate">0</td>
+                        <td>目標糖質摂取量</td>
+                        <td class="sixpacking-target-carbohydrate text-right p-2">0</td>
+                        <td class="text-left">g</td>
                     </tr>
                 </table>
-                <br>
                 <p>以下の計算方法にて算出しています。(各種研究結果等を参考に設定)</p>
                 <ol>
                     <li>目標総カロリー(kCal) = 体重(kg) × 22</li>
@@ -159,8 +161,8 @@
                 <ol>
                     <li>筋肉を維持しながら脂肪を落とすにはタンパク質の量の確保は最重要。</li>
                     <li>ホルモンバランスを崩さないためには脂質も50%程度は必要。</li>
-                    <li>結果として糖質は減らす必要があり、根菜類や緑黄色野菜を中心に摂る。</li>
-                    <li>（白米やパン、パスタのような精製糖質は入る余地がなくなる）</li>
+                    <li>結果として糖質は減らす必要があり、根菜類や緑黄色野菜を中心に摂る。<br>
+                        →白米やパン、パスタのような精製糖質はほとんど入る余地がなくなる</li>
                 </ol>
                 <p>のようになります。</p>
                 <br>

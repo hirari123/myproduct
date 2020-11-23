@@ -152,36 +152,39 @@
                         </select>
                     </div>
                 </div>
-                <br>
 
                 {{-- 計算結果を表形式で表示する(初期値は0でajaxで計算結果を上書きする) --}}
-                <table border="1" width="300" class="ml-4 text-center">
+                <table border="1" width="340" class="my-5 ml-4 text-center">
                     <tr>
-                        <th>項目</th>
-                        <th>計算結果</th>
+                        <th width="210">項目</th>
+                        <th width="130" colspan="2">計算結果</th>
                     </tr>
                     <tr>
-                        <td>除脂肪体重(kg)</td>
-                        <td class="lean-body-mass">0</td>
+                        <td>除脂肪体重</td>
+                        <td width="85" class="lean-body-mass text-right p-2">0</td>
+                        <td class="text-left">kg</td>
                     </tr>
                     <tr>
-                        <td>1日の目標カロリー(kCal)</td>
-                        <td class="building-target-calories">0</td>
+                        <td>1日の目標カロリー</td>
+                        <td class="building-target-calories text-right p-2">0</td>
+                        <td class="text-left">kCal</td>
                     </tr>
                     <tr>
-                        <td>目標たんぱく質摂取量(g)</td>
-                        <td class="building-target-protein">0</td>
+                        <td>目標たんぱく質摂取量</td>
+                        <td class="building-target-protein text-right p-2">0</td>
+                        <td class="text-left">g</td>
                     </tr>
                     <tr>
-                        <td>目標脂質摂取量(g)</td>
-                        <td class="building-target-lipid">0</td>
+                        <td>目標脂質摂取量</td>
+                        <td class="building-target-lipid text-right p-2">0</td>
+                        <td class="text-left">g</td>
                     </tr>
                     <tr>
-                        <td>目標糖質摂取量(g)</td>
-                        <td class="building-target-carbohydrate">0</td>
+                        <td>目標糖質摂取量</td>
+                        <td class="building-target-carbohydrate text-right p-2">0</td>
+                        <td class="text-left">g</td>
                     </tr>
                 </table>
-                <br>
                 <p>以下の計算方法にて算出しています。(各種研究結果等を参考に設定)</p>
                 <ol>
                     <li>目標総カロリー(kCal) = 除脂肪体重(kg) × 44</li>

@@ -1,5 +1,5 @@
 ## アプリ名
-「Paleo Boost(パレオブースト)」
+「Paleo Boost(パレオブースト)」<br>
 https://paleo-engineer.com
 
 ## どんなアプリ？
@@ -9,7 +9,7 @@ https://paleo-engineer.com
 です。<br>
 情報を共有したり計算機能を利用したりすることにより健康増進の効果を高めることが目的です。<br>
 </p>
-<img src="public/images/top-page-screen.png" alt="トップページのイメージ" style="width: 250px">
+<img src="public/images/PaleoBoost_Movie201118.gif" alt="アプリ画面の紹介動画" style="width: 70%">
 
 ## できること(実装した機能)
 - ユーザー登録・ログイン機能・ゲストログイン機能
@@ -21,28 +21,20 @@ https://paleo-engineer.com
 - いいね機能(Ajax利用,リレーション数取得)
 - 効率よく筋肉を増やすための目標摂取カロリーおよび三大栄養素の計算(Ajax)
 - 最速で腹筋を割るための目標摂取カロリーおよび三大栄養素の計算(Ajax)
-- 投稿の検索機能とページネーション
+- 投稿の検索機能とページネーション<br>
 ※レスポンシブは未対応
 
 ## 使用技術(言語,フレームワーク,ライブラリ)
-- PHP(Laravel7)
-- HTML&CSS
-- JavaScript(jQuery)
-- Bootstrap
-- Sass
-- MySQL
+- 言語：PHP / JavaScript(jQuery) / Bootstrap / HTML / CSS(Sass)
+- フレームワーク：Laravel7
+- DBMS：MySQL
+- インフラ：AWS (EC2 / RDS / S3 / ELB / Route53 / ACM 等)
+- Webサーバー：Apache HTTP Server / Amazon Linux OS2
+- 開発環境：ローカル環境(MacOS) / VSCode 
 
-## 開発環境,エディター
-- ローカル環境(MacOS)
-- VSCode
-
-## Webサーバー環境
-- Apache HTTP Server
-- Amazon Linux 2
-
-## インフラ構成
-全てAWSで構築(EC2, ELB, RDS, S3, Route53, ACM 等)
-<img src="public/images/aws-infra.png" alt="インフラ構成図" style="width: 250px">
+## インフラ構成図
+全てAWSで構築
+<img src="public/images/aws-infra.png" alt="インフラ構成図" style="width: 80%">
 
 ## テーブル構成(ER図)
-<img src="public/images/er-diagram.png" alt="ER図" style="width: 200px">
+<img src="public/images/er-diagram.png" alt="ER図" style="width: 80%">

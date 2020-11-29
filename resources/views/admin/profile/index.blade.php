@@ -54,7 +54,8 @@
                 </div>
 
                 {{-- ログインユーザーと一致する場合もしくは管理者の場合は編集リンクを表示 --}}
-                @if ($user->id == Auth::user()->id || Auth::user()->id == 1)
+                @if (Auth::user()->email == "guest@gmail.com")
+                @elseif (Auth::user()->id == $user->id || Auth::user()->id == 1)
                 <div class="card-footer">
                     <a href="{{ action('Admin\ProfileController@edit', ['id' => $user->id]) }}">編集する</a>
                     <a href="{{ action('Admin\ProfileController@delete', ['id' => $user->id]) }}">削除する</a>

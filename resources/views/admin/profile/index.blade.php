@@ -30,7 +30,7 @@
 @section('content')
 <div class="container mt-3">
     <div class="row">
-        <h2 class="h3 m-2">みんなのプロフィール</h2>
+        <h2 class="h3 m-2">みんなのプロフィール</h2><img src="{{ '/images/speaking.jpeg' }}" height="25px" class="mt-2">
     </div>
     <br>
 

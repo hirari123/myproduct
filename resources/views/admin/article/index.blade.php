@@ -78,7 +78,7 @@
                     @isset($article->user_image_path)
                     <img class="float-left prof-image" src="{{ $article->user_image_path }}">
                     @else
-                    <img class="float-left prof-image" src="{{ '/images/defaulte_user.jpg' }}">
+                    <img class="float-left prof-image" src="{{ '/images/defaulte_user.png' }}">
                     @endisset
                     <span class="float-left pl-2 pt-3">
                         {{ $article->user_name }}

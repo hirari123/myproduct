@@ -72,7 +72,7 @@
                                 @isset(Auth::user()->user_image_path)
                                 <img src="{{ Auth::user()->user_image_path }}">
                                 @else
-                                <img src="{{ '/images/defaulte_user.jpg' }}">
+                                <img src="{{ '/images/defaulte_user.png' }}">
                                 @endisset
                             </a>
 

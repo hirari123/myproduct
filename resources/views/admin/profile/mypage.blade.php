@@ -39,7 +39,7 @@
                 @isset($user_data->user_image_path)
                 <img class="prof-image float-left" src="{{ $user_data->user_image_path }}">
                 @else
-                <img class="prof-image float-left" src="{{ '/images/defaulte_user.jpg' }}">
+                <img class="prof-image float-left" src="{{ '/images/defaulte_user.png' }}">
                 @endisset
                 <span class="float-left pl-2 pt-3">
                     名前：{{ $user_data->name }}
